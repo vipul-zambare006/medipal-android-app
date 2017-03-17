@@ -13,6 +13,10 @@ import static sg.edu.nus.medipalapplication.Constant.Categories_Table_Name;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MedipalDB.db";
     private static final int DATABASE_VERSION = 1;
+    
+    public MedipalDatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
 
     private static final String CREATE_PERSONALBIO = "CREATE TABLE " + Constant.PersonalBio_Table_Name
             + "("
