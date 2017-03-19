@@ -1,4 +1,4 @@
-package sg.edu.nus.medipalapplication;
+package sg.edu.nus.medipalapplication.database;
 
 /**
  * Created by Gaurav on 15-03-2017.
@@ -48,6 +48,8 @@ public class Constant {
     public static final String LOCATION = "LOCATION";
     public static final String FREQUENCY = "FREQUENCY";
     public static final String INTERVAL = "INTERVAL";
+    public static final String APPOINTMENTDATETIME = "APPOINTMENTDATETIME";
+
 
 
 }

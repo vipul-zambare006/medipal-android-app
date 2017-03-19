@@ -1,20 +1,25 @@
-package sg.edu.nus.medipalapplication;
+package sg.edu.nus.medipalapplication.database;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import static sg.edu.nus.medipalapplication.Constant.Categories_Table_Name;
+import sg.edu.nus.medipalapplication.MedipalFolder.Appointment;
+
+import static sg.edu.nus.medipalapplication.database.Constant.Categories_Table_Name;
 
 /**
  * Created by Gaurav on 15-03-2017.
  */
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MedipalDB.db";
     private static final int DATABASE_VERSION = 1;
-    
-    public MedipalDatabaseHelper(Context context) {
+
+    public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -77,9 +82,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_APPOINTEMENT = "CREATE TABLE " + Constant.Appointment_Table_Name
             + "("
             + Constant.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + Constant.FREQUENCY + " INTEGER NOT NULL,"
-            + Constant.COLUMN_CREATED_TIME + " INTEGER NOT NULL,"
-            + Constant.INTERVAL + " INTEGER NOT NULL);";
+            + Constant.LOCATION +  " TEXT NOT NULL, "
+            + Constant.APPOINTMENTDATETIME + " TEXT NOT NULL, "
+            + Constant.DESCRIPTION + " TEXT NOT NULL);";
+
 
     private static final String CREATE_REMINDER = "CREATE TABLE " + Constant.Reminder_Table_Name
             + "("
@@ -96,10 +102,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + Constant.CONTACTTYPE + " INTEGER NOT NULL, "
             + Constant.DESCRIPTION + " TEXT NOT NULL,"
             + Constant.PREFERENCES + " INTEGER NOT NULL);";
-
-    public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    }
 
     @Override
     public void onCreate(SQLiteDatabase db) {

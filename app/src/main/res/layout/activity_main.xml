@@ -49,11 +49,14 @@
         android:textColor="@color/colorPrimaryDark" />
 
     <TextView
+        android:id="@+id/appointmentId"
         style="@style/CategoryStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Appointment"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="@color/colorPrimaryDark"
+        android:onClick="onAppointmentListClick"
+        android:clickable="true"/>
 
     <TextView
         style="@style/CategoryStyle"
