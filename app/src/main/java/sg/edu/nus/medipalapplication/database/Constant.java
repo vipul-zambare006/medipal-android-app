@@ -48,7 +48,8 @@ public class Constant {
     public static final String LOCATION = "LOCATION";
     public static final String FREQUENCY = "FREQUENCY";
     public static final String INTERVAL = "INTERVAL";
-    public static final String APPOINTMENTDATETIME = "APPOINTMENTDATETIME";
+    public static final String APPOINTMENTDATE = "APPOINTMENTDATE";
+    public static final String APPOINTMENTTIME = "APPOINTMENTTIME";
 
 
 

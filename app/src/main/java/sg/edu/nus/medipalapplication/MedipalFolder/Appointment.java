@@ -5,7 +5,7 @@ import android.database.Cursor;
 import sg.edu.nus.medipalapplication.database.AppointmentDAO;
 
 /**
- * Created by DELL on 3/19/2017.
+ * Created by Vipul Zambare on 3/19/2017.
  */
 
 public class Appointment {
@@ -13,15 +13,17 @@ public class Appointment {
     private int id;
     private String location;
     private String description;
-    private String dateTime;
+    private String date;
+    private String time;
 
     public Appointment(){
     }
 
-    public Appointment(int id, String location, String description, String datetime) {
+    public Appointment(int id, String location, String description, String date, String time) {
         this.location = location;
         this.description = description;
-        this.dateTime = datetime;
+        this.date = date;
+        this.time = time;
         this.id = id;
     }
 
@@ -50,11 +52,15 @@ public class Appointment {
         return description;
     }
 
-    public String getAppointmentDateTime(){
-        return dateTime;
+    public String getDate(){
+        return date;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getTime() {
+        return time;
     }
 }

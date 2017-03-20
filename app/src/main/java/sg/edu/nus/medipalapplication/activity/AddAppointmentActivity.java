@@ -3,6 +3,7 @@ package sg.edu.nus.medipalapplication.activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.DatePicker;
@@ -23,13 +25,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
+import sg.edu.nus.medipalapplication.MainActivity;
 import sg.edu.nus.medipalapplication.MedipalFolder.Appointment;
 import sg.edu.nus.medipalapplication.R;
 import sg.edu.nus.medipalapplication.adapter.AppointmentRecyclerViewAdapter;
 import sg.edu.nus.medipalapplication.database.AppointmentDAO;
 
 /**
- * Created by DELL on 3/19/2017.
+ * Created by Vipul Zambare on 3/19/2017.
  */
 
 public class AddAppointmentActivity extends AppCompatActivity {
@@ -64,6 +67,18 @@ public class AddAppointmentActivity extends AppCompatActivity {
         adapter = new AppointmentRecyclerViewAdapter(this, appointmentArrayList);
         recyclerView.setAdapter(adapter);
         fab.setOnClickListener(onAddingListener(appointmentDAO));
+/*
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            }
+        });*/
     }
 
     public void loadAppointment(AppointmentDAO appointmentDAO) {
@@ -74,10 +89,11 @@ public class AddAppointmentActivity extends AppCompatActivity {
 
             int id = cursor.getInt(0);
             String location = cursor.getString(1);
-            String appointmentDateTime = cursor.getString(2);
-            String description = cursor.getString(3);
+            String appointmentDate = cursor.getString(2);
+            String appointmentTime = cursor.getString(3);
+            String description = cursor.getString(4);
 
-            Appointment appointment = new Appointment(id,location, description, appointmentDateTime);
+            Appointment appointment = new Appointment(id,location, description, appointmentDate,appointmentTime);
             appointmentArrayList.add(appointment);
         }
         if (!(appointmentArrayList.size() < 1)) {
@@ -92,9 +108,9 @@ public class AddAppointmentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final Dialog dialog = new Dialog(AddAppointmentActivity.this);
                 int id = 1;
-                dialog.setContentView(R.layout.dialog_appointment_add); //layout for dialog
+                dialog.setContentView(R.layout.dialog_appointment_add);
                 dialog.setTitle("Add new appointment");
-                dialog.setCancelable(false); //none-dismiss when touching outside Dialog
+                dialog.setCancelable(false);
 
                 location = (EditText)dialog.findViewById(R.id.txtAptLocation);
                 description = (EditText)dialog.findViewById(R.id.txtDescription);
@@ -172,9 +188,10 @@ public class AddAppointmentActivity extends AppCompatActivity {
                 {
                     String apDate = appointmentDate.getText().toString().trim();
                     String apTime = appointmentTime.getText().toString().trim();
-                    String apDateTime = apDate + apTime;
+                    String aptLocation = location.getText().toString().trim();
+                    String aptDescription = description.getText().toString().trim();
 
-                    Appointment appointment = new Appointment(id, location.getText().toString().trim(), description.getText().toString().trim(), apDateTime);
+                    Appointment appointment = new Appointment(id, aptLocation, aptDescription, apDate,apTime);
 
                     //App.appointment.addAppointment(appointment, appointmentDAO);
                     appointment.addAppointment(appointment, appointmentDAO);
@@ -217,5 +234,4 @@ public class AddAppointmentActivity extends AppCompatActivity {
         }
         return isValid;
     }
-
 }
