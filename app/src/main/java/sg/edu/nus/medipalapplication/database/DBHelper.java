@@ -1,15 +1,8 @@
 package sg.edu.nus.medipalapplication.database;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import sg.edu.nus.medipalapplication.MedipalFolder.Appointment;
-
-import static sg.edu.nus.medipalapplication.database.Constant.Categories_Table_Name;
 
 /**
  * Created by Gaurav on 15-03-2017.
@@ -18,11 +11,6 @@ import static sg.edu.nus.medipalapplication.database.Constant.Categories_Table_N
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MedipalDB.db";
     private static final int DATABASE_VERSION = 1;
-
-    public DBHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    }
-
     private static final String CREATE_PERSONALBIO = "CREATE TABLE " + Constant.PersonalBio_Table_Name
             + "("
             + Constant.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -33,7 +21,6 @@ public class DBHelper extends SQLiteOpenHelper {
             + Constant.POSTALCODE + " TEXT NOT NULL,"
             + Constant.HEIGHT + " INTEGER NOT NULL, "
             + Constant.BLOODTYPE + " TEXT NOT NULL );";
-
     private static final String CREATE_HEALTHBIO = "CREATE TABLE " + Constant.HealthBio_Table_Name
             + "("
             + Constant.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -41,26 +28,25 @@ public class DBHelper extends SQLiteOpenHelper {
             + Constant.COLUMN_CREATED_TIME + " INTEGER NOT NULL, "
             + Constant.CONDITIONTYPE + " TEXT NOT NULL );";
 
+    private static final String CREATE_CATEGORY = "CREATE TABLE " + Constant.TableName + "(" +
+            Constant.CategoryId + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+            Constant.Categoryname + " TEXT NOT NULL, " +
+            Constant.CategoryCode + " TEXT NOT NULL, " +
+            Constant.CategoryDescription + " TEXT NOT NULL);";
 
-    private static final String CREATE_CATEGORY = "CREATE TABLE " + Categories_Table_Name
-            + "("
-            + Constant.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + Categories_Table_Name + " TEXT NOT NULL, "
-            + Constant.CATEGORYCODE + " TEXT NOT NULL, "
-            + Constant.DESCRIPTION + " TEXT NOT NULL,"
-            + Constant.REMIND + " INTEGER DEFAULT 0);";
-
-    private static final String CREATE_MEDICINE = "CREATE TABLE " + Constant.Medicine_Table_Name
-            + "("
-            + Constant.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + Constant.Medicine_Table_Name + " TEXT NOT NULL, "
-            + Constant.DESCRIPTION + " TEXT NOT NULL, "
-            + Constant.CATEGORYID + " INTEGER NOT NULL, "
-            + Constant.REMINDERID + " INTEGER DEFAULT 0, "
-            + Constant.QUANTITY + "INTEGER NOT NULL,"
-            + Constant.DOSAGE + "INTEGER NOT NULL,"
-            + Constant.DATEISSUES + "TEXT NOT NULL,"
-            + Constant.THRESHOLD + "INTEGER NOT NULL);";
+    private static final String CREATE_MEDICINE = "CREATE TABLE " + Constant.MedicineTableName + "(" +
+            Constant.MedicineId + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+            Constant.MedicineName + " TEXT NOT NULL, " +
+            Constant.MedicineDescription + " TEXT NOT NULL, " +
+            Constant.MedicineCatId + " INTEGER NOT NULL, " +
+            Constant.MedicineRemenderId + " INTEGER NOT NULL, " +
+            Constant.MedicineRemind + " INTEGER NOT NULL DEFAULT 0, " +
+            Constant.MedicineQuantity + " INTEGER NOT NULL, " +
+            Constant.MedicineDosage + " INTEGER NOT NULL, " +
+            Constant.MedicineDateIssued + " INTEGER NOT NULL, " +
+            Constant.MedicineConsumeQuantity + " INTEGER NOT NULL, " +
+            Constant.MedicineThreshold + " INTEGER NOT NULL, " +
+            Constant.MedicineExpireFactor + " INTEGER NOT NULL);";
 
     private static final String CREATE_MEASUREMENT = "CREATE TABLE " + Constant.Measurement_Table_Name
             + "("
@@ -93,7 +79,6 @@ public class DBHelper extends SQLiteOpenHelper {
             + Constant.LOCATION + " TEXT NOT NULL, "
             + Constant.Appointment_Table_Name + " TEXT NOT NULL, "
             + Constant.DESCRIPTION + " TEXT NOT NULL);";
-
     private static final String CREATE_ICE = "CREATE TABLE " + Constant.ICE_Table_Name
             + "("
             + Constant.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -103,11 +88,19 @@ public class DBHelper extends SQLiteOpenHelper {
             + Constant.DESCRIPTION + " TEXT NOT NULL,"
             + Constant.PREFERENCES + " INTEGER NOT NULL);";
 
+    public DBHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        // Execute Query to Create Tables for the app
-        // db.execSQL("some sql statement to create table");
+        String Category_Table_Row1 = "insert into " + Constant.TableName + " (" + Constant.Categoryname + ", " + Constant.CategoryCode + "," + Constant.CategoryDescription + ") values('" + Constant.Categorynamevalue + "','" + Constant.CategoryCodevalue + "','" + Constant.CategoryDescriptionvalue + "')";
+        String Category_Table_Row2 = "insert into " + Constant.TableName + " (" + Constant.Categoryname + ", " + Constant.CategoryCode + "," + Constant.CategoryDescription + ") values('" + Constant.Categorynamevalue2 + "','" + Constant.CategoryCodevalue2 + "','" + Constant.CategoryDescriptionvalue2 + "')";
+        String Category_Table_Row3 = "insert into " + Constant.TableName + " (" + Constant.Categoryname + ", " + Constant.CategoryCode + "," + Constant.CategoryDescription + ") values('" + Constant.Categorynamevalue3 + "','" + Constant.CategoryCodevalue3 + "','" + Constant.CategoryDescriptionvalue3 + "')";
+        String Category_Table_Row4 = "insert into " + Constant.TableName + " (" + Constant.Categoryname + ", " + Constant.CategoryCode + "," + Constant.CategoryDescription + ") values('" + Constant.Categorynamevalue4 + "','" + Constant.CategoryCodevalue4 + "','" + Constant.CategoryDescriptionvalue4 + "')";
+        String Category_Table_Row5 = "insert into " + Constant.TableName + " (" + Constant.Categoryname + ", " + Constant.CategoryCode + "," + Constant.CategoryDescription + ") values('" + Constant.Categorynamevalue5 + "','" + Constant.CategoryCodevalue5 + "','" + Constant.CategoryDescriptionvalue5 + "')";
+
         db.execSQL(CREATE_PERSONALBIO);
         db.execSQL(CREATE_HEALTHBIO);
         db.execSQL(CREATE_CATEGORY);
@@ -117,6 +110,12 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_REMINDER);
         db.execSQL(CREATE_APPOINTEMENT);
         db.execSQL(CREATE_ICE);
+
+        db.execSQL(Category_Table_Row1);
+        db.execSQL(Category_Table_Row2);
+        db.execSQL(Category_Table_Row3);
+        db.execSQL(Category_Table_Row4);
+        db.execSQL(Category_Table_Row5);
 
     }
 
