@@ -50,6 +50,73 @@ public class Constant {
     public static final String INTERVAL = "INTERVAL";
     public static final String APPOINTMENTDATETIME = "APPOINTMENTDATETIME";
 
+    //GOVARDHAN WORK
+    public static final String TableName = "categorytable";
+
+    public static final String MedicineTableName = "medicinetablecategory";
+
+    public static final String CategoryId = "_id";
+
+    public static final String Categoryname = "categoryname";
+
+    public static final String CategoryCode = "categorycode";
+
+    public static final String CategoryDescription = "categorydescription";
+
+    public static final String Categorynamevalue = "SUPPLEMENT";
+
+    public static final String CategoryCodevalue = "SUP";
+
+    public static final String CategoryDescriptionvalue = "User may opt to set reminder for consumption of supplement.";
+
+    public static final String Categorynamevalue2 = "CHRONIC";
+
+    public static final String CategoryCodevalue2 = "CHR";
+
+    public static final String CategoryDescriptionvalue2 = "This is to categorise medicstion for long-term/life-time consumtion for diseases,i.e. diabetes, hypertension,heart regulation,etc.";
+
+    public static final String Categorynamevalue3 = "INCIDENTAL";
+
+    public static final String CategoryCodevalue3 = "INC";
+
+    public static final String CategoryDescriptionvalue3 = "For common cold,flu or symptoms happen to be unplanned or subordinate conjuction with something and prescription from general practitioners.";
+
+    public static final String Categorynamevalue4 = "COMPLETE COURSE";
+
+    public static final String CategoryCodevalue4 = "COM";
+
+    public static final String CategoryDescriptionvalue4 = "This may applies to medication like antibiotics for sinus infection,pneumonia,bronchiis,acne,strep throat,cellulitis,etc.";
+
+    public static final String Categorynamevalue5 = "SELF APPLY";
+
+    public static final String CategoryCodevalue5 = "SEL";
+
+    public static final String CategoryDescriptionvalue5 = "To note down any self-prescribed or consume medication,i.e pplying band aids,balms,etc";
+
+    public static final String MedicineId = "Medicineid";
+
+    public static final String MedicineName = "Medicinename";
+
+    public static final String MedicineDescription = "Medicinedescription";
+
+    public static final String MedicineCatId = "Medicinecatid";
+
+    public static final String MedicineRemenderId = "MedicinereminderId";
+
+    public static final String MedicineRemind = "Medicineremind";
+
+    public static final String MedicineQuantity = "Medicinequantity";
+
+    public static final String MedicineDosage = "Medicinedosage";
+
+    public static final String MedicineDateIssued = "Medicinedateissued";
+
+    public static final String MedicineConsumeQuantity = "Mediciconsumequantity";
+
+    public static final String MedicineThreshold = "Medicinethreshold";
+
+    public static final String MedicineExpireFactor = "Medicineexpirefactor";
+
 
 
 }
