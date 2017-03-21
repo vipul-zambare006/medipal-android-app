@@ -1,5 +1,6 @@
 package sg.edu.nus.medipalapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,7 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import sg.edu.nus.medipalapplication.activity.CategoryActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -51,12 +53,15 @@ public class MainActivity extends AppCompatActivity
 
         mview = getLayoutInflater().inflate(R.layout.content_main,null);
 
-        categoryimage = (ImageView) findViewById(R.id.category);
+        categoryimage = (ImageView) findViewById(R.id.Category);
         categoryimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(), "msg msg", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
+                startActivity(intent);
+
+
             }
         });
     }
