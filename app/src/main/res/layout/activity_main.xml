@@ -7,11 +7,12 @@
     tools:context="sg.edu.nus.medipalapplication.MainActivity">
 
     <TextView
+        android:id="@+id/PersonId"
         style="@style/CategoryStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onPersonItemClick"
         android:text="Person"
+        android:clickable="true"
         android:textColor="@color/colorPrimaryDark" />
 
     <TextView

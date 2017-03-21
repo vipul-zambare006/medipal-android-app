@@ -9,8 +9,8 @@ import android.widget.TextView;
 import sg.edu.nus.medipalapplication.activity.AddAppointmentActivity;
 import sg.edu.nus.medipalapplication.activity.CategoryActivity;
 import sg.edu.nus.medipalapplication.activity.ConsumptionTabsActivity;
-import sg.edu.nus.medipalapplication.activity.ICETabLayoutActivity;
 import sg.edu.nus.medipalapplication.activity.MedicineActivity;
+import sg.edu.nus.medipalapplication.activity.PersonActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,15 +18,24 @@ public class MainActivity extends AppCompatActivity {
     TextView medicineTextView;
     TextView categoryTextView;
     TextView consumptionTextView;
-    TextView textView;
+    TextView personTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        textView = (TextView) findViewById(R.id.appointmentId);
-        textView.setOnClickListener(new View.OnClickListener() {
+        personTextView = (TextView) findViewById(R.id.PersonId);
+        personTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),PersonActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        appointmentTextView = (TextView) findViewById(R.id.appointmentId);
+        appointmentTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AddAppointmentActivity.class);
@@ -34,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        textView = (TextView) findViewById(R.id.MedicineId);
-        textView.setOnClickListener(new View.OnClickListener() {
+        medicineTextView = (TextView) findViewById(R.id.MedicineId);
+        medicineTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MedicineActivity.class);
@@ -43,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        textView = (TextView) findViewById(R.id.CategoryId);
-        textView.setOnClickListener(new View.OnClickListener() {
+        categoryTextView = (TextView) findViewById(R.id.CategoryId);
+        categoryTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
@@ -52,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        textView = (TextView) findViewById(R.id.consumptionID);
-        textView.setOnClickListener(new View.OnClickListener() {
+        consumptionTextView = (TextView) findViewById(R.id.consumptionID);
+        consumptionTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ConsumptionTabsActivity.class);
@@ -61,14 +70,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        textView = (TextView) findViewById(R.id.ICEId);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ICETabLayoutActivity.class);
-                startActivity(intent);
-            }
-        });
 
     }
 }
