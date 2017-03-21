@@ -32,7 +32,8 @@ public class DBHelper extends SQLiteOpenHelper {
             Constant.CategoryId + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
             Constant.Categoryname + " TEXT NOT NULL, " +
             Constant.CategoryCode + " TEXT NOT NULL, " +
-            Constant.CategoryDescription + " TEXT NOT NULL);";
+            Constant.CategoryDescription + " TEXT NOT NULL, " +
+            Constant.CategoryReminder + " INTEGER );";
 
     private static final String CREATE_MEDICINE = "CREATE TABLE " + Constant.MedicineTableName + "(" +
             Constant.MedicineId + " INTEGER PRIMARY KEY AUTOINCREMENT , " +

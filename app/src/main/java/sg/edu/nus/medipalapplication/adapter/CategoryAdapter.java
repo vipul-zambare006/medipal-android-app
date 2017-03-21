@@ -54,6 +54,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 intent.putExtra("Code", categorylist.get(position).getCategorycode());
                 intent.putExtra("Category", categorylist.get(position).getCategoryname());
                 intent.putExtra("Description", categorylist.get(position).getCategorydescription());
+                intent.putExtra("Reminder",categorylist.get(position).getCategoryreminder());
 
                 context.startActivity(intent);
 

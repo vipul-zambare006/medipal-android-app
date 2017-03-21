@@ -64,6 +64,8 @@ public class Constant {
 
     public static final String CategoryDescription = "categorydescription";
 
+    public static final String CategoryReminder = "categoryreminder";
+
     public static final String Categorynamevalue = "SUPPLEMENT";
 
     public static final String CategoryCodevalue = "SUP";

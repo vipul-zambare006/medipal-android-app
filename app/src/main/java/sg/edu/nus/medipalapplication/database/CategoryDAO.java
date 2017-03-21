@@ -40,13 +40,14 @@ public class CategoryDAO {
         databaseHelper.close();
     }
 
-    public long categoryUpdate(int id, String categorycode, String categoryname, String categorydescription) {
+    public long categoryUpdate(int id, String categorycode, String categoryname, String categorydescription,String categoryreminder) {
         try {
 
             ContentValues contentValues = new ContentValues();
             contentValues.put(Constant.CategoryCode, categorycode);
             contentValues.put(Constant.Categoryname, categoryname);
             contentValues.put(Constant.CategoryDescription, categorydescription);
+            contentValues.put(Constant.CategoryReminder,categoryreminder);
 
             return db.update(Constant.TableName, contentValues, Constant.CategoryId + "=?", new String[]{String.valueOf(id)});
         /*long result = sd.insert(Table_Name, null, contentValues); */
@@ -69,6 +70,7 @@ public class CategoryDAO {
             category.setCategoryname(cursor.getString(1));
             category.setCategorycode(cursor.getString(2));
             category.setCategorydescription(cursor.getString(3));
+            category.setCategoryreminder(cursor.getString(4));
             itemObjectList.add(category);
         }
         return itemObjectList;
@@ -76,7 +78,7 @@ public class CategoryDAO {
 
     public Cursor AllCategory() {
 
-        String[] columns = {Constant.CategoryId, Constant.CategoryCode, Constant.Categoryname, Constant.CategoryDescription};
+        String[] columns = {Constant.CategoryId, Constant.CategoryCode, Constant.Categoryname, Constant.CategoryDescription,Constant.CategoryReminder};
         return db.query(Constant.TableName, columns, null, null, null, null, null);
     }
 }

@@ -45,6 +45,29 @@
             android:hint="Description" />
     </android.support.design.widget.TextInputLayout>
 
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/remindername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reminder"
+            android:textSize="20dp"/>
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/AddCategoryRemind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="200dp"
+            android:textSize="20dp"
+            android:checked="true"
+            android:theme="@style/MySwitch"/>
+    </LinearLayout>
+
     <Button
         android:id="@+id/Categoryupdatebutton"
         android:layout_width="wrap_content"
