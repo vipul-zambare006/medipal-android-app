@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Medipal Application</string>
+    <string name="first_name_validation_msg">Please Enter Name</string>
+    <string name="id_no_validation_msg"> Please Enter Unique Id</string>
 </resources>
