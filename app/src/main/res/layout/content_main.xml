@@ -5,73 +5,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="sg.edu.nus.medipalapplication.MainActivity"
+    tools:context="com.example.monalisadebnth.final_medipalapp.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
 
 
         <ImageView
-            android:id="@+id/HealthBio"
             android:layout_width="43dp"
             android:layout_height="42dp"
-            android:clickable="true"
-            android:onClick=""
             android:src="@drawable/ic_medical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.211"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.07" />
+            app:layout_constraintHorizontal_bias="0.211"
+            app:layout_constraintVertical_bias="0.07"
+            android:clickable="true"
+            android:onClick=""/>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Health Bio"
             app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintVertical_bias="0.194" />
 
 
     <ImageView
-        android:id="@+id/ICE"
         android:layout_width="47dp"
         android:layout_height="42dp"
-        android:clickable="true"
         android:src="@drawable/ic_menu_ice"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.783"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.07" />
+        app:layout_constraintHorizontal_bias="0.783"
+        app:layout_constraintVertical_bias="0.07"
+        android:clickable="true"/>
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ICE"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.754"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.754"
         app:layout_constraintVertical_bias="0.174" />
 
     <ImageView
-        android:id="@+id/Category"
         android:layout_width="43dp"
         android:layout_height="42dp"
-        android:clickable="true"
         android:src="@drawable/ic_menu_category"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.211"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.334" />
+        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintVertical_bias="0.334"
+        android:clickable="true"/>
 
     <TextView
         android:id="@+id/tv_category"
@@ -79,107 +77,132 @@
         android:layout_height="wrap_content"
         android:text="Category"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.179"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.179"
         app:layout_constraintVertical_bias="0.441" />
 
     <ImageView
-        android:id="@+id/Medicine"
         android:layout_width="43dp"
         android:layout_height="42dp"
-        android:clickable="true"
         android:src="@drawable/ic_menu_medicine"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.774"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.334" />
+        app:layout_constraintHorizontal_bias="0.774"
+        app:layout_constraintVertical_bias="0.334"
+        android:clickable="true"/>
 
     <TextView
+        android:id="@+id/tv_medicine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Medicine"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.777"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.777"
         app:layout_constraintVertical_bias="0.441" />
 
     <ImageView
-        android:id="@+id/Measurement"
         android:layout_width="43dp"
         android:layout_height="42dp"
-        android:clickable="true"
         android:src="@drawable/ic_menu_measurement"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.211"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.588" />
+        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintVertical_bias="0.588"
+        android:clickable="true"/>
 
     <TextView
+        android:id="@+id/tv_measurement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Measurement"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.167"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.167"
         app:layout_constraintVertical_bias="0.669" />
 
     <ImageView
-        android:id="@+id/Appointment"
         android:layout_width="43dp"
         android:layout_height="42dp"
-        android:clickable="true"
         android:src="@drawable/ic_menu_appointment"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.211"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.808" />
+        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintVertical_bias="0.808"
+        android:clickable="true"/>
 
     <TextView
+        android:id="@+id/tv_appointment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Appointment"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.181"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
         app:layout_constraintVertical_bias="0.889" />
 
     <ImageView
-        android:id="@+id/Reminder"
         android:layout_width="43dp"
         android:layout_height="42dp"
-        android:clickable="true"
         android:src="@drawable/ic_menu_reminder"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.774"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.588" />
+        app:layout_constraintHorizontal_bias="0.774"
+        app:layout_constraintVertical_bias="0.588"
+        android:clickable="true"/>
 
     <TextView
+        android:id="@+id/tv_reminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Reminder"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.775"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.775"
         app:layout_constraintVertical_bias="0.67" />
+
+
+    <ImageView
+        android:layout_width="43dp"
+        android:layout_height="42dp"
+        android:src="@drawable/ic_menu_consumption"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.774"
+        app:layout_constraintVertical_bias="0.808"
+        android:clickable="true"/>
+
+    <TextView
+        android:id="@+id/tv_consumption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consumption"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.797"
+        app:layout_constraintVertical_bias="0.89" />
 
 
 
