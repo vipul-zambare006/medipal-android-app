@@ -20,6 +20,10 @@
             android:name=".activity.AddAppointmentActivity"
             android:label="Add Appointment"></activity>
         <activity
+            android:name=".activity.PersonActivity"
+            android:label="Add Person"></activity>
+
+        <activity
             android:name=".activity.EditAppointmentActivity"
             android:label="Edit Appointment"></activity>
 
