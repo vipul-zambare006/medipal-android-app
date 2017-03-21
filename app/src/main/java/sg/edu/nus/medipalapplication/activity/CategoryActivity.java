@@ -57,8 +57,9 @@ public class CategoryActivity extends AppCompatActivity {
             String categorycode = cursor.getString(1);
             String categoryname = cursor.getString(2);
             String categorydescription = cursor.getString(3);
+            String categoryreminder = cursor.getString(4);
 
-            Category itemObject = new Category(id, categorycode, categoryname, categorydescription);
+            Category itemObject = new Category(id, categorycode, categoryname, categorydescription,categoryreminder);
 
             categoryItem.add(itemObject);
 

@@ -44,6 +44,12 @@
             android:name=".activity.CategoryEditActivity"
             android:label="Edit Category"></activity>
 
+        <activity
+            android:name=".activity.ConsumptionTabsActivity"
+            android:label="Consumption"
+            android:theme="@style/TabLayoutTheme"></activity>
+
+
     </application>
 
 </manifest>

@@ -10,8 +10,8 @@
         style="@style/CategoryStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Person"
         android:onClick="onPersonItemClick"
+        android:text="Person"
         android:textColor="@color/colorPrimaryDark" />
 
     <TextView
@@ -23,6 +23,7 @@
 
     <TextView
         style="@style/CategoryStyle"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ICE"
@@ -68,6 +69,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Reminder"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <TextView
+        android:id="@+id/consumptionID"
+        style="@style/CategoryStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consumption"
         android:textColor="@color/colorPrimaryDark" />
 
 </LinearLayout>

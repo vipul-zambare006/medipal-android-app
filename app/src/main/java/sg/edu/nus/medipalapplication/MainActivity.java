@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import sg.edu.nus.medipalapplication.activity.AddAppointmentActivity;
 import sg.edu.nus.medipalapplication.activity.CategoryActivity;
+import sg.edu.nus.medipalapplication.activity.ConsumptionTabsActivity;
 import sg.edu.nus.medipalapplication.activity.MedicineActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     TextView appointmentTextView;
     TextView medicineTextView;
     TextView categoryTextView;
+    TextView consumptionTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,5 +49,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        consumptionTextView = (TextView) findViewById(R.id.consumptionID);
+        consumptionTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ConsumptionTabsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 }
