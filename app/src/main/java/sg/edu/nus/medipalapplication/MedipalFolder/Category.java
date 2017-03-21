@@ -6,18 +6,19 @@ package sg.edu.nus.medipalapplication.MedipalFolder;
 
 public class Category {
 
-    private String categorycode, categoryname, categorydescription;
+    private String categorycode, categoryname, categorydescription,categoryreminder;
     private int id;
 
     public Category() {
 
     }
 
-    public Category(int id, String categorycode, String categoryname, String categorydescription) {
+    public Category(int id, String categorycode, String categoryname, String categorydescription,String categoryreminder) {
         this.id = id;
         this.categorycode = categorycode;
         this.categoryname = categoryname;
         this.categorydescription = categorydescription;
+        this.categoryreminder = categoryreminder;
     }
 
     public String getCategorycode() {
@@ -42,6 +43,14 @@ public class Category {
 
     public void setCategorydescription(String categorydescription) {
         this.categorydescription = categorydescription;
+    }
+
+    public String getCategoryreminder() {
+        return categoryreminder;
+    }
+
+    public void setCategoryreminder(String categoryreminder) {
+        this.categoryreminder = categoryreminder;
     }
 
     public int getId() {
