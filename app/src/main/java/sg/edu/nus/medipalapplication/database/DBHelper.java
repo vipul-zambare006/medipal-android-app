@@ -77,9 +77,9 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String CREATE_REMINDER = "CREATE TABLE " + Constant.Reminder_Table_Name
             + "("
             + Constant.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + Constant.LOCATION + " TEXT NOT NULL, "
-            + Constant.Appointment_Table_Name + " TEXT NOT NULL, "
-            + Constant.DESCRIPTION + " TEXT NOT NULL);";
+            + Constant.FREQUENCY + " INTEGER  NOT NULL, "
+            + Constant.STARTDATE + " TEXT NOT NULL, "
+            + Constant.INTERVAL + " INTEGER NOT NULL);";
     private static final String CREATE_ICE = "CREATE TABLE " + Constant.ICE_Table_Name
             + "("
             + Constant.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
