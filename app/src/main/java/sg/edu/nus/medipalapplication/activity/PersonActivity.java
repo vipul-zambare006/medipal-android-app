@@ -89,21 +89,20 @@ public class PersonActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private boolean isValid() {
         boolean isValid = true;
         if (TextUtils.isEmpty(name.getText().toString().trim())) {
-            name.setError(getString(R.string.first_name_validation_msg));
+           // name.setError(getString(R.string.first_name_validation_msg));
+            name.setError("Please enter name.");
             isValid = false;
         }
         if (TextUtils.isEmpty(idno.getText().toString().trim())) {
-            idno.setError(getString(R.string.id_no_validation_msg));
+            //idno.setError(getString(R.string.id_no_validation_msg));
+            name.setError("Please enter Id no.");
             isValid = false;
         }
         return isValid;
     }
-
-
 }
