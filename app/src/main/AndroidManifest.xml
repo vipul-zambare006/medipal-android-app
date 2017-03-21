@@ -62,6 +62,11 @@
             android:label="Consumption"
             android:theme="@style/TabLayoutTheme"></activity>
 
+        <activity
+            android:name=".activity.ICETabLayoutActivity"
+            android:label="ICE"
+            android:theme="@style/TabLayoutTheme"></activity>
+
 
     </application>
 
