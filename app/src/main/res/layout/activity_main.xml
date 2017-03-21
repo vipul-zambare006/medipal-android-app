@@ -1,82 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"
     tools:context="sg.edu.nus.medipalapplication.MainActivity">
 
-    <TextView
-        style="@style/CategoryStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onPersonItemClick"
-        android:text="Person"
-        android:textColor="@color/colorPrimaryDark" />
+    <include
+        layout="@layout/app_bar_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-    <TextView
-        style="@style/CategoryStyle"
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Helath_Bio"
-        android:textColor="@color/colorPrimaryDark" />
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer" />
 
-    <TextView
-        android:id="@+id/ICEId"
-        style="@style/CategoryStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ICE"
-        android:textColor="@color/colorPrimaryDark" />
-
-    <TextView
-        android:id="@+id/CategoryId"
-        style="@style/CategoryStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:text="Category"
-        android:textColor="@color/colorPrimaryDark" />
-
-    <TextView
-        android:id="@+id/MedicineId"
-        style="@style/CategoryStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:text="Medicine"
-        android:textColor="@color/colorPrimaryDark" />
-
-    <TextView
-        style="@style/CategoryStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Measurement"
-        android:textColor="@color/colorPrimaryDark" />
-
-    <TextView
-        android:id="@+id/appointmentId"
-        style="@style/CategoryStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:onClick="onAppointmentListClick"
-        android:text="Appointment"
-        android:textColor="@color/colorPrimaryDark" />
-
-    <TextView
-        style="@style/CategoryStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reminder"
-        android:textColor="@color/colorPrimaryDark" />
-
-    <TextView
-        android:id="@+id/consumptionID"
-        style="@style/CategoryStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Consumption"
-        android:textColor="@color/colorPrimaryDark" />
-
-</LinearLayout>
+</android.support.v4.widget.DrawerLayout>
