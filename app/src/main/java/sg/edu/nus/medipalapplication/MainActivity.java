@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    ImageView categoryimage;
+    ImageView categoryimage,appoinmentimage;
     TextView medicine;
     View mview;
 
@@ -59,6 +59,18 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
 
                 Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
+        
+        appoinmentimage = (ImageView) findViewById(R.id.Appointment);
+        categoryimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, AppointmentActivity.class);
                 startActivity(intent);
 
 
