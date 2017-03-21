@@ -9,6 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!--Splash Screen-->
+        <activity
+            android:name=".activity.SplashScreenActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,33 +28,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.AddAppointmentActivity"
-            android:label="Add Appointment"></activity>
-        <activity
-            android:name=".activity.PersonActivity"
-            android:label="Add Person"></activity>
 
-        <activity
-            android:name=".activity.EditAppointmentActivity"
-            android:label="Edit Appointment"></activity>
+        <activity android:name=".activity.PersonActivity" android:label="Add your details"></activity>
 
-        <activity
-            android:name=".activity.MedicineActivity"
-            android:label="Medicine"></activity>
-        <activity
-            android:name=".activity.MedicineAddActivity"
-            android:label="Add Medicine"></activity>
-        <activity
-            android:name=".activity.MedicineEditActivity"
-            android:label="Edit Medicine"></activity>
+        <activity android:name=".activity.AddAppointmentActivity" android:label="Add Appointment"></activity>
+        <activity android:name=".activity.EditAppointmentActivity" android:label="Edit Appointment"></activity>
 
-        <activity
-            android:name=".activity.CategoryActivity"
-            android:label="Category"></activity>
-        <activity
-            android:name=".activity.CategoryEditActivity"
-            android:label="Edit Category"></activity>
+        <activity android:name=".activity.MedicineActivity" android:label="Medicine"></activity>
+        <activity android:name=".activity.MedicineAddActivity" android:label="Add Medicine"></activity>
+        <activity android:name=".activity.MedicineEditActivity" android:label="Edit Medicine"></activity>
+
+        <activity android:name=".activity.CategoryActivity" android:label="Category"></activity>
+        <activity android:name=".activity.CategoryEditActivity" android:label="Edit Category"></activity>
 
         <activity
             android:name=".activity.ConsumptionTabsActivity"

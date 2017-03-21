@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_person"
+            android:icon="@drawable/ic_menu_user_account"
+            android:title="Person" />
+        <item
+            android:id="@+id/nav_medical"
+            android:icon="@drawable/ic_medical"
+            android:title="Medical Bio" />
+        <item
+            android:id="@+id/nav_ICE"
+            android:icon="@drawable/ic_menu_ice"
+            android:title="ICE" />
+        <item
+            android:id="@+id/nav_category"
+            android:icon="@drawable/ic_menu_category"
+            android:title="Category" />
+
+        <item
+            android:id="@+id/nav_medicine"
+            android:icon="@drawable/ic_medicine_2"
+            android:title="Medicine" />
+
+        <item
+            android:id="@+id/nav_measurement"
+            android:icon="@drawable/ic_menu_measurement"
+            android:title="Measurement" />
+
+        <item
+            android:id="@+id/nav_appointment"
+            android:icon="@drawable/ic_menu_appointment"
+            android:title="Appointment" />
+
+        <item
+            android:id="@+id/nav_reminder"
+            android:icon="@drawable/ic_menu_reminder"
+            android:title="Reminder" />
+    </group>
+
+</menu>
