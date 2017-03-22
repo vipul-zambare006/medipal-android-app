@@ -1,4 +1,4 @@
-
+package sg.edu.nus.medipalapplication.MedipalFolder;
 
 /**
  * Created by monalisadebnth on 18/3/17.
