@@ -5,4 +5,11 @@ package sg.edu.nus.medipalapplication.application;
  */
 
 public class App {
+     public static ManageMedical club;
+
+    @Override public void onCreate() {
+        super.onCreate();
+        club = new ManageMedical();
+
+    }
 }
