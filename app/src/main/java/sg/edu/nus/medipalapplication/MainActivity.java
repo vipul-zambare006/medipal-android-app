@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity
     ImageView categoryimage,appoinmentimage;
     TextView medicine;
     View mview;
+    TextView medicalText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        
+        medicalText = (TextView) findViewById(R.id.tv_health_bio);
+        medicalText.setOnClickListener(medicalListener);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +45,16 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+        
+            private View.OnClickListener medicalListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, MedicalLayout.class);
+            startActivity(intent);
+            Log.w("Done EmMedicalActivity", "");
+
+        }
+    };
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
