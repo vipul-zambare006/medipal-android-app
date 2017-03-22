@@ -50,7 +50,7 @@ public class PersonDAO extends DBHelper {
         db.close();
         return true;
     }
-    public Cursor GetPeson(){
+    public Cursor GetPerson(){
         SQLiteDatabase db=this.getReadableDatabase();
         Cursor cursor=db.rawQuery("Select * from Person",null);
         return cursor;
