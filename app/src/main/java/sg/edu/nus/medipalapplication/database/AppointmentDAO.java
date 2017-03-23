@@ -21,8 +21,8 @@ public class AppointmentDAO extends DBHelper {
 
     public boolean addAppointment(Appointment appointment){
         SQLiteDatabase db=this.getWritableDatabase();
-        try{
-            //SQLiteDatabase db=this.getWritableDatabase();
+        try
+        {
             ContentValues contantValues = new ContentValues();
             contantValues.put(Constant.LOCATION,appointment.getLocation());
             contantValues.put(Constant.DESCRIPTION, appointment.getDescription());
@@ -31,8 +31,9 @@ public class AppointmentDAO extends DBHelper {
             db.insert(Constant.Appointment_Table_Name, null, contantValues);
             return true;
         }
-        catch (SQLiteException e){
-            Log.i("Appointment insert", "Unable to insert appointment");
+        catch (SQLiteException e)
+        {
+            Log.i("Appointment insert", Constant.ErrorMsg_RecordNotAdded);
             return false;
         }
         finally {
@@ -54,8 +55,8 @@ public class AppointmentDAO extends DBHelper {
         }
         catch(SQLiteException ex)
         {
-            Log.i("Appointment update","unable to update appointment");
-         return false;
+            Log.i("Appointment update",Constant.ErrorMsg_RecordNotUpdated);
+            return false;
         }
         finally {
             db.close();
@@ -64,36 +65,12 @@ public class AppointmentDAO extends DBHelper {
 
     public Integer DeleteAppointment(Integer id){
         SQLiteDatabase db=this.getWritableDatabase();
-      //  try{
-            //return db.delete(Constant.Appointment_Table_Name,"id = ?",new String[]{Integer.toString(id)});
-            return db.delete(Constant.Appointment_Table_Name, Constant.COLUMN_ID + "= ?", new String[]{Integer.toString(id)});
-//        }
-//        catch (SQLiteException e)
-//        {
-//            Log.i("Appointment delete", "Execption occured while delete appointment");
-//        }
-//        finally {
-//            db.close();
-//            return 1;
-//        }
-
-    }
-
-    public Cursor GetAppointmentById(int appointmentId){
-        SQLiteDatabase db=this.getWritableDatabase();
-        Cursor res=db.rawQuery("Select * from Appointment where _id = " + appointmentId + "", null);
-        return res;
-    }
-
-    public int numberOfRows(){
-        SQLiteDatabase db=this.getWritableDatabase();
-        int numRows=(int) DatabaseUtils.queryNumEntries(db,Constant.Appointment_Table_Name);
-        return numRows;
+        return db.delete(Constant.Appointment_Table_Name, Constant.COLUMN_ID + "= ?", new String[]{Integer.toString(id)});
     }
 
     public Cursor GetAllAppointment(){
         SQLiteDatabase db=this.getReadableDatabase();
-        Cursor cursor=db.rawQuery("Select * from Appointment",null);
+        Cursor cursor=db.rawQuery(Constant.AppointmentSelectQuery,null);
         return cursor;
     }
 }

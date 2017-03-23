@@ -1,3 +1,4 @@
+/*
 package sg.edu.nus.medipalapplication.activity;
 
 import android.os.Bundle;
@@ -10,7 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-import application.App;
+
+import sg.edu.nus.medipalapplication.R;
+
+//import application.App;
 
 public class AddMedicalActivity extends AppCompatActivity {
 
@@ -86,3 +90,4 @@ public class AddMedicalActivity extends AppCompatActivity {
         return isValid;
     }
 }
+*/

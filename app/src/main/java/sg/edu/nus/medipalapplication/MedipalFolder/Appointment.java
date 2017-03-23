@@ -2,6 +2,8 @@ package sg.edu.nus.medipalapplication.MedipalFolder;
 
 import android.database.Cursor;
 
+import java.util.ArrayList;
+
 import sg.edu.nus.medipalapplication.database.AppointmentDAO;
 
 /**
@@ -31,12 +33,28 @@ public class Appointment {
         appointmentDAO.addAppointment(appointment);
     }
 
-    public Cursor getAppointments(AppointmentDAO appointmentDAO) {
-        return appointmentDAO.GetAllAppointment();
+    public ArrayList<Appointment> getAppointments(AppointmentDAO appointmentDAO) {
+
+        ArrayList<Appointment> appointmentArrayList = new ArrayList<>();
+        Cursor cursor = appointmentDAO.GetAllAppointment();
+
+        while (cursor.moveToNext()) {
+
+            int id = cursor.getInt(0);
+            String location = cursor.getString(1);
+            String appointmentDate = cursor.getString(2);
+            String appointmentTime = cursor.getString(3);
+            String description = cursor.getString(4);
+
+            Appointment appointment = new Appointment(id,location, description, appointmentDate,appointmentTime);
+            appointmentArrayList.add(appointment);
+        }
+        return appointmentArrayList;
     }
 
-    public void UpdateAppointmentById(Appointment appointmentToUpdate, AppointmentDAO appointmentDAO){
-        appointmentDAO.UpdateAppointment(appointmentToUpdate);
+    public boolean UpdateAppointmentById(Appointment appointmentToUpdate, AppointmentDAO appointmentDAO){
+       boolean result = appointmentDAO.UpdateAppointment(appointmentToUpdate);
+        return result;
     }
 
     public void DeleteAppointmentById(int appointmentId,AppointmentDAO appointmentDAO)

@@ -121,6 +121,18 @@ public class Constant {
 
     public static final String MedicineExpireFactor = "Medicineexpirefactor";
 
+    public static final String ErrorMsg_PleaseEnterLocation = "Please enter location";
+    public static final String ErrorMsg_PleaseEnterDescription = "Please enter description";
+    public static final String ErrorMsg_PleaseEnterDate = "Please enter date";
+    public static final String ErrorMsg_PleaseEnterTime = "Please enter time";
+    public static final String ErrorMsg_RecordNotUpdated = "Record not updated";
+    public static final String ErrorMsg_RecordNotAdded = "Record not added";
+
+    public static final String NotificationMsg_AppointmentAdded = "Appointment Added Successfully";
+    public static final String NotificationMsg_AppointmentUpdated = "Appointment Updated Successfully";
+    public static final String NotificationMsg_AppointmentDeleted = "Appointment Deleted Successfully";
+
+    public static final String AppointmentSelectQuery =  "Select * from Appointment";
 
 
 }

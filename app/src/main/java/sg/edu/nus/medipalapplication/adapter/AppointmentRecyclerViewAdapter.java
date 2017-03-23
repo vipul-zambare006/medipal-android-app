@@ -8,12 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Dictionary;
 import java.util.List;
 
 import sg.edu.nus.medipalapplication.MedipalFolder.Appointment;
 import sg.edu.nus.medipalapplication.R;
-import sg.edu.nus.medipalapplication.activity.EditAppointmentActivity;
+import sg.edu.nus.medipalapplication.activity.SaveAppointmentActivity;
 
 /**
  * Created by Vipul Zambare on 3/19/2017.
@@ -39,21 +38,14 @@ public class AppointmentRecyclerViewAdapter extends RecyclerView.Adapter<Appoint
     }
 
     @Override
-    public void onBindViewHolder(AppointmentRecyclerViewAdapter.ViewHolder viewHolder, int position) {
-
+    public void onBindViewHolder(AppointmentRecyclerViewAdapter.ViewHolder viewHolder, int position)
+    {
         viewHolder.location.setText(appointments.get(position).getLocation());
         viewHolder.description.setText(appointments.get(position).getDescription());
         viewHolder.appointmentDate.setText(appointments.get(position).getDate());
         viewHolder.appointmentTime.setText(appointments.get(position).getTime());
 
         viewHolder.container.setOnClickListener(onClickListener(position));
-    }
-
-    private void setDataToView(TextView txtAptLocation, TextView txtAptDescription, TextView txtAptDate, TextView txtAptTime, int position) {
-        txtAptLocation.setText(appointments.get(position).getLocation());
-        txtAptDescription.setText(appointments.get(position).getDescription());
-        txtAptDate.setText(appointments.get(position).getDate());
-        txtAptTime.setText(appointments.get(position).getTime());
     }
 
     @Override
@@ -65,7 +57,7 @@ public class AppointmentRecyclerViewAdapter extends RecyclerView.Adapter<Appoint
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity,EditAppointmentActivity.class);
+                Intent intent = new Intent(activity,SaveAppointmentActivity.class);
 
                 intent.putExtra("Id",appointments.get(position).getId());
                 intent.putExtra("location",appointments.get(position).getLocation());
@@ -78,18 +70,7 @@ public class AppointmentRecyclerViewAdapter extends RecyclerView.Adapter<Appoint
         };
     }
 
-    private void removeItem(Appointment appointmentsData) {
-
-        int currPosition = appointments.indexOf(appointmentsData);
-        appointments.remove(currPosition);
-        notifyItemRemoved(currPosition);
-    }
-
-    /**
-     * View holder to display each RecylerView item
-     */
     protected class ViewHolder extends RecyclerView.ViewHolder {
-        //  private ImageView imageView;
         private TextView appointmentDate;
         private TextView appointmentTime;
         private TextView location;
@@ -98,8 +79,6 @@ public class AppointmentRecyclerViewAdapter extends RecyclerView.Adapter<Appoint
 
         public ViewHolder(View view) {
             super(view);
-
-            view.setLongClickable(true);
 
             container = view.findViewById(R.id.card_view);
             location = (TextView) view.findViewById(R.id.txtAptLocation);
