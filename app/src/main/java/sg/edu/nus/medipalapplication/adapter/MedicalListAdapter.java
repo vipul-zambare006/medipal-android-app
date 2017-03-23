@@ -15,6 +15,7 @@ import sg.edu.nus.medipalapplication.MedipalFolder.MedicalID;
 import sg.edu.nus.medipalapplication.R;
 import sg.edu.nus.medipalapplication.application.App;
 
+
 public class MedicalListAdapter extends ArrayAdapter<MedicalID> {
 
     private Context context;
