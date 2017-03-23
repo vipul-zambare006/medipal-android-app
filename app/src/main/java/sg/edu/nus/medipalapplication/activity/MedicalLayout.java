@@ -8,7 +8,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
+
 import fragment.MedicalFragment;
+import sg.edu.nus.medipalapplication.R;
 
 public class MedicalLayout extends AppCompatActivity {
 

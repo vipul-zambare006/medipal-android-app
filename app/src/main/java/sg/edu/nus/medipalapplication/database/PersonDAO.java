@@ -12,26 +12,29 @@ import sg.edu.nus.medipalapplication.MedipalFolder.Person;
  */
 
 public class PersonDAO extends DBHelper {
+
+
     public PersonDAO(Context context) {
         super(context);
     }
 
-    public boolean addPerson(Person person){
+    public long addPerson(String name,String idno, String dateofbirth,String address,String bloodtype,String postalcode,String height){
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues contantValues = new ContentValues();
-        contantValues.put(Constant.COLUMN_NAME,person.getName());
-        contantValues.put(Constant.DATEOFBIRTH,person.getDateofbirth());
-        contantValues.put(Constant.UNIQUEID,person.getIdno());
-        contantValues.put(Constant.PERSONALADDRESS,person.getAddress());
-        contantValues.put(Constant.POSTALCODE,person.getPostalcode());
-        contantValues.put(Constant.HEIGHT,person.getHeight());
-        contantValues.put(Constant.BLOODTYPE,person.getBloodtype());
+        contantValues.put(Constant.COLUMN_NAME,name);
+        contantValues.put(Constant.UNIQUEID,idno);
+        contantValues.put(Constant.DATEOFBIRTH,dateofbirth);
+        contantValues.put(Constant.PERSONALADDRESS,address);
+        contantValues.put(Constant.BLOODTYPE,bloodtype);
+        contantValues.put(Constant.POSTALCODE,postalcode);
+        contantValues.put(Constant.HEIGHT,height);
+
 
         // Database query to Insert data to table.
 
-        db.insert(Constant.PersonalBio_Table_Name, null, contantValues);
-        db.close();
-        return true;
+        return db.insert(Constant.PersonalBio_Table_Name, null, contantValues);
+
+
     }
 
     public boolean UpdatePerson(Person person)
@@ -55,5 +58,7 @@ public class PersonDAO extends DBHelper {
         Cursor cursor=db.rawQuery("Select * from Person",null);
         return cursor;
     }
+
+
 
 }

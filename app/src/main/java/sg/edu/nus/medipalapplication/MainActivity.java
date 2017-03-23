@@ -16,16 +16,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import sg.edu.nus.medipalapplication.activity.CategoryActivity;
+import sg.edu.nus.medipalapplication.activity.MedicalLayout;
+import sg.edu.nus.medipalapplication.activity.PersonActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    ImageView categoryimage,appoinmentimage;
+    ImageView categoryimage,appoinmentimage,medicalText,persontext;
     TextView medicine;
     View mview;
-    TextView medicalText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +35,15 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         
-        medicalText = (TextView) findViewById(R.id.tv_health_bio);
-        medicalText.setOnClickListener(medicalListener);
+        medicalText = (ImageView) findViewById(R.id.HEALTH);
+        medicalText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MedicalLayout.class);
+                startActivity(intent);
+            }
+        });
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -46,15 +54,15 @@ public class MainActivity extends AppCompatActivity
             }
         });
         
-            private View.OnClickListener medicalListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this, MedicalLayout.class);
-            startActivity(intent);
-            Log.w("Done EmMedicalActivity", "");
-
-        }
-    };
+//            private View.OnClickListener medicalListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            Intent intent = new Intent(MainActivity.this, MedicalLayout.class);
+//            startActivity(intent);
+//            Log.w("Done EmMedicalActivity", "");
+//
+//        }
+//    };
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -67,29 +75,29 @@ public class MainActivity extends AppCompatActivity
 
         mview = getLayoutInflater().inflate(R.layout.content_main,null);
 
-        categoryimage = (ImageView) findViewById(R.id.Category);
-        categoryimage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
-                startActivity(intent);
-
-
-            }
-        });
-        
-        appoinmentimage = (ImageView) findViewById(R.id.Appointment);
-        categoryimage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(MainActivity.this, AppointmentActivity.class);
-                startActivity(intent);
-
-
-            }
-        });
+//        categoryimage = (ImageView) findViewById(R.id.Category);
+//        categoryimage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
+//                startActivity(intent);
+//
+//
+//            }
+//        });
+//
+//        appoinmentimage = (ImageView) findViewById(R.id.Appointment);
+//        categoryimage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Intent intent = new Intent(MainActivity.this, AppointmentActivity.class);
+//                startActivity(intent);
+//
+//
+//            }
+//        });
     }
 
     @Override
@@ -130,8 +138,8 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-//        if (id == R.id.nav_person) {
-//            startActivity(new Intent(getApplicationContext(), PersonActivity.class));
+       if (id == R.id.nav_person)
+          startActivity(new Intent(getApplicationContext(), PersonActivity.class));
 //        } else if (id == R.id.nav_medical) {
 //            startActivity(new Intent(getApplicationContext(), MedicalActivity.class));
 //        } else if (id == R.id.nav_ICE) {
