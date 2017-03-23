@@ -49,14 +49,15 @@ public class Person {
         return height;
     }
     public int getId(){ return id; }
-    public void addPerson(Person person, PersonDAO personDAO){
-        personDAO.addPerson(person);
-    }
+
+    //    public void addPerson(Person person, PersonDAO personDAO){
+//        personDAO.addPerson(person);
+//    }
     public void UpdatePerson(Person persontoupdate, PersonDAO personDAO){
         personDAO.UpdatePerson(persontoupdate);
     }
     public Cursor getperson(PersonDAO personDAO) {
 
-        return personDAO.GetPeson();
+        return personDAO.GetPerson();
     }
 }

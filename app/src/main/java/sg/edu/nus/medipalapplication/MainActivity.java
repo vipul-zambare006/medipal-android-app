@@ -16,14 +16,19 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import sg.edu.nus.medipalapplication.MedipalFolder.Medical;
+import sg.edu.nus.medipalapplication.activity.AddAppointmentActivity;
+import sg.edu.nus.medipalapplication.activity.CategoryActivity;
+import sg.edu.nus.medipalapplication.activity.ICETabLayoutActivity;
 import sg.edu.nus.medipalapplication.activity.MedicalLayout;
+import sg.edu.nus.medipalapplication.activity.MedicineActivity;
 import sg.edu.nus.medipalapplication.activity.PersonActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    ImageView categoryimage,appoinmentimage,medicalText,persontext;
+    ImageView categoryimage, appoinmentimage, iceimage, healthbioimage, medicineimage, measurementimage, reminderimage, consumptionimage;
     TextView medicine;
     View mview;
 
@@ -34,16 +39,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
-        medicalText = (ImageView) findViewById(R.id.HEALTH);
-        medicalText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MedicalLayout.class);
-                startActivity(intent);
-            }
-        });
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,27 +70,82 @@ public class MainActivity extends AppCompatActivity
 
         mview = getLayoutInflater().inflate(R.layout.content_main,null);
 
-//        categoryimage = (ImageView) findViewById(R.id.Category);
-//        categoryimage.setOnClickListener(new View.OnClickListener() {
+        healthbioimage = (ImageView) findViewById(R.id.HEALTH);
+        healthbioimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MedicalLayout.class);
+                startActivity(intent);
+            }
+        });
+
+        iceimage = (ImageView) findViewById(R.id.ICE);
+        iceimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ICETabLayoutActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        categoryimage = (ImageView) findViewById(R.id.Category);
+        categoryimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
+
+        medicineimage = (ImageView) findViewById(R.id.Medicine);
+        medicineimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MedicineActivity.class);
+                startActivity(intent);
+            }
+        });
+
+//        measurementimage = (ImageView) findViewById(R.id.Medicine);
+//        measurementimage.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//
-//                Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
+//                Intent intent = new Intent(MainActivity.this,Mea.class);
 //                startActivity(intent);
-//
-//
 //            }
 //        });
-//
-//        appoinmentimage = (ImageView) findViewById(R.id.Appointment);
-//        categoryimage.setOnClickListener(new View.OnClickListener() {
+
+//        reminderimage = (ImageView) findViewById(R.id.Reminder);
+//        reminderimage.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//
-//                Intent intent = new Intent(MainActivity.this, AppointmentActivity.class);
+//                Intent intent = new Intent(MainActivity.this,Mea.class);
+////                startActivity(intent);
+//            }
+//        });
+
+        appoinmentimage = (ImageView) findViewById(R.id.Appointment);
+        appoinmentimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, AddAppointmentActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
+
+//        consumptionimage = (ImageView) findViewById(R.id.Consumption);
+//        consumptionimage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, .class);
 //                startActivity(intent);
-//
-//
 //            }
 //        });
     }
@@ -138,21 +188,28 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-       if (id == R.id.nav_person)
+        if (id == R.id.nav_person) {
           startActivity(new Intent(getApplicationContext(), PersonActivity.class));
-//        } else if (id == R.id.nav_medical) {
-//            startActivity(new Intent(getApplicationContext(), MedicalActivity.class));
-//        } else if (id == R.id.nav_ICE) {
-//            startActivity(new Intent(getApplicationContext(), ICEActivity.class));
-//        } else if (id == R.id.nav_category) {
-//            startActivity(new Intent(getApplicationContext(), CategoryActivity.class));
-//        } else if (id == R.id.nav_medicine) {
-//            startActivity(new Intent(getApplicationContext(), MedicineActivity.class));
-//        } else if (id == R.id.nav_measurement) {
+        }
+        if (id == R.id.nav_medical) {
+            startActivity(new Intent(getApplicationContext(), Medical.class));
+        }
+        if (id == R.id.nav_ICE) {
+            startActivity(new Intent(getApplicationContext(), ICETabLayoutActivity.class));
+        }
+        if (id == R.id.nav_category) {
+            startActivity(new Intent(getApplicationContext(), CategoryActivity.class));
+        }
+        if (id == R.id.nav_medicine) {
+            startActivity(new Intent(getApplicationContext(), MedicineActivity.class));
+        }
+//       if (id == R.id.nav_measurement) {
 //            startActivity(new Intent(getApplicationContext(), MeasurementActivity.class));
-//        } else if (id == R.id.nav_appointment) {
-//            startActivity(new Intent(getApplicationContext(), AppointmentActivity.class));
-//        } else if (id == R.id.nav_reminder) {
+//        }
+        if (id == R.id.nav_appointment) {
+            startActivity(new Intent(getApplicationContext(), AddAppointmentActivity.class));
+        }
+//       if (id == R.id.nav_reminder) {
 //            startActivity(new Intent(getApplicationContext(), ReminderActivity.class));
 //        }
 

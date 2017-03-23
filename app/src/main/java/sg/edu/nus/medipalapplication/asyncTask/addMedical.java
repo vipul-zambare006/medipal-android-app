@@ -3,8 +3,8 @@ package sg.edu.nus.medipalapplication.asyncTask;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import dao.MedicalDAO;
-import medicalFolder.MedicalID;
+import sg.edu.nus.medipalapplication.MedipalFolder.MedicalID;
+import sg.edu.nus.medipalapplication.database.MedicineDAO;
 
 /**
  * Created by monalisadebnth on 19/3/17.
@@ -15,11 +15,11 @@ public class addMedical extends AsyncTask<MedicalID, Void, Long> {
     //private final WeakReference<Activity> activityWeakRef;
 
     MedicalID member = null;
-    private MedicalDAO memberDAO;
+    private MedicineDAO memberDAO;
 
     public addMedical(Context context) {
         //this.activityWeakRef = new WeakReference<Activity>(context.getApplicationContext());
-        this.memberDAO = new MedicalDAO(context);
+        this.memberDAO = new MedicineDAO(context);
     }
 
     @Override

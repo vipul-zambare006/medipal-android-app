@@ -7,10 +7,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import sg.edu.nus.medipalapplication.asyncTask.DeleteMedical;
+import sg.edu.nus.medipalapplication.asyncTask.ListMedical;
+import sg.edu.nus.medipalapplication.asyncTask.addMedical;
 
-import asynTask.DeleteMedical;
-import asynTask.ListMedical;
-import asynTask.addMedical;
 
 /**
  * Created by monalisadebnth on 18/3/17.

@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import sg.edu.nus.medipalapplication.R;
+import sg.edu.nus.medipalapplication.application.App;
 //import application.App;
 
 public class AddMedicalActivity extends AppCompatActivity {

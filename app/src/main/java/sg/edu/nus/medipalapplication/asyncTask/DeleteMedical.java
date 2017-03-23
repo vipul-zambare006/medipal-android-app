@@ -3,8 +3,8 @@ package sg.edu.nus.medipalapplication.asyncTask;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import dao.MedicalDAO;
-import medicalFolder.MedicalID;
+import sg.edu.nus.medipalapplication.MedipalFolder.MedicalID;
+import sg.edu.nus.medipalapplication.database.MedicineDAO;
 
 
 /**
@@ -14,16 +14,16 @@ import medicalFolder.MedicalID;
 public class DeleteMedical extends AsyncTask<MedicalID, Void, Integer> {
 
     MedicalID member = null;
-    private MedicalDAO memberDAO;
+    private MedicineDAO memberDAO;
 
     public DeleteMedical(Context context) {
-        this.memberDAO = new MedicalDAO(context);
+        this.memberDAO = new MedicineDAO(context);
     }
 
     @Override
     protected Integer doInBackground(MedicalID... params) {
-        int result = memberDAO.delete(params[0]);
-        return result;
+        // int result = memberDAO.delete(params[0]);
+        return 1;
     }
 
     @Override

@@ -9,4 +9,14 @@
     <string name="doctor_empty_value"> Please add Doctor Contacts to appear here</string>
     <string name="emergency_empty_value">Haven\'t added emergency contacts </string>
     <string name="font_fontFamily_medium">sans-serif</string>
+    <string name="save_successsful">save success</string>
+    <string name="second_name_validation_msg">second_name_validation_msg</string>
+    <array name="condition_type">condition_type</array>
+
+
+    <string-array name="Blood_type">
+        <item>O+</item>
+        <item>O-</item>
+
+    </string-array>
 </resources>

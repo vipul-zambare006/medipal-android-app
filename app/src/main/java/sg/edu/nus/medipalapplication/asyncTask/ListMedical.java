@@ -6,8 +6,9 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import dao.MedicalDAO;
-import medicalFolder.MedicalID;
+import sg.edu.nus.medipalapplication.MedipalFolder.MedicalID;
+import sg.edu.nus.medipalapplication.database.MedicineDAO;
+
 
 /**
  * Created by monalisadebnth on 19/3/17.
@@ -17,11 +18,11 @@ public class ListMedical extends AsyncTask<Void, Void, ArrayList<MedicalID>> {
     //private final WeakReference<Activity> activityWeakRef;
 
     ArrayList<MedicalID> members;
-    private MedicalDAO memberDAO;
+    private MedicineDAO memberDAO;
 
     public ListMedical(Context context) {
         //this.activityWeakRef = new WeakReference<Activity>(context);
-        this.memberDAO = new MedicalDAO(context);
+        this.memberDAO = new MedicineDAO(context);
     }
 
     @Override
