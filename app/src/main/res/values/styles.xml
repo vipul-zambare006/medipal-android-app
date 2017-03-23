@@ -30,8 +30,8 @@
     </style>
 
     <style name="MySwitch">
-        <item name="colorControlActivated">@color/indigo</item>
-        <item name="colorSwitchThumbNormal">@color/pink</item>
+        <item name="colorControlActivated">@color/forestGreen</item>
+        <item name="colorSwitchThumbNormal">@color/red</item>
         <item name="android:colorForeground">@color/grey</item>
     </style>
 
