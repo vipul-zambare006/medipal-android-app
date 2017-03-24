@@ -1,19 +1,20 @@
 package sg.edu.nus.medipalapplication.fragment;
 
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.example.monalisadebnth.myapplication_medical.R;
-import android.support.design.widget.FloatingActionButton;
 
-import activity.AddMedicalActivity;
-import adapter.MedicalListAdapter;
+import sg.edu.nus.medipalapplication.R;
+import sg.edu.nus.medipalapplication.activity.AddHealthBioActivity;
+import sg.edu.nus.medipalapplication.adapter.MedicalListAdapter;
+
 
 /**
  * Created by monalisadebnth on 19/3/17.
@@ -51,7 +52,7 @@ public class MedicalFragment extends Fragment {
                 (FloatingActionButton) view.findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                getActivity().startActivity(new Intent(getActivity(), AddMedicalActivity.class));
+                getActivity().startActivity(new Intent(getActivity(), AddHealthBioActivity.class));
             }
         });
     }

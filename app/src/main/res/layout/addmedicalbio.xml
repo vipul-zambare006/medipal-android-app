@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sg.edu.nus.medipalapplication.activity.AddMedicalActivity">
+    tools:context="sg.edu.nus.medipalapplication.activity.AddHealthBioActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,11 +21,11 @@
                 android:id="@+id/tv_condition"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Condition"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
                 android:paddingLeft="4dp"
+                android:text="Condition"
                 />
 
             <EditText
@@ -42,12 +42,12 @@
                 android:id="@+id/tv_condition_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Start Date"
                 android:layout_below="@id/et_condition"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 android:paddingLeft="4dp"
+                android:text="Start Date"
                 />
 
 
@@ -66,21 +66,21 @@
                 android:id="@+id/tv_condition_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Condition Type"
-                android:layout_marginStart="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
                 android:layout_below="@id/et_start_date"
+                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 android:paddingLeft="4dp"
+                android:text="Condition Type"
                 />
 
             <Spinner
                 android:id="@+id/condition_type_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@+id/tv_condition_type"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_below="@+id/tv_condition_type">
+                android:layout_marginRight="20dp">
             </Spinner>
         </RelativeLayout>
     </ScrollView>

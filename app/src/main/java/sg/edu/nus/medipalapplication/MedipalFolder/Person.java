@@ -1,4 +1,6 @@
 package sg.edu.nus.medipalapplication.MedipalFolder;
+import android.database.Cursor;
+
 import sg.edu.nus.medipalapplication.database.PersonDAO;
 /**
  * Created by Gaurav on 19-03-2017.
@@ -12,7 +14,10 @@ public class Person {
     private String bloodtype;
     private String postalcode;
     private String height;
-    public Person(String name,String idno, String dateofbirth,String address,String bloodtype,String postalcode,String height,int id ) {
+
+    public Person(){
+    }
+    public Person(int id,String name,String idno, String dateofbirth,String address,String bloodtype,String postalcode,String height ) {
         this.name = name;
         this.idno = idno;
         this.dateofbirth = dateofbirth;
@@ -44,10 +49,15 @@ public class Person {
         return height;
     }
     public int getId(){ return id; }
-    public void addPerson(Person person, PersonDAO personDAO){
-        personDAO.addPerson(person);
-    }
+
+    //    public void addPerson(Person person, PersonDAO personDAO){
+//        personDAO.addPerson(person);
+//    }
     public void UpdatePerson(Person persontoupdate, PersonDAO personDAO){
         personDAO.UpdatePerson(persontoupdate);
+    }
+    public Cursor getperson(PersonDAO personDAO) {
+
+        return personDAO.GetPerson();
     }
 }

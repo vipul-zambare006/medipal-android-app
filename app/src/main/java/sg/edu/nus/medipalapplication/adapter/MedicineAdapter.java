@@ -87,6 +87,5 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.Medici
 
         }
 
-
     }
 }

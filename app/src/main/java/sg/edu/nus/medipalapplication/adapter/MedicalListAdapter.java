@@ -7,15 +7,19 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
-import application.App;
-import medicalFolder.MedicalID;
 
-public class MedicalListAdapter extends ArrayAdapter<MedicalID> {
+import sg.edu.nus.medipalapplication.MedipalFolder.HealthBioID;
+import sg.edu.nus.medipalapplication.R;
+import sg.edu.nus.medipalapplication.application.App;
+
+
+public class MedicalListAdapter extends ArrayAdapter<HealthBioID> {
 
     private Context context;
-    private List<MedicalID> members = new ArrayList<>();
+    private List<HealthBioID> members = new ArrayList<>();
     private int medicalID;
 
     public MedicalListAdapter(Context context) {
@@ -38,11 +42,11 @@ public class MedicalListAdapter extends ArrayAdapter<MedicalID> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        final MedicalID member = members.get(position);
+        final HealthBioID member = members.get(position);
         viewHolder.tvName.setText(member.toString());
         viewHolder.btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                App.club.removeMember(member, getContext());
+                // App.club.removeMember(member);
                 refreshMembers();
             }
         });

@@ -3,26 +3,26 @@ package sg.edu.nus.medipalapplication.asyncTask;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import dao.MedicalDAO;
-import medicalFolder.MedicalID;
+import sg.edu.nus.medipalapplication.MedipalFolder.HealthBioID;
+import sg.edu.nus.medipalapplication.database.HealthBioDAO;
 
 
 /**
  * Created by monalisadebnth on 19/3/17.
  */
 
-public class DeleteMedical extends AsyncTask<MedicalID, Void, Integer> {
+public class DeleteMedical extends AsyncTask<HealthBioID, Void, Integer> {
 
-    MedicalID member = null;
-    private MedicalDAO memberDAO;
+    HealthBioID member = null;
+    private HealthBioDAO healthbioDAO;
 
     public DeleteMedical(Context context) {
-        this.memberDAO = new MedicalDAO(context);
+        this.healthbioDAO = new HealthBioDAO(context);
     }
 
     @Override
-    protected Integer doInBackground(MedicalID... params) {
-        int result = memberDAO.delete(params[0]);
+    protected Integer doInBackground(HealthBioID... params) {
+        int result = healthbioDAO.delete(params[0]);
         return result;
     }
 
@@ -30,7 +30,7 @@ public class DeleteMedical extends AsyncTask<MedicalID, Void, Integer> {
     protected void onPostExecute(Integer result) {
         if (result != -1)
 
-            if (memberDAO != null)
-                memberDAO.close();
+            if (healthbioDAO != null)
+                healthbioDAO.close();
     }
 }
