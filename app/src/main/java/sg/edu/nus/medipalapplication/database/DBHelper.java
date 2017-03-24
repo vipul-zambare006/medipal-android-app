@@ -78,7 +78,7 @@ public class DBHelper extends SQLiteOpenHelper {
             + "("
             + Constant.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + Constant.FREQUENCY + " INTEGER  NOT NULL, "
-            + Constant.STARTDATE + " TEXT NOT NULL, "
+            + Constant.STARTTIME + " TEXT NOT NULL, "
             + Constant.INTERVAL + " INTEGER NOT NULL);";
     private static final String CREATE_ICE = "CREATE TABLE " + Constant.ICE_Table_Name
             + "("

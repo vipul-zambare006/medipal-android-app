@@ -50,6 +50,7 @@ public class Constant {
     public static final String INTERVAL = "INTERVAL";
     public static final String APPOINTMENTDATE = "APPOINTMENTDATE";
     public static final String APPOINTMENTTIME = "APPOINTMENTTIME";
+    public static final String STARTTIME = "STARTTIME";
     public static final String STARTDATE = "STARTDATE";
 
     //GOVARDHAN WORK
