@@ -27,11 +27,8 @@
             android:label="Add your details"></activity>
 
         <activity
-            android:name=".activity.AddAppointmentActivity"
+            android:name=".activity.AppointmentActivity"
             android:label="Add Appointment"></activity>
-        <activity
-            android:name=".activity.EditAppointmentActivity"
-            android:label="Edit Appointment"></activity>
 
         <activity
             android:name=".activity.MedicineActivity"
