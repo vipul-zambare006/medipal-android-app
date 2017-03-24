@@ -9,7 +9,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import sg.edu.nus.medipalapplication.MedipalFolder.MedicalID;
 import sg.edu.nus.medipalapplication.MedipalFolder.Medicine;
 
 /**
@@ -119,39 +118,5 @@ public class MedicineDAO {
         return categoryName;
     }
 
-    public long save(MedicalID member) {
-        ContentValues values = new ContentValues();
-        //values.put(DataBaseHelper.MID_COLUMN, member.getMemberNumber());
-        values.put(Constant.CONDITION, member.getCondition());
-        values.put(Constant.STARTDATE, member.getStartdate());
-        values.put(Constant.CONDITIONTYPE, member.getConditiontype());
 
-        return db.insert(Constant.HealthBio_Table_Name, null, values);
-    }
-
-    public int delete(Integer id) {
-        return db.delete(Constant.HealthBio_Table_Name, Constant.COLUMN_ID + "= ?", new String[]{Integer.toString(id)});
-    }
-
-    public ArrayList<MedicalID> getMembers() {
-        ArrayList<MedicalID> members = new ArrayList<MedicalID>();
-
-        Cursor cursor = db.query(Constant.HealthBio_Table_Name,
-                new String[]{Constant.COLUMN_ID,
-                        Constant.CONDITION,
-                        Constant.STARTDATE,
-                        Constant.CONDITIONTYPE}, null, null, null,
-                null, null);
-
-        while (cursor.moveToNext()) {
-            int id = cursor.getInt(0);
-            String condition = cursor.getString(1);
-            String startdate = cursor.getString(2);
-            String conditiontype = cursor.getString(3);
-
-            MedicalID member = new MedicalID(condition, startdate, conditiontype, id);
-            members.add(member);
-        }
-        return members;
-    }
 }

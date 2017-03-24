@@ -16,7 +16,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import sg.edu.nus.medipalapplication.MedipalFolder.Medical;
+import sg.edu.nus.medipalapplication.MedipalFolder.Medicine;
 import sg.edu.nus.medipalapplication.activity.AddAppointmentActivity;
 import sg.edu.nus.medipalapplication.activity.CategoryActivity;
 import sg.edu.nus.medipalapplication.activity.ICETabLayoutActivity;
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity
           startActivity(new Intent(getApplicationContext(), PersonActivity.class));
         }
         if (id == R.id.nav_medical) {
-            startActivity(new Intent(getApplicationContext(), Medical.class));
+            startActivity(new Intent(getApplicationContext(), Medicine.class));
         }
         if (id == R.id.nav_ICE) {
             startActivity(new Intent(getApplicationContext(), ICETabLayoutActivity.class));

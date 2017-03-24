@@ -6,44 +6,44 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import sg.edu.nus.medipalapplication.MedipalFolder.MedicalID;
-import sg.edu.nus.medipalapplication.database.MedicineDAO;
+import sg.edu.nus.medipalapplication.MedipalFolder.HealthBioID;
+import sg.edu.nus.medipalapplication.database.HealthBioDAO;
 
 
 /**
  * Created by monalisadebnth on 19/3/17.
  */
 
-public class ListMedical extends AsyncTask<Void, Void, ArrayList<MedicalID>> {
+public class ListMedical extends AsyncTask<Void, Void, ArrayList<HealthBioID>> {
     //private final WeakReference<Activity> activityWeakRef;
 
-    ArrayList<MedicalID> members;
-    private MedicineDAO memberDAO;
+    ArrayList<HealthBioID> members;
+    private HealthBioDAO healthBioDAO;
 
     public ListMedical(Context context) {
         //this.activityWeakRef = new WeakReference<Activity>(context);
-        this.memberDAO = new MedicineDAO(context);
+        this.healthBioDAO = new HealthBioDAO(context);
     }
 
     @Override
-    protected ArrayList<MedicalID> doInBackground(Void... arg0) {
-        ArrayList<MedicalID> memberList = memberDAO.getMembers();
+    protected ArrayList<HealthBioID> doInBackground(Void... arg0) {
+        ArrayList<HealthBioID> memberList = healthBioDAO.getMembers();
         return memberList;
     }
 
     @Override
-    protected void onPostExecute(ArrayList<MedicalID> memList) {
+    protected void onPostExecute(ArrayList<HealthBioID> memList) {
         //if (activityWeakRef.get() != null && !activityWeakRef.get().isFinishing()) {
         Log.d("members", memList.toString());
         members = memList;
 
         if (memList == null) {
-            members = new ArrayList<MedicalID>();
+            members = new ArrayList<HealthBioID>();
         }
 
     }
 
-    public ArrayList<MedicalID> getMemberList() {
+    public ArrayList<HealthBioID> getMemberList() {
         return this.members;
     }
 }

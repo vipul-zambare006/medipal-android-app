@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import sg.edu.nus.medipalapplication.R;
-import sg.edu.nus.medipalapplication.activity.AddMedicalActivity;
+import sg.edu.nus.medipalapplication.activity.AddHealthBioActivity;
 import sg.edu.nus.medipalapplication.adapter.MedicalListAdapter;
 
 
@@ -52,7 +52,7 @@ public class MedicalFragment extends Fragment {
                 (FloatingActionButton) view.findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                getActivity().startActivity(new Intent(getActivity(), AddMedicalActivity.class));
+                getActivity().startActivity(new Intent(getActivity(), AddHealthBioActivity.class));
             }
         });
     }

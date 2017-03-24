@@ -15,7 +15,7 @@ import sg.edu.nus.medipalapplication.R;
 import sg.edu.nus.medipalapplication.application.App;
 //import application.App;
 
-public class AddMedicalActivity extends AppCompatActivity {
+public class AddHealthBioActivity extends AppCompatActivity {
 
     //public static final String CATEGORY = "0";
     //public static final String ALLERGY = "1";
@@ -67,7 +67,7 @@ public class AddMedicalActivity extends AppCompatActivity {
                             startdate.getText().toString().trim(), spinnerString, getApplicationContext());
 
 
-                    Toast.makeText(AddMedicalActivity.this, getString(R.string.save_successsful),
+                    Toast.makeText(AddHealthBioActivity.this, getString(R.string.save_successsful),
                             Toast.LENGTH_SHORT).show();
                     finish();
                 }

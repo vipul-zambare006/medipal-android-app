@@ -4,15 +4,15 @@ package sg.edu.nus.medipalapplication.MedipalFolder;
  * Created by monalisadebnth on 18/3/17.
  */
 
-public class MedicalID extends Medical implements Comparable<MedicalID> {
+public class HealthBioID extends HealthBio implements Comparable<HealthBioID> {
     private int medicalID;
 
-    public MedicalID (String condition, String startdate, String conditiontype, int medicalNumber) {
+    public HealthBioID(String condition, String startdate, String conditiontype, int medicalNumber) {
         super (condition, startdate, conditiontype);
         this.medicalID = medicalID;
     }
 
-    public MedicalID (String condition, String startdate, String conditiontype) {
+    public HealthBioID(String condition, String startdate, String conditiontype) {
         super (condition, startdate, conditiontype);
     }
 
@@ -40,15 +40,13 @@ public class MedicalID extends Medical implements Comparable<MedicalID> {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        MedicalID other = (MedicalID) obj;
+        HealthBioID other = (HealthBioID) obj;
         super.equals(other);
-        if (medicalID != other.medicalID)
-            return false;
-        return true;
+        return medicalID == other.medicalID;
     }
 
     // Added so that Members can be sorted by membership number
-    public int compareTo (MedicalID other) {
+    public int compareTo(HealthBioID other) {
         return (getMedicalNumber() - other.getMedicalNumber());
     }
 }
