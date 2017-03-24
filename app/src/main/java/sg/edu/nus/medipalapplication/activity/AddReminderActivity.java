@@ -83,7 +83,7 @@ public class AddReminderActivity extends AppCompatActivity {
 
     private void findViews() {
         reminderId = (EditText) findViewById(R.id.reminder_msg_id);
-        timePicker = (TimePicker) findViewById(R.id.timePicker);
+      //  timePicker = (TimePicker) findViewById(R.id.timePicker);
         frequency = (EditText) findViewById(R.id.frequency);
         interval = (EditText) findViewById(R.id.interval);
         save = (Button) findViewById(R.id.btn_save);
@@ -92,9 +92,9 @@ public class AddReminderActivity extends AppCompatActivity {
     private void save(String frequency, String interval, Calendar calender) {
         int frequencyNumber = Integer.parseInt(frequency);
         int intervalNumber = Integer.parseInt(interval);
-        Date date = calender.getTime();
+       // Date date = calender.getTime();
 
-        Reminder reminder = new Reminder(frequencyNumber, intervalNumber, date);
+        Reminder reminder = new Reminder(frequencyNumber, intervalNumber, "");
         ReminderDAO reminderDAO = new ReminderDAO(this);
 
         boolean result = reminderDAO.addReminder(reminder);

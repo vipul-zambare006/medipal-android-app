@@ -33,7 +33,7 @@ public class ReminderDAO extends DBHelper {
             ContentValues contantValues = new ContentValues();
             contantValues.put(Constant.FREQUENCY, reminder.getFrequency());
             contantValues.put(Constant.INTERVAL, reminder.getInterval());
-            contantValues.put(Constant.STARTTIME, reminder.getStartTime());
+            contantValues.put(Constant.STARTTIME, reminder.getstartDateTime());
             db.insert(Constant.Reminder_Table_Name, null, contantValues);
             return true;
         } catch (SQLiteException e) {
@@ -49,7 +49,7 @@ public class ReminderDAO extends DBHelper {
             ContentValues contantValues = new ContentValues();
             contantValues.put(Constant.FREQUENCY, reminderToUpdate.getFrequency());
             contantValues.put(Constant.INTERVAL, reminderToUpdate.getInterval());
-            contantValues.put(Constant.STARTTIME, reminderToUpdate.getStartTime());
+            contantValues.put(Constant.STARTTIME, reminderToUpdate.getstartDateTime());
             db.update(Constant.Reminder_Table_Name, contantValues, Constant.COLUMN_ID + "= ?", new String[]{Integer.toString(reminderToUpdate.getId())});
             return true;
         } catch (SQLiteException ex) {
@@ -71,11 +71,23 @@ public class ReminderDAO extends DBHelper {
     }
 
     public Cursor getReminderById(int id) {
-
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select * from Reminder where " + Constant.COLUMN_ID + "=?", new String[]{String.valueOf(id)});
         return cursor;
     }
 
+    public Cursor getAllReminders() {
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.rawQuery("Select * from Reminder",null);
+        return cursor;
+    }
 
+    public int getLastReminderId() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "Select MAX (" + Constant.COLUMN_ID + ") from Reminder";
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        cursor.moveToFirst();
+        return cursor.getInt(0);
+    }
 }

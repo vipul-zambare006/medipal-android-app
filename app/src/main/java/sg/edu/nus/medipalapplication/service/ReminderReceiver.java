@@ -8,7 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.support.v4.content.WakefulBroadcastReceiver;
 import android.support.v7.app.NotificationCompat;
+import android.util.Log;
 
 import sg.edu.nus.medipalapplication.MainActivity;
 import sg.edu.nus.medipalapplication.R;
@@ -17,18 +19,14 @@ import sg.edu.nus.medipalapplication.R;
  * Created by Gaurav on 22-03-2017.
  */
 
-public class ReminderReceiver extends BroadcastReceiver {
-    public ReminderReceiver() {
-        super();
-    }
+public class ReminderReceiver extends WakefulBroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-
         Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-
+        Log.d("recv remindid", String.valueOf(intent.getIntExtra("ID", 0)));
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class), 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, intent.getIntExtra("ID", 0), new Intent(context, MainActivity.class), 0);
         Notification notification = new NotificationCompat.Builder(context)
                 .setContentTitle("Reminder")
                 .setContentText(intent.getStringExtra("Message"))

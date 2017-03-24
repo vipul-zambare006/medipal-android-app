@@ -2,6 +2,7 @@ package sg.edu.nus.medipalapplication.activity;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -132,6 +133,9 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
     private void setButtonState(boolean state) {
         if (state) {
             mview.setEnabled(true);
+//            AddReminderTestActivity
+                    Intent i = new Intent(this,AddReminderTestActivity.class);
+            startActivity(i);
             Toast.makeText(MedicineAddActivity.this, "Button enabled!", Toast.LENGTH_SHORT).show();
         } else {
             mview.setEnabled(false);

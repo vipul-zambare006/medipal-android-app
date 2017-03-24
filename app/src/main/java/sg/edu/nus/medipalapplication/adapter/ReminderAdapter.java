@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 
@@ -38,7 +38,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
 
     @Override
     public void onBindViewHolder(ReminderHolder holder, int position) {
-        holder.timePicker.setText(String.valueOf(reminderlist.get(position).getStartTime()));
+        holder.reminderTime.setText(reminderlist.get(position).getstartDateTime());
         holder.container.setOnClickListener(onClickListener(position));
     }
 
@@ -51,9 +51,8 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
                 intent.putExtra("Id", reminderlist.get(position).getId());
                 intent.putExtra("Reminder Frequency", reminderlist.get(position).getFrequency());
                 intent.putExtra("Reminder Interval", reminderlist.get(position).getInterval());
-                intent.putExtra("Reminder Start Time", reminderlist.get(position).getStartTime());
+                intent.putExtra("Reminder Start Time", reminderlist.get(position).getstartDateTime());
                 context.startActivity(intent);
-
             }
         };
     }
@@ -65,7 +64,8 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
 
     class ReminderHolder extends RecyclerView.ViewHolder {
 
-        TextView timePicker;
+        //TextView timePicker;
+        EditText reminderTime;
         View container;
 
 
@@ -73,7 +73,8 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
             super(itemView);
 
             container = itemView.findViewById(R.id.remindercardview);
-            timePicker = (TextView) itemView.findViewById(R.id.timePicker);
+//            timePicker = (TextView) itemView.findViewById(R.id.timePicker);
+            reminderTime = (EditText) itemView.findViewById(R.id.reminder_time);
         }
     }
 

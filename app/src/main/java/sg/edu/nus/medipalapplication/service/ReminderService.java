@@ -10,6 +10,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.util.Log;
 
 import sg.edu.nus.medipalapplication.database.Constant;
 
@@ -33,6 +34,7 @@ public class ReminderService extends IntentService {
         String action = intent.getAction();
         int reminderID = intent.getIntExtra(Constant.COLUMN_ID, 0);
         long startTime = intent.getLongExtra(Constant.STARTTIME, 0);
+        Log.d("remind",String.valueOf(startTime));
         String reminderMessage = intent.getStringExtra("Message");
 
         if (matcher.matchAction(action)) {
@@ -55,14 +57,17 @@ public class ReminderService extends IntentService {
         intent.putExtra("ID", id);
         intent.putExtra("Message", msg);
 
-        pi = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
+        pi = PendingIntent.getBroadcast(this, id, intent, 0);
+        Log.d("service remindid", String.valueOf(id));
         if (CREATE.equals(action)) {
 
-            am.setRepeating(AlarmManager.RTC_WAKEUP, startTime, AlarmManager.INTERVAL_DAY, pi);
+            Log.d("service remindid2", String.valueOf(id));
+            am.set(AlarmManager.RTC_WAKEUP, startTime, pi);
+            // am.setRepeating(AlarmManager.RTC_WAKEUP, startTime, AlarmManager.INTERVAL_DAY, pi);
 
         } else if (CANCEL.equals(action)) {
             am.cancel(pi);
+            pi.cancel();
         }
     }
 }

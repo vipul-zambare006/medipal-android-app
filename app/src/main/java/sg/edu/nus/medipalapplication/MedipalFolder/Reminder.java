@@ -1,5 +1,8 @@
 package sg.edu.nus.medipalapplication.MedipalFolder;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -14,20 +17,20 @@ public class Reminder {
     private int id;
     private int frequency;
     private int interval;
-    private Date startTime;
+    private String startDateTime;
 
     public Reminder() {
 
     }
 
-    public Reminder(int frequency, int interval, Date startTime) {
+    public Reminder(int frequency, int interval, String startDateTime) {
         this.frequency = frequency;
         this.interval = interval;
-        this.startTime = startTime;
+        this.startDateTime = startDateTime;
     }
 
     public int getId() {
-        return id;
+        return 2555;
     }
 
     public int getFrequency() {
@@ -38,8 +41,20 @@ public class Reminder {
         return interval;
     }
 
-    public long getStartTime() {
-        return startTime.getTime();
+    public String getstartDateTime() {
+        return startDateTime;
+    }
+
+    public long getstartDateTimeLong() {
+        String startDateString = startDateTime;
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+        Date startDate = new Date();
+        try {
+            startDate = df.parse(startDateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return startDate.getTime();
     }
 
     public boolean equals(Object obj) {
@@ -55,12 +70,13 @@ public class Reminder {
         id = 0;
         frequency = 0;
         interval = 0;
-        startTime = null;
+        startDateTime = null;
     }
 
-    public void addReminder(Reminder reminder, ReminderDAO reminderDAO) {
-        reminderDAO.addReminder(reminder);
-    }
+//    public void addReminder(Reminder reminder, ReminderDAO reminderDAO) {
+//        reminderDAO.addReminder(reminder);
+//    }
+
 /*
     public Cursor getReminder(ReminderDAO reminderDAO) {
         return reminderDAO.getReminderById();
@@ -75,12 +91,12 @@ public class Reminder {
         appointmentDAO.DeleteAppointment(appointmentId);
     }
 
-    public ArrayList<Long> getTimeinMillisecond(int interval, int frequency, Date startTime) {
+    public ArrayList<Long> getTimeinMillisecond(int interval, int frequency, long startDateTime) {
 
         ArrayList<Long> reminderTimeList = new ArrayList<Long>();
         for (int i = 0; i < frequency; i++) {
 
-            long reminderTime = (60 * 60 * 1000) * (interval * frequency) + startTime.getTime();
+            long reminderTime = (60 * 60 * 1000) * (interval * frequency) + startDateTime;
             reminderTimeList.add(reminderTime);
         }
         return reminderTimeList;

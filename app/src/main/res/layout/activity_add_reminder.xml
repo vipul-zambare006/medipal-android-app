@@ -17,10 +17,23 @@
             android:maxLines="2"
             android:textSize="20dp"></EditText>
 
-        <TimePicker
-            android:id="@+id/timePicker"
+        <!--<TimePicker-->
+            <!--android:id="@+id/timePicker"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"></TimePicker>-->
+        <EditText
+            android:id="@+id/reminder_time"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TimePicker>
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="time"
+            android:focusable="false"
+            android:hint="Enter time"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:padding="10dp"/>
+
 
         <EditText
             android:id="@+id/frequency"
