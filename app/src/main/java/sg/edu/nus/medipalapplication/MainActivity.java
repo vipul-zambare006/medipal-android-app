@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -17,12 +14,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import sg.edu.nus.medipalapplication.MedipalFolder.Medicine;
-import sg.edu.nus.medipalapplication.activity.AddAppointmentActivity;
+import sg.edu.nus.medipalapplication.activity.AppointmentActivity;
 import sg.edu.nus.medipalapplication.activity.CategoryActivity;
 import sg.edu.nus.medipalapplication.activity.ICETabLayoutActivity;
-import sg.edu.nus.medipalapplication.activity.MedicalLayout;
 import sg.edu.nus.medipalapplication.activity.MedicineActivity;
 import sg.edu.nus.medipalapplication.activity.PersonActivity;
+
+//import sg.edu.nus.medipalapplication.activity.MedicalLayout;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -59,25 +57,25 @@ public class MainActivity extends AppCompatActivity
 //        }
 //    };
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        mview = getLayoutInflater().inflate(R.layout.content_main,null);
-
-        healthbioimage = (ImageView) findViewById(R.id.HEALTH);
-        healthbioimage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MedicalLayout.class);
-                startActivity(intent);
-            }
-        });
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.setDrawerListener(toggle);
+//        toggle.syncState();
+//
+//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+//        navigationView.setNavigationItemSelectedListener(this);
+//
+//        mview = getLayoutInflater().inflate(R.layout.content_main,null);
+//
+//        healthbioimage = (ImageView) findViewById(R.id.HEALTH);
+//        healthbioimage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, MedicalLayout.class);
+//                startActivity(intent);
+//            }
+//        });
 
         iceimage = (ImageView) findViewById(R.id.ICE);
         iceimage.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +131,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this, AddAppointmentActivity.class);
+                Intent intent = new Intent(MainActivity.this, AppointmentActivity.class);
                 startActivity(intent);
 
 
@@ -150,15 +148,15 @@ public class MainActivity extends AppCompatActivity
 //        });
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        if (drawer.isDrawerOpen(GravityCompat.START)) {
+//            drawer.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//        }
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -207,14 +205,14 @@ public class MainActivity extends AppCompatActivity
 //            startActivity(new Intent(getApplicationContext(), MeasurementActivity.class));
 //        }
         if (id == R.id.nav_appointment) {
-            startActivity(new Intent(getApplicationContext(), AddAppointmentActivity.class));
+            startActivity(new Intent(getApplicationContext(), AppointmentActivity.class));
         }
 //       if (id == R.id.nav_reminder) {
 //            startActivity(new Intent(getApplicationContext(), ReminderActivity.class));
 //        }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }
