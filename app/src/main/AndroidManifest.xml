@@ -24,41 +24,45 @@
 
         <activity
             android:name=".activity.PersonActivity"
-            android:label="Add your details"></activity>
+            android:label="@string/person_tab"></activity>
 
         <activity
             android:name=".activity.AppointmentActivity"
-            android:label="Add Appointment"></activity>
+            android:label="@string/add_appointment"></activity>
 
         <activity
             android:name=".activity.SaveAppointmentActivity"
-            android:label="Save Appointment"></activity>
+            android:label="@string/save_appointment"></activity>
 
         <activity
             android:name=".activity.MedicineActivity"
-            android:label="Medicine"></activity>
+            android:label="@string/medicine"></activity>
         <activity
             android:name=".activity.MedicineAddActivity"
-            android:label="Add Medicine"></activity>
+            android:label="@string/add_medicine"></activity>
         <activity
             android:name=".activity.MedicineEditActivity"
-            android:label="Edit Medicine"></activity>
+            android:label="@string/edit_medicine"></activity>
 
         <activity
             android:name=".activity.CategoryActivity"
-            android:label="Category"></activity>
+            android:label="@string/category"></activity>
         <activity
             android:name=".activity.CategoryEditActivity"
-            android:label="Edit Category"></activity>
+            android:label="@string/edit_category"></activity>
+
+        <activity
+            android:name=".activity.AddReminderActivity"
+            android:label="@string/add_reminder"></activity>
 
         <activity
             android:name=".activity.ConsumptionTabsActivity"
-            android:label="Consumption"
+            android:label="@string/consumption"
             android:theme="@style/TabLayoutTheme"></activity>
 
         <activity
             android:name=".activity.ICETabLayoutActivity"
-            android:label="ICE"
+            android:label="@string/ice"
             android:theme="@style/TabLayoutTheme"></activity>
 
 

@@ -12,7 +12,17 @@
     <string name="save_successsful">save success</string>
     <string name="second_name_validation_msg">second_name_validation_msg</string>
     <array name="condition_type">condition_type</array>
-
+    <string name="add_appointment">Add Appointment</string>
+    <string name="person_tab">Add your details</string>
+    <string name="save_appointment">Save Appointment</string>
+    <string name="medicine">Medicine</string>
+    <string name="add_medicine">Add Medicine</string>
+    <string name="edit_medicine">Edit Medicine</string>
+    <string name="category">Category</string>
+    <string name="edit_category">Edit Category</string>
+    <string name="ice">ICE</string>
+    <string name="consumption">Consumptio</string>
+    <string name="add_reminder">Add Reminder</string>
 
     <string-array name="Blood_type">
         <item>O+</item>
