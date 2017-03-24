@@ -31,6 +31,10 @@
             android:label="Add Appointment"></activity>
 
         <activity
+            android:name=".activity.SaveAppointmentActivity"
+            android:label="Save Appointment"></activity>
+
+        <activity
             android:name=".activity.MedicineActivity"
             android:label="Medicine"></activity>
         <activity
