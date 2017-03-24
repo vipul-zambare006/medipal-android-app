@@ -53,7 +53,7 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
         medicinename = (EditText) findViewById(R.id.AddMedicineName);
         medicinedescription = (EditText) findViewById(R.id.AddMedicineDescription);
         medicinecatid = (Spinner) findViewById(R.id.AddMedicineCatId);
-        medicinereminderid = (EditText) findViewById(R.id.AddMedicineRemindId);
+        //medicinereminderid = (EditText) findViewById(R.id.AddMedicineRemindId);
         medicinequantity = (EditText) findViewById(R.id.AddMedicineQuantity);
         medicinedosage = (EditText) findViewById(R.id.AddMedicineDosage);
         medicineconsumequantity = (EditText) findViewById(R.id.AddMedicineConsumeQuality);

@@ -52,7 +52,7 @@ public class MedicineEditActivity extends AppCompatActivity implements AdapterVi
         medicinename = (EditText) findViewById(R.id.EditMedicineName);
         medicinedescription = (EditText) findViewById(R.id.EditMedicineDescription);
         medicinecatid = (Spinner) findViewById(R.id.EditMedicineCatId);
-        medicinereminderid = (EditText) findViewById(R.id.EditMedicineRemindId);
+        // medicinereminderid = (EditText) findViewById(R.id.EditMedicineRemindId);
         medicinequantity = (EditText) findViewById(R.id.EditMedicineQuantity);
         medicinedosage = (EditText) findViewById(R.id.EditMedicineDosage);
         medicineconsumequantity = (EditText) findViewById(R.id.EditMedicineConsumeQuality);
@@ -107,7 +107,7 @@ public class MedicineEditActivity extends AppCompatActivity implements AdapterVi
 
             medicinename.setText(newmedicinename);
             medicinedescription.setText(newmedicinedescription);
-            medicinereminderid.setText(newmedicinereminderid);
+            //medicinereminderid.setText(newmedicinereminderid);
             medicinequantity.setText(newmedicineremind);
             medicinedosage.setText(newmedicinequantity);
             medicineconsumequantity.setText(newmedicinedosage);

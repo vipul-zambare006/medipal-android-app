@@ -4,6 +4,9 @@
     android:id="@+id/activity_medicine_add"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="50dp"
     android:scrollbars="vertical"
     tools:context="sg.edu.nus.medipalapplication.activity.MedicineAddActivity">
 
@@ -23,7 +26,8 @@
                 android:id="@+id/AddMedicineName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Meddicine Name" />
+                android:hint="Name"
+                android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -34,24 +38,31 @@
                 android:id="@+id/AddMedicineDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Meddicine Description" />
+                android:hint="Description"
+                android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/AddMedicineCatId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></Spinner>
+        <LinearLayout
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="20dp">
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/AddMedicineRemindId"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Meddicine Remind Id" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_weight="1"
+                android:text="Category"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/AddMedicineCatId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"></Spinner>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="370dp"
@@ -79,79 +90,120 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:paddingTop="20dp">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/AddMedicineQuantity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Quantity" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/AddMedicineDosage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Dosage" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
                 <EditText
                     android:id="@+id/AddMedicineDateIssued"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Date Issued" />
+                    android:focusable="false"
+                    android:hint="Date Issued"
+                    android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
                 <EditText
                     android:id="@+id/AddMedicineExpire"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Expire Date" />
+                    android:hint="Expire Month 1 to 24"
+                    android:inputType="number" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="20dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/AddMedicineQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Quantity"
+                    android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/AddMedicineDosage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Dosage"
+                    android:inputType="number" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="20dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="number">
 
                 <EditText
                     android:id="@+id/AddMedicineConsumeQuality"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Consume Quality" />
+                    android:hint="Consume Quality"
+                    android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
                 <EditText
                     android:id="@+id/AddMedicineThreshold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Threshold" />
+                    android:hint="Threshold"
+                    android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="100dp">
 
             <Button
                 android:id="@+id/MedicineSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Save2" />
+                android:layout_weight="1"
+                android:text="Save" />
 
         </LinearLayout>
 

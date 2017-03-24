@@ -5,14 +5,14 @@ package sg.edu.nus.medipalapplication.MedipalFolder;
  */
 
 public class Medicine {
-    private String medicinename, medicinedescription, medicinecatid, medicinereminderid, medicineremind, medicinequantity, medicinedosage, medicinedataissued, medicineconsumequantity, medicinethreshold, medicineexpirefactor;
-    private int id;
+    private String medicinename, medicinedescription, medicinecatid, medicineremind, medicinequantity, medicinedosage, medicinedataissued, medicineconsumequantity, medicinethreshold, medicineexpirefactor;
+    private int id, medicinereminderid;
 
     public Medicine(int id, String medicinename, String medicinedescription, String medicinecatid, String medicinereminderid, String medicineremind, String medicinequantity, String medicinedosage, String medicinedateissued, String medicineconsumequantity, String medicienthreshold) {
 
     }
 
-    public Medicine(int id, String medicinename, String medicinedescription, String medicinecatid, String medicinereminderid, String medicineremind, String medicinequantity, String medicinedosage, String medicinedataissued, String medicineconsumequantity, String medicinethreshold, String medicineexpirefactor) {
+    public Medicine(int id, String medicinename, String medicinedescription, String medicinecatid, int medicinereminderid, String medicineremind, String medicinequantity, String medicinedosage, String medicinedataissued, String medicineconsumequantity, String medicinethreshold, String medicineexpirefactor) {
 
         this.medicinename = medicinename;
         this.medicinedescription = medicinedescription;
@@ -53,11 +53,11 @@ public class Medicine {
         this.medicinecatid = medicinecatid;
     }
 
-    public String getMedicinereminderid() {
+    public int getMedicinereminderid() {
         return medicinereminderid;
     }
 
-    public void setMedicinereminderid(String medicinereminderid) {
+    public void setMedicinereminderid(int medicinereminderid) {
         this.medicinereminderid = medicinereminderid;
     }
 

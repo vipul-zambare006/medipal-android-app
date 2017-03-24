@@ -22,7 +22,8 @@
                 android:id="@+id/EditMedicineName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Meddicine Name" />
+                android:hint="Meddicine Name"
+                android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -33,7 +34,8 @@
                 android:id="@+id/EditMedicineDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Meddicine Description" />
+                android:hint="Meddicine Description"
+                android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
 
         <Spinner
@@ -42,17 +44,6 @@
             android:layout_height="wrap_content">
 
         </Spinner>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/EditMedicineRemindId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Meddicine Remind Id" />
-        </android.support.design.widget.TextInputLayout>
 
         <LinearLayout
             android:layout_width="370dp"
@@ -89,7 +80,8 @@
                     android:id="@+id/EditMedicineQuantity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Quantity" />
+                    android:hint="Quantity"
+                    android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -101,7 +93,8 @@
                     android:id="@+id/EditMedicineDosage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Dosage" />
+                    android:hint="Dosage"
+                    android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
@@ -120,7 +113,8 @@
                     android:id="@+id/EditMedicineDateIssued"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Date Issued" />
+                    android:hint="Date Issued"
+                    android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -132,7 +126,8 @@
                     android:id="@+id/EditMedicineExpire"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Expire Date" />
+                    android:hint="Expire Date"
+                    android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
@@ -145,13 +140,15 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:inputType="number">
 
                 <EditText
                     android:id="@+id/EditMedicineConsumeQuality"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Consume Quality" />
+                    android:hint="Consume Quality"
+                    android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -163,7 +160,8 @@
                     android:id="@+id/EditMedicineThreshold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Threshold" />
+                    android:hint="Threshold"
+                    android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>

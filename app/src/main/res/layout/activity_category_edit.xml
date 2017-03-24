@@ -19,7 +19,8 @@
             android:id="@+id/EditCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Code" />
+            android:hint="Code"
+            android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -30,7 +31,8 @@
             android:id="@+id/EditCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Category" />
+            android:hint="Category"
+            android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
 
@@ -42,7 +44,8 @@
             android:id="@+id/EditDesription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Description" />
+            android:hint="Description"
+            android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
     <LinearLayout
@@ -62,9 +65,9 @@
             android:id="@+id/AddCategoryRemind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:paddingLeft="200dp"
             android:textSize="20dp"
-            android:checked="true"
             android:theme="@style/MySwitch"/>
     </LinearLayout>
 
