@@ -1,5 +1,11 @@
 package sg.edu.nus.medipalapplication.MedipalFolder;
 
+import android.database.Cursor;
+
+import java.util.ArrayList;
+
+import sg.edu.nus.medipalapplication.database.MedicineDAO;
+
 /**
  * Created by Govardhan on 19/3/2017.
  */
@@ -8,7 +14,12 @@ public class Medicine {
     private String medicinename, medicinedescription, medicinecatid, medicineremind, medicinequantity, medicinedosage, medicinedataissued, medicineconsumequantity, medicinethreshold, medicineexpirefactor;
     private int id, medicinereminderid;
 
-    public Medicine(){};
+    public Medicine() {
+    }
+
+    public Medicine(String medicineName, int quantityConsumed) {
+    }
+
     public Medicine(int id, String medicinename, String medicinedescription, String medicinecatid, String medicinereminderid, String medicineremind, String medicinequantity, String medicinedosage, String medicinedateissued, String medicineconsumequantity, String medicienthreshold) {
 
     }
@@ -124,6 +135,25 @@ public class Medicine {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public ArrayList<Medicine> getMedicineName(MedicineDAO medicineDAO) {
+
+        ArrayList<Medicine> medicineArrayList = new ArrayList<Medicine>();
+        Cursor cursor = medicineDAO.getAllConsumption();
+
+        while (cursor.moveToNext()) {
+
+            int id = cursor.getInt(0);
+            String medicineName = cursor.getString(1);
+            int quantityConsumed = cursor.getInt(2);
+            // String appointmentTime = cursor.getString(3);
+            //String description = cursor.getString(4);
+
+            Medicine medicine = new Medicine(medicineName, quantityConsumed);
+            medicineArrayList.add(medicine);
+        }
+        return medicineArrayList;
     }
 
 }
