@@ -52,7 +52,7 @@
 
         <activity
             android:name=".activity.CategoryActivity"
-            android:label="CategoryGova"
+            android:label="Category"
             android:parentActivityName=".MainActivity"
             android:theme="@style/TitleBarTheme"></activity>
 
