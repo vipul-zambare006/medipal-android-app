@@ -19,6 +19,7 @@ import android.widget.TextView;
 import sg.edu.nus.medipalapplication.MedipalFolder.Medicine;
 import sg.edu.nus.medipalapplication.activity.AppointmentActivity;
 import sg.edu.nus.medipalapplication.activity.CategoryActivity;
+import sg.edu.nus.medipalapplication.activity.ConsumptionActivity;
 import sg.edu.nus.medipalapplication.activity.HealthBioActivity;
 import sg.edu.nus.medipalapplication.activity.ICETabLayoutActivity;
 import sg.edu.nus.medipalapplication.activity.MeasurementActivity;
@@ -87,6 +88,15 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ICETabLayoutActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        consumptionimage = (ImageView) findViewById(R.id.Consumption);
+        consumptionimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ConsumptionActivity.class);
                 startActivity(intent);
             }
         });
