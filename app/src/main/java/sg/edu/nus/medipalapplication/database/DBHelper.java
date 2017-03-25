@@ -85,9 +85,9 @@ public class DBHelper extends SQLiteOpenHelper {
             + Constant.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + Constant.COLUMN_NAME + " TEXT NOT NULL, "
             + Constant.CONTACTNO + " INTEGER NOT NULL, "
-            + Constant.CONTACTTYPE + " INTEGER NOT NULL, "
+            + Constant.CONTACTTYPE + " TEXT NOT NULL, "
             + Constant.DESCRIPTION + " TEXT NOT NULL,"
-            + Constant.PREFERENCES + " INTEGER NOT NULL);";
+            + Constant.PREFERENCES + " TEXT NOT NULL);";
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

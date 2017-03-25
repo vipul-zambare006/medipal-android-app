@@ -8,6 +8,7 @@ public class Medicine {
     private String medicinename, medicinedescription, medicinecatid, medicineremind, medicinequantity, medicinedosage, medicinedataissued, medicineconsumequantity, medicinethreshold, medicineexpirefactor;
     private int id, medicinereminderid;
 
+    public Medicine(){};
     public Medicine(int id, String medicinename, String medicinedescription, String medicinecatid, String medicinereminderid, String medicineremind, String medicinequantity, String medicinedosage, String medicinedateissued, String medicineconsumequantity, String medicienthreshold) {
 
     }

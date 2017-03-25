@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import sg.edu.nus.medipalapplication.R;
 import sg.edu.nus.medipalapplication.adapter.ViewPagerAdapter;
-import sg.edu.nus.medipalapplication.fragment.ConsumptionHistory;
+import sg.edu.nus.medipalapplication.fragment.ConsumptionHistoryFragment;
 import sg.edu.nus.medipalapplication.fragment.MedicationFragment;
 
 /**
@@ -65,7 +65,7 @@ public class ConsumptionTabsActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new MedicationFragment(), "ONE");
-        adapter.addFrag(new ConsumptionHistory(), "TWO");
+        adapter.addFrag(new ConsumptionHistoryFragment(), "TWO");
         viewPager.setAdapter(adapter);
     }
 

@@ -49,6 +49,7 @@ public class ICETabLayoutActivity extends AppCompatActivity {
         tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tab_favourite, 0, 0);
         tabLayout.getTabAt(0).setCustomView(tabOne);
 
+
         TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabTwo.setText("DOCTOR");
         tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_local_hospital, 0, 0);

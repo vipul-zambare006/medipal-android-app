@@ -45,7 +45,7 @@ public class MedicalFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ListView memberList = (ListView) view.findViewById(R.id.lv_medical_list);
-        tvEmpty = (TextView) view.findViewById(R.id.tv_empty_value);
+        //tvEmpty = (TextView) view.findViewById(R.id.tv_empty_value);
         memberListAdapter = new MedicalListAdapter(getActivity());
         memberList.setAdapter(memberListAdapter);
         FloatingActionButton floatingActionButton =

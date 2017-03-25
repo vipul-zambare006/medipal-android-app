@@ -136,4 +136,13 @@ public class Constant {
     public static final String AppointmentSelectQuery =  "Select * from Appointment";
 
 
+    public static final String NotificationMsg_ContactAdded = "Contact Added Successfully";
+    public static final String NotificationMsg_ContactUpdated = "Contact Updated Successfully";
+    public static final String NotificationMsg_ContactDeleted = "Contact Deleted Successfully";
+
+
+
+
+
+
 }

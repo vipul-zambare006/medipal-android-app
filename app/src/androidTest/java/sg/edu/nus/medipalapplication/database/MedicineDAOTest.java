@@ -65,8 +65,8 @@ public class MedicineDAOTest {
             String medicienthreshold = medicineCursor.getString(10);
             String mediceineexpire = medicineCursor.getString(11);
 
-            Medicine medicine = new Medicine(id, medicinename, medicinedescription, medicinecatid, medicinereminderid, medicineremind, medicinequantity, medicinedosage, medicinedateissued, medicineconsumequantity, medicienthreshold, mediceineexpire);
-            medicines.add(medicine);
+            //Medicine medicine = new Medicine(id, medicinename, medicinedescription, medicinecatid, medicinereminderid, medicineremind, medicinequantity, medicinedosage, medicinedateissued, medicineconsumequantity, medicienthreshold, mediceineexpire);
+           // medicines.add(medicine);
         }
         assertTrue(medicines.size() == 1);
     }

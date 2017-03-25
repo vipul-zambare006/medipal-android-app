@@ -19,6 +19,7 @@ import android.widget.TextView;
 import sg.edu.nus.medipalapplication.MedipalFolder.Medicine;
 import sg.edu.nus.medipalapplication.activity.AppointmentActivity;
 import sg.edu.nus.medipalapplication.activity.CategoryActivity;
+import sg.edu.nus.medipalapplication.activity.ConsumptionTabsActivity;
 import sg.edu.nus.medipalapplication.activity.ICETabLayoutActivity;
 import sg.edu.nus.medipalapplication.activity.MedicalLayout;
 import sg.edu.nus.medipalapplication.activity.MedicineActivity;
@@ -90,6 +91,15 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        consumptionimage =(ImageView) findViewById(R.id.Consumption);
+        consumptionimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ConsumptionTabsActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         categoryimage = (ImageView) findViewById(R.id.Category);
         categoryimage.setOnClickListener(new View.OnClickListener() {
@@ -112,24 +122,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-//        measurementimage = (ImageView) findViewById(R.id.Medicine);
-//        measurementimage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this,Mea.class);
-//                startActivity(intent);
-//            }
-//        });
-
-//        reminderimage = (ImageView) findViewById(R.id.Reminder);
-//        reminderimage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this,Mea.class);
-////                startActivity(intent);
-//            }
-//        });
-
         appoinmentimage = (ImageView) findViewById(R.id.Appointment);
         appoinmentimage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,14 +134,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-//        consumptionimage = (ImageView) findViewById(R.id.Consumption);
-//        consumptionimage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, .class);
-//                startActivity(intent);
-//            }
-//        });
     }
 
     @Override

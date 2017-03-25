@@ -6,13 +6,13 @@
     tools:context=".fragment.DoctorFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <ListView
-        android:id="@+id/lv_doctor_list"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyle_view_doctor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="wrap_content" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabf"
+        android:id="@+id/fab_add_doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -22,6 +22,7 @@
         android:tint="@android:color/white"
         app:backgroundTint="@color/colorPrimary" />
 
+<!--
     <TextView
         android:id="@+id/tv_empty_value2"
         android:layout_width="match_parent"
@@ -31,5 +32,6 @@
         android:text="@string/doctor_empty_value"
         android:textSize="20sp"
         android:textStyle="bold" />
+-->
 
 </RelativeLayout>
