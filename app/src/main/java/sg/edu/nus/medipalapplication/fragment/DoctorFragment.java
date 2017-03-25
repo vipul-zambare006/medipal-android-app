@@ -22,17 +22,18 @@ import sg.edu.nus.medipalapplication.activity.SaveAppointmentActivity;
 import sg.edu.nus.medipalapplication.adapter.DoctorAdapter;
 import sg.edu.nus.medipalapplication.database.EmergencyContactDAO;
 
+
 /**
  * Created by Rach on 18/3/2017.
  */
 
 public class DoctorFragment extends Fragment {
 
+    EmergencyContact emergencyContact = new EmergencyContact();
    // private TextView tvEmpty;
     private RecyclerView recyclerView;
     private DoctorAdapter adapter;
     private ArrayList<EmergencyContact> emergencyContactArrayList;
-    EmergencyContact emergencyContact=new EmergencyContact();
     private EmergencyContactDAO emergencyContactDAO;
 
 

@@ -4,24 +4,29 @@ package sg.edu.nus.medipalapplication.MedipalFolder;
  * Created by monalisadebnth on 18/3/17.
  */
 
-public class HealthBioID extends HealthBio implements Comparable<HealthBioID> {
+public class HealthID extends HealthBio implements Comparable<HealthID> {
     private int medicalID;
 
-    public HealthBioID(String condition, String startdate, String conditiontype, int medicalNumber) {
-        super (condition, startdate, conditiontype);
+    public HealthID(String condition, String startdate, String conditiontype, int memberNum) {
+        super(condition, startdate, conditiontype);
         this.medicalID = medicalID;
     }
 
-    public HealthBioID(String condition, String startdate, String conditiontype) {
-        super (condition, startdate, conditiontype);
+    public HealthID(String condition, String startdate, String conditiontype) {
+        super(condition, startdate, conditiontype);
     }
 
-    public int getMedicalNumber () {
+    public HealthID(int memberNum) {
+        super(memberNum);
+    }
+
+
+    public int getMedicalNumber() {
         return medicalID;
     }
 
-    public String toString () {
-        return (getCondition().toString()+" " +"\n" +getConditiontype().toString()+" "+"/n" +getStartdate());
+    public String toString() {
+        return (getCondition().toString() + " " + "\n" + getConditiontype().toString() + " " + "/n" + getStartdate());
     }
 
     @Override
@@ -40,13 +45,13 @@ public class HealthBioID extends HealthBio implements Comparable<HealthBioID> {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        HealthBioID other = (HealthBioID) obj;
+        HealthID other = (HealthID) obj;
         super.equals(other);
         return medicalID == other.medicalID;
     }
 
     // Added so that Members can be sorted by membership number
-    public int compareTo(HealthBioID other) {
+    public int compareTo(HealthID other) {
         return (getMedicalNumber() - other.getMedicalNumber());
     }
 }
