@@ -21,6 +21,7 @@ import sg.edu.nus.medipalapplication.activity.AppointmentActivity;
 import sg.edu.nus.medipalapplication.activity.CategoryActivity;
 import sg.edu.nus.medipalapplication.activity.HealthBioActivity;
 import sg.edu.nus.medipalapplication.activity.ICETabLayoutActivity;
+import sg.edu.nus.medipalapplication.activity.MeasurementActivity;
 import sg.edu.nus.medipalapplication.activity.MedicineActivity;
 import sg.edu.nus.medipalapplication.activity.PersonActivity;
 
@@ -112,14 +113,14 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-//        measurementimage = (ImageView) findViewById(R.id.Medicine);
-//        measurementimage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this,Mea.class);
-//                startActivity(intent);
-//            }
-//        });
+        measurementimage = (ImageView) findViewById(R.id.Measurement);
+        measurementimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MeasurementActivity.class);
+                startActivity(intent);
+            }
+        });
 
 //        reminderimage = (ImageView) findViewById(R.id.Reminder);
 //        reminderimage.setOnClickListener(new View.OnClickListener() {

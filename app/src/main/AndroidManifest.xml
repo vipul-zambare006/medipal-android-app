@@ -69,6 +69,20 @@
             android:label="ICE"
             android:theme="@style/TabLayoutTheme"></activity>
 
+        <activity
+            android:name=".activity.MeasurementActivity"
+            android:label="Measurement"
+            android:theme="@style/TabLayoutTheme"></activity>
+
+        <activity android:name=".activity.AddPressureActivity" />
+        <activity android:name=".activity.AddPulseActivity" />
+        <activity android:name=".activity.AddTemperatureActivity" />
+        <activity android:name=".activity.AddWeightActivity" />
+        <activity android:name=".activity.PressureDisplayEditUpdateActivity" />
+        <activity android:name=".activity.PulseDisplayEditUpdateActivity" />
+        <activity android:name=".activity.TemperatureDisplayEditUpdateActivity" />
+        <activity android:name=".activity.WeightDisplayEditUpdateActivity"></activity>
+
 
     </application>
 

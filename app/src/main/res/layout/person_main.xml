@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_person"
     android:layout_width="match_parent"
@@ -10,41 +9,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activity.PersonActivity">
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="#ff6666"
-        android:orientation="vertical">
-
-
-        <QuickContactBadge
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="145dp"
-            android:layout_marginTop="25dp" />
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/et_name"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:hint="Enter your Name"
-                android:textAlignment="center"
-                android:textColor="#676749"
-                android:textSize="12sp" />
-
-
-        </android.support.design.widget.TextInputLayout>
-
-    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -110,8 +74,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="210dp"
-                    android:inputType="number"
-                    android:hint="Postal Code"/>
+                    android:hint="Postal Code"
+                    android:inputType="number" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -125,8 +89,8 @@
                      android:layout_height="wrap_content"
                      android:layout_marginLeft="10dp"
                      android:layout_marginTop="270dp"
-                     android:inputType="number"
-                     android:hint="Height"/>
+                     android:hint="Height"
+                     android:inputType="number" />
 
              </android.support.design.widget.TextInputLayout>
 
@@ -139,8 +103,8 @@
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:layout_alignTop="@+id/textView3"
-                     android:hint="Blood Type"
-                     android:layout_marginLeft="10dp">
+                     android:layout_marginLeft="10dp"
+                     android:hint="Blood Type">
 
                  </EditText>
 
@@ -151,9 +115,9 @@
                 android:id="@+id/btn_save"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:background="#ff6666"
                 android:layout_marginLeft="130dp"
                 android:layout_marginTop="30dp"
+                android:background="#ff6666"
                 android:text="Save"
                 android:textColor="#6e6d6d" />
 
@@ -162,4 +126,41 @@
 
 
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="#ff6666"
+        android:orientation="vertical">
+
+
+        <QuickContactBadge
+            android:id="@+id/im_person"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="145dp"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/ic_person_black_24dp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:hint="Enter your Name"
+                android:textAlignment="center"
+                android:textColor="#676749"
+                android:textSize="12sp" />
+
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
 </RelativeLayout>
