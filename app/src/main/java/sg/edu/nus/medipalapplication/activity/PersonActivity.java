@@ -18,6 +18,7 @@ import java.util.Locale;
 
 import sg.edu.nus.medipalapplication.MedipalFolder.Person;
 import sg.edu.nus.medipalapplication.R;
+import sg.edu.nus.medipalapplication.database.AppointmentDAO;
 import sg.edu.nus.medipalapplication.database.PersonDAO;
 
 /**
@@ -27,7 +28,6 @@ import sg.edu.nus.medipalapplication.database.PersonDAO;
 public class PersonActivity extends AppCompatActivity {
 
     private EditText personname,persondate,personidno,personaddress,personpostalcode,personheight,personmBloodType;
-    private ArrayList<Person> personArrayList;
     Person person = new Person();
 
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
@@ -49,15 +49,7 @@ public class PersonActivity extends AppCompatActivity {
         personheight = (EditText) findViewById(R.id.et_height);
 
         final PersonDAO personDAO = new PersonDAO(this);
-
-        // Get the String Values for them
-
-//        String person_name = name.getText().toString();
-//        String person_address = address.getText().toString();
-//        String person_idno = idno.getText().toString();
-//        String person_postalcode = postalcode.getText().toString();
-//        String person_height = height.getText().toString();
-//        String bloodType= mBloodType.getText().toString().trim();
+        loadPerson(personDAO);
 
         persondate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,81 +72,70 @@ public class PersonActivity extends AppCompatActivity {
             }
         });
 
-
-
         Button btnSave = (Button) findViewById(R.id.btn_save);
         btnSave.setOnClickListener(new View.OnClickListener()
-
         {
-            @Override public void onClick (View v){
-                if (isValid()) {
-                    Toast.makeText(PersonActivity.this, "Saved Succesfully!",
-                            Toast.LENGTH_SHORT).show();
-                    finish();
+            @Override public void onClick (View v)
+            {
+                if (isValid())
+                {
+                    save(personname.getText().toString().trim(), personidno.getText().toString().trim(), persondate.getText().toString().trim(), personaddress.getText().toString().trim(), personmBloodType.getText().toString().trim(), personpostalcode.getText().toString().trim(), personheight.getText().toString().trim());
+                    Toast.makeText(getApplicationContext(), "Successfully added your details", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    private boolean isValid() {
+    private boolean isValid()
+    {
         boolean isValid = true;
         if (TextUtils.isEmpty(personname.getText().toString().trim())) {
-           // name.setError(getString(R.string.first_name_validation_msg));
+            personname.requestFocus();
             personname.setError("Please enter name.");
             isValid = false;
         }
         if (TextUtils.isEmpty(personidno.getText().toString().trim())) {
-            //idno.setError(getString(R.string.id_no_validation_msg));
+            personidno.requestFocus();
             personname.setError("Please enter Id no.");
             isValid = false;
         }
         return isValid;
     }
 
-    private void save(String name,String idno, String dateofbirth,String address,String bloodtype,String postalcode,String height) {
-
+    private void save(String name,String idno, String dateofbirth,String address,String bloodtype,String postalcode,String height)
+    {
         PersonDAO personDAO = new PersonDAO(this);
-
-       // personDAO.openDb();
-
         long result = personDAO.addPerson(name, idno, dateofbirth, address, bloodtype, postalcode, height);
 
         if (result > 0) {
-
-            personname.setText("");
-            persondate.setText("");
-            personidno.setText("");
-            personaddress.setText("");
-            personpostalcode.setText("");
-            personheight.setText("");
-            personmBloodType.setText("");
-
-
-        } else {
+            loadPerson(personDAO);
+        }
+        else
+        {
             Toast.makeText(getApplicationContext(), "Unable to insert", Toast.LENGTH_SHORT).show();
         }
-        //medicineDatabase.close();
     }
 
     public void loadPerson(PersonDAO personDAO) {
-        personArrayList = new ArrayList<Person>();
         Cursor cursor = person.getperson(personDAO);
 
-        while (cursor.moveToNext()) {
-
-            int id = cursor.getInt(0);
+        while (cursor.moveToNext())
+        {
             String name = cursor.getString(1);
-            String idno = cursor.getString(2);
-            String dateofbirth = cursor.getString(3);
+            String dateofbirth = cursor.getString(2);
+            String idNo = cursor.getString(3);
             String address = cursor.getString(4);
-            String bloodtype = cursor.getString(5);
-            String postalcode = cursor.getString(6);
-            String height = cursor.getString(7);
+            String postalcode = cursor.getString(5);
+            String height = cursor.getString(6);
+            String bloodtype = cursor.getString(7);
 
-
-            Person person = new Person(id,name,idno,dateofbirth,address,bloodtype,postalcode,height);
-            personArrayList.add(person);
+            personname.setText(name);
+            persondate.setText(dateofbirth);
+            personidno.setText(idNo);
+            personaddress.setText(address);
+            personpostalcode.setText(postalcode);
+            personheight.setText(height);
+            personmBloodType.setText(bloodtype);
         }
-
     }
 }

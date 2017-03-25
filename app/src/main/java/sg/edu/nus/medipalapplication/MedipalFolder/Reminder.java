@@ -10,7 +10,7 @@ import sg.edu.nus.medipalapplication.database.AppointmentDAO;
 import sg.edu.nus.medipalapplication.database.ReminderDAO;
 
 /**
- * Created by Gaurav on 19-03-2017.
+ * Created by Gaurav, Vipul on 19-03-2017.
  */
 
 public class Reminder {

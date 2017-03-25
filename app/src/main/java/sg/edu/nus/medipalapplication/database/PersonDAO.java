@@ -29,12 +29,7 @@ public class PersonDAO extends DBHelper {
         contantValues.put(Constant.POSTALCODE,postalcode);
         contantValues.put(Constant.HEIGHT,height);
 
-
-        // Database query to Insert data to table.
-
         return db.insert(Constant.PersonalBio_Table_Name, null, contantValues);
-
-
     }
 
     public boolean UpdatePerson(Person person)
@@ -55,10 +50,7 @@ public class PersonDAO extends DBHelper {
     }
     public Cursor GetPerson(){
         SQLiteDatabase db=this.getReadableDatabase();
-        Cursor cursor=db.rawQuery("Select * from Person",null);
+        Cursor cursor=db.rawQuery("Select * from PERSONALBIO",null);
         return cursor;
     }
-
-
-
 }

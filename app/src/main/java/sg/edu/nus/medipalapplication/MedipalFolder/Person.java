@@ -50,9 +50,10 @@ public class Person {
     }
     public int getId(){ return id; }
 
-    //    public void addPerson(Person person, PersonDAO personDAO){
-//        personDAO.addPerson(person);
-//    }
+    public void addPerson(Person person, PersonDAO personDAO)
+    {
+        personDAO.addPerson(person.name, person.idno, person.dateofbirth, person.address, person.bloodtype, person.postalcode, person.height);
+    }
     public void UpdatePerson(Person persontoupdate, PersonDAO personDAO){
         personDAO.UpdatePerson(persontoupdate);
     }

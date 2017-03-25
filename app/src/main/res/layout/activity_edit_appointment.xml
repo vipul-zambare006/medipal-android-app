@@ -124,33 +124,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:padding="10dp"/>
-
-
         </RelativeLayout>
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="370dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:paddingTop="20dp">-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/remindername"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Reminder"-->
-                <!--android:textSize="20dp"-->
-                <!--android:padding="10dp"/>-->
-
-            <!--<android.support.v7.widget.SwitchCompat-->
-                <!--android:id="@+id/AddMedicineRemind"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:checked="true"-->
-                <!--android:paddingLeft="70dp"-->
-                <!--android:textSize="20dp"-->
-                <!--android:theme="@style/MySwitch" />-->
-        <!--</LinearLayout>-->
-
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
