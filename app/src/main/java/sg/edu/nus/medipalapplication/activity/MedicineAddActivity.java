@@ -8,6 +8,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +26,7 @@ import java.util.Calendar;
 
 import sg.edu.nus.medipalapplication.MedipalFolder.Medicine;
 import sg.edu.nus.medipalapplication.R;
+import sg.edu.nus.medipalapplication.Validate.InputFilterMinMax;
 import sg.edu.nus.medipalapplication.adapter.MedicineAdapter;
 import sg.edu.nus.medipalapplication.database.MedicineDAO;
 
@@ -59,7 +61,9 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
         medicinedosage = (EditText) findViewById(R.id.AddMedicineDosage);
         medicineconsumequantity = (EditText) findViewById(R.id.AddMedicineConsumeQuality);
         medicienthreshold = (EditText) findViewById(R.id.AddMedicineThreshold);
+
         mediceineexpire = (EditText) findViewById(R.id.AddMedicineExpire);
+        mediceineexpire.setFilters(new InputFilter[]{new InputFilterMinMax("1", "24")});
 
         Medicineremind = (SwitchCompat) findViewById(R.id.AddMedicineRemind);
         Medicineremind.setOnCheckedChangeListener(onCheckedChanged());
@@ -165,8 +169,8 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
                                long id) {
         spinnerValueSelected = parent.getItemAtPosition(position).toString();
 
-        Toast.makeText(parent.getContext(), "You selected: " + spinnerValueSelected,
-                Toast.LENGTH_LONG).show();
+//        Toast.makeText(parent.getContext(), "You selected: " + spinnerValueSelected,
+//                Toast.LENGTH_LONG).show();
     }
 
     public void onNothingSelected(AdapterView<?> parent) {

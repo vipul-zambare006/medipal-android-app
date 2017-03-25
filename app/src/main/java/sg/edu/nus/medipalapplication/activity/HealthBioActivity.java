@@ -1,6 +1,5 @@
 package sg.edu.nus.medipalapplication.activity;
 
-
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -10,24 +9,30 @@ import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 
 import sg.edu.nus.medipalapplication.R;
-import sg.edu.nus.medipalapplication.fragment.MedicalFragment;
+import sg.edu.nus.medipalapplication.fragment.HealthBioFragment;
 
-public class MedicalLayout extends AppCompatActivity {
+
+/**
+ * Created by monalisadebnth on 20/3/17.
+ */
+
+public class HealthBioActivity extends AppCompatActivity {
 
     private FrameLayout mContainer;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_medical_layout);
+        setContentView(R.layout.activity_health_bio);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mContainer = (FrameLayout) findViewById(R.id.container);
         setFragment();
     }
 
-    private void setFragment(){
+    private void setFragment() {
         FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().add(mContainer.getId(), MedicalFragment.newInstance(),"Medical fragment").commit();
+        fm.beginTransaction().add(mContainer.getId(), HealthBioFragment.newInstance(), "HealthID Bio fragment").commit();
     }
 
     @Override
@@ -46,7 +51,8 @@ public class MedicalLayout extends AppCompatActivity {
                 .show();
     }
 
-    @Override protected void onStop() {
+    @Override
+    protected void onStop() {
         //App.clubStore.saveAll(this);
         super.onStop();
     }

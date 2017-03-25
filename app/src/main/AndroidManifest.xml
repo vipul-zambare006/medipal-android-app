@@ -2,12 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sg.edu.nus.medipalapplication">
 
-    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -33,6 +27,14 @@
             android:label="Add your details"></activity>
 
         <activity
+            android:name=".activity.HealthBioActivity"
+            android:label="HealthBio"></activity>
+
+        <activity
+            android:name=".activity.AddHealthBioActivity"
+            android:label="AddHealthBio"></activity>
+
+        <activity
             android:name=".activity.AppointmentActivity"
             android:label="Add Appointment"></activity>
 
@@ -52,10 +54,7 @@
 
         <activity
             android:name=".activity.CategoryActivity"
-            android:label="Category"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/TitleBarTheme"></activity>
-
+            android:label="Category"></activity>
         <activity
             android:name=".activity.CategoryEditActivity"
             android:label="Edit Category"></activity>
@@ -63,26 +62,13 @@
         <activity
             android:name=".activity.ConsumptionTabsActivity"
             android:label="Consumption"
-            android:parentActivityName=".MainActivity"
             android:theme="@style/TabLayoutTheme"></activity>
 
         <activity
             android:name=".activity.ICETabLayoutActivity"
             android:label="ICE"
-            android:parentActivityName=".MainActivity"
             android:theme="@style/TabLayoutTheme"></activity>
 
-        <activity
-            android:name=".activity.AddNOKActivity"
-            android:label="ICE"
-            android:parentActivityName=".activity.ICETabLayoutActivity"
-            android:theme="@style/TabLayoutTheme"></activity>
-
-        <activity
-            android:name=".activity.AddDoctorActivity"
-            android:label="ICE"
-            android:parentActivityName=".activity.ICETabLayoutActivity"
-            android:theme="@style/TabLayoutTheme"></activity>
 
     </application>
 

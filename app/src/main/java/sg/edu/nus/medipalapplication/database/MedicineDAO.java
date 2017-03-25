@@ -107,6 +107,7 @@ public class MedicineDAO {
         ArrayList categoryName = new ArrayList();
         Log.v("spinner", Integer.toString(categoryName.size()));
         Cursor cursor = databaseHelper.getReadableDatabase().rawQuery("SELECT * FROM  categorytable", null);
+        categoryName.add("<Select Category>");
 
         while (cursor.moveToNext()) {
             Log.v("name", cursor.getString(1));

@@ -63,7 +63,7 @@ public class AddHealthBioActivity extends AppCompatActivity {
 
 
                 if (isValid()) {
-                    App.club.addMember(condition.getText().toString().trim(),
+                    App.health_bio.addMember(condition.getText().toString().trim(),
                             startdate.getText().toString().trim(), spinnerString, getApplicationContext());
 
 

@@ -8,16 +8,19 @@ public class HealthBio {
     private String condition;
     private String startdate;
     private String conditiontype;
+    private int memberNum;
 
-    public HealthBio() {
-    }
 
-    public HealthBio(String condition,
-                     String startdate, String conditiontype) {
+    public HealthBio(String condition, String startdate, String conditiontype) {
         this.condition = condition;
         this.startdate = startdate;
         this.conditiontype = conditiontype;
     }
+
+    public HealthBio(int memberNum) {
+        this.memberNum = memberNum;
+    }
+
 
     public String getCondition() {
         return condition;
