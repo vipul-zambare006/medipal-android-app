@@ -137,14 +137,53 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/TabLayoutTheme"></activity>
 
-        <activity android:name=".activity.AddPressureActivity" />
-        <activity android:name=".activity.AddPulseActivity" />
-        <activity android:name=".activity.AddTemperatureActivity" />
-        <activity android:name=".activity.AddWeightActivity" />
-        <activity android:name=".activity.PressureDisplayEditUpdateActivity" />
-        <activity android:name=".activity.PulseDisplayEditUpdateActivity" />
-        <activity android:name=".activity.TemperatureDisplayEditUpdateActivity" />
-        <activity android:name=".activity.WeightDisplayEditUpdateActivity"></activity>
+        <activity
+            android:name=".activity.AddPressureActivity"
+            android:label="Add Blood Pressure"
+            android:parentActivityName=".activity.MeasurementActivity"
+            android:theme="@style/AppThemeToolBar" />
+
+        <activity
+            android:name=".activity.AddPulseActivity"
+            android:label="Add Pulse"
+            android:parentActivityName=".activity.MeasurementActivity"
+            android:theme="@style/AppThemeToolBar" />
+
+        <activity
+            android:name=".activity.AddTemperatureActivity"
+            android:label="Add Temperature"
+            android:parentActivityName=".activity.MeasurementActivity"
+            android:theme="@style/AppThemeToolBar" />
+
+        <activity
+            android:name=".activity.AddWeightActivity"
+            android:label="Add Weight"
+            android:parentActivityName=".activity.MeasurementActivity"
+            android:theme="@style/AppThemeToolBar" />
+
+        <activity
+            android:name=".activity.PressureDisplayEditUpdateActivity"
+            android:label="Edit Blood Pressure"
+            android:parentActivityName=".activity.MeasurementActivity"
+            android:theme="@style/AppThemeToolBar" />
+
+        <activity
+            android:name=".activity.PulseDisplayEditUpdateActivity"
+            android:label="Edit Pulse"
+            android:parentActivityName=".activity.MeasurementActivity"
+            android:theme="@style/AppThemeToolBar" />
+
+        <activity
+            android:name=".activity.TemperatureDisplayEditUpdateActivity"
+            android:label="Edit Temperature"
+            android:parentActivityName=".activity.MeasurementActivity"
+            android:theme="@style/AppThemeToolBar" />
+
+        <activity
+            android:name=".activity.WeightDisplayEditUpdateActivity"
+            android:label="Edit Weight"
+            android:parentActivityName=".activity.MeasurementActivity"
+            android:theme="@style/AppThemeToolBar" />
 
 
     </application>
