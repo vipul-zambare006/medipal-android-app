@@ -2,9 +2,7 @@ package sg.edu.nus.medipalapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,8 +17,10 @@ import android.widget.TextView;
 import sg.edu.nus.medipalapplication.MedipalFolder.Medicine;
 import sg.edu.nus.medipalapplication.activity.AppointmentActivity;
 import sg.edu.nus.medipalapplication.activity.CategoryActivity;
+import sg.edu.nus.medipalapplication.activity.ConsumptionActivity;
 import sg.edu.nus.medipalapplication.activity.HealthBioActivity;
 import sg.edu.nus.medipalapplication.activity.ICETabLayoutActivity;
+import sg.edu.nus.medipalapplication.activity.MeasurementActivity;
 import sg.edu.nus.medipalapplication.activity.MedicineActivity;
 import sg.edu.nus.medipalapplication.activity.PersonActivity;
 
@@ -42,14 +42,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         
 //            private View.OnClickListener medicalListener = new View.OnClickListener() {
 //        @Override
@@ -90,6 +82,15 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        consumptionimage = (ImageView) findViewById(R.id.Consumption);
+        consumptionimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ConsumptionActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         categoryimage = (ImageView) findViewById(R.id.Category);
         categoryimage.setOnClickListener(new View.OnClickListener() {
@@ -112,14 +113,14 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-//        measurementimage = (ImageView) findViewById(R.id.Medicine);
-//        measurementimage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this,Mea.class);
-//                startActivity(intent);
-//            }
-//        });
+        measurementimage = (ImageView) findViewById(R.id.Measurement);
+        measurementimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MeasurementActivity.class);
+                startActivity(intent);
+            }
+        });
 
 //        reminderimage = (ImageView) findViewById(R.id.Reminder);
 //        reminderimage.setOnClickListener(new View.OnClickListener() {

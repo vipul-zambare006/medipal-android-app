@@ -35,7 +35,7 @@ public class Constant {
     public static final String DOSAGE = "DOSAGE";
     public static final String DATEISSUES = "DATEISSUES";
     public static final String THRESHOLD = "THRESHOLD";
-    public static final String DYASTOLIC = "DYASTOLIC";
+    public static final String DIASTOLIC = "DIASTOLIC";
     public static final String PULSE = "PULSE";
     public static final String TEMPERATURE = "TEMPERATURE";
     public static final String WEIGHT = "WEIGHT";

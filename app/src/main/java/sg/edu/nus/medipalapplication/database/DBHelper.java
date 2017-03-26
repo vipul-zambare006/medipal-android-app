@@ -52,12 +52,12 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String CREATE_MEASUREMENT = "CREATE TABLE " + Constant.Measurement_Table_Name
             + "("
             + Constant.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + Constant.SYSTOLIC + " INTEGER NOT NULL, "
-            + Constant.DYASTOLIC + " INTEGER NOT NULL, "
-            + Constant.PULSE + " INTEGER NOT NULL, "
-            + Constant.TEMPERATURE + " INTEGER NOT NULL, "
-            + Constant.WEIGHT + "INTEGER NOT NULL,"
-            + Constant.MEASUREDON + "INTEGER NOT NULL);";
+            + Constant.SYSTOLIC + " INTEGER  NULL, "
+            + Constant.DIASTOLIC + " INTEGER  NULL, "
+            + Constant.PULSE + " INTEGER  NULL, "
+            + Constant.TEMPERATURE + " INTEGER  NULL, "
+            + Constant.WEIGHT + " INTEGER  NULL, "
+            + Constant.MEASUREDON + " TEXT  NULL);";
 
     private static final String CREATE_CONSUMPTIION = "CREATE TABLE " + Constant.Consumption_Table_Name
             + "("

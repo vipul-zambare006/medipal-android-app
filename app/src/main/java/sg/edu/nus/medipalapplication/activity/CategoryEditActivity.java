@@ -50,6 +50,14 @@ public class CategoryEditActivity extends AppCompatActivity {
         categoryreminder = (SwitchCompat) findViewById(R.id.AddCategoryRemind);
         categoryreminder.setOnCheckedChangeListener(onCheckedChanged());
 
+        if (name.equals("CHRONIC")
+                || name.equals("INCIDENTAL")
+                || name.equals("COMPLETE COURSE")) {
+            categoryreminder.setClickable(false);
+        } else {
+            categoryreminder.setClickable(true);
+        }
+
         editcode.setText(code);
         editcategory.setText(name);
         editdescription.setText(description);
@@ -94,6 +102,7 @@ public class CategoryEditActivity extends AppCompatActivity {
         return new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 switch (buttonView.getId()) {
                     case R.id.AddCategoryRemind:
                         setButtonState(isChecked);
@@ -104,6 +113,8 @@ public class CategoryEditActivity extends AppCompatActivity {
     }
 
     private void setButtonState(boolean state) {
+
+
         if (state) {
             mview.setEnabled(true);
             //Toast.makeText(CategoryEditActivity.this, "Button enabled!", Toast.LENGTH_SHORT).show();

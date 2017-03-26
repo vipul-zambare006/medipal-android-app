@@ -85,7 +85,6 @@ public class AddHealthBioActivity extends AppCompatActivity {
             startdate.setError(getString(R.string.second_name_validation_msg));
             isValid = false;
         }
-
         return isValid;
     }
 }

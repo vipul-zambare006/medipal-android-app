@@ -119,5 +119,11 @@ public class MedicineDAO {
         return categoryName;
     }
 
+    public Cursor getAllConsumption() {
+
+        Cursor cursor = databaseHelper.getReadableDatabase().rawQuery(" SELECT Medicinename FROM medicinetablecategory ", null);
+        return cursor;
+    }
+
 
 }
