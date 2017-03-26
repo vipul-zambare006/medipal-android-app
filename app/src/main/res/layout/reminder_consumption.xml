@@ -59,57 +59,6 @@
             android:scrollbars="vertical"
             android:textSize="18sp" />
 
-        <!--<RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="87dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="7dp">
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="Consumed On"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/txtTime"
-                android:padding="10dp"
-                android:text="Time"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/txtDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/txtTime"
-                android:layout_alignStart="@+id/txtTime"
-                android:ems="10"
-                android:focusable="false"
-                android:hint="Enter date"
-                android:inputType="date"
-                android:padding="10dp" />
-
-            <EditText
-                android:id="@+id/txtTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:ems="10"
-                android:focusable="false"
-                android:hint="Enter time"
-                android:inputType="time"
-                android:padding="10dp" />
-        </RelativeLayout>-->
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
