@@ -36,18 +36,25 @@
 
         <activity
             android:name=".activity.PersonActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeToolBar"
             android:label="Add your details"></activity>
 
         <activity
             android:name=".activity.HealthBioActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeToolBar"
             android:label="HealthBio"></activity>
 
         <activity
             android:name=".activity.AddHealthBioActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeToolBar"
             android:label="AddHealthBio"></activity>
 
         <activity
             android:name=".activity.AppointmentActivity"
+
             android:label="Add Appointment"></activity>
 
         <activity
@@ -56,12 +63,18 @@
 
         <activity
             android:name=".activity.MedicineActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeToolBar"
             android:label="Medicine"></activity>
         <activity
             android:name=".activity.MedicineAddActivity"
+            android:parentActivityName=".activity.MedicineActivity"
+            android:theme="@style/AppThemeToolBar"
             android:label="Add Medicine"></activity>
         <activity
             android:name=".activity.MedicineEditActivity"
+            android:parentActivityName=".activity.MedicineActivity"
+            android:theme="@style/AppThemeToolBar"
             android:label="Edit Medicine"></activity>
 
         <activity
@@ -112,6 +125,7 @@
         <activity
             android:name=".activity.MeasurementActivity"
             android:label="Measurement"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/TabLayoutTheme"></activity>
 
         <activity android:name=".activity.AddPressureActivity" />
