@@ -34,7 +34,7 @@ public class PressureDisplayEditUpdateActivity extends AppCompatActivity {
     EditText editsystolic;
     EditText editdiastolic;
     Button updateSave;
-
+    private int id = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +42,7 @@ public class PressureDisplayEditUpdateActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        final int id = intent.getExtras().getInt("measurementId");
+        id = intent.getExtras().getInt("measurementId");
         final String systolic = intent.getExtras().getString("systolic");
         final String diastolic = intent.getExtras().getString("Diastolic");
         final String MeasuredDateTime = intent.getExtras().getString("MeasuredOn");

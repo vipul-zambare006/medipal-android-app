@@ -33,7 +33,7 @@ public class PulseDisplayEditUpdateActivity extends AppCompatActivity {
     private static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
     EditText editpulse;
     Button updateSave;
-
+    private int id = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +41,7 @@ public class PulseDisplayEditUpdateActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        final int id = intent.getExtras().getInt("measurementId");
+        id = intent.getExtras().getInt("measurementId");
         final String pulse = intent.getExtras().getString("pulse");
         final String MeasuredDateTime = intent.getExtras().getString("MeasuredOn");
 

@@ -35,6 +35,7 @@ public class WeightDisplayEditUpdateActivity extends AppCompatActivity {
     private static SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mm", Locale.getDefault());
     EditText editweight;
     Button updateSave;
+    private int id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class WeightDisplayEditUpdateActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        final int id = intent.getExtras().getInt("measurementId");
+        id = intent.getExtras().getInt("measurementId");
         final String weight = intent.getExtras().getString("weight");
         final String MeasuredDateTime = intent.getExtras().getString("MeasuredOn");
 
