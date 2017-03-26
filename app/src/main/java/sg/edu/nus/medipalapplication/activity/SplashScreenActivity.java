@@ -1,7 +1,9 @@
 package sg.edu.nus.medipalapplication.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -14,7 +16,6 @@ import sg.edu.nus.medipalapplication.R;
 
 public class SplashScreenActivity extends Activity {
 
-    // Splash screen timer
     private static int SPLASH_TIME_OUT = 2000;
 
     @Override
@@ -31,13 +32,23 @@ public class SplashScreenActivity extends Activity {
 
             @Override
             public void run() {
-                // This method will be executed once the timer is over
-                // Start your app main activity
-                Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
-                startActivity(i);
 
-                // close this activity
-                finish();
+                SharedPreferences sharedPreferences = getSharedPreferences("ShaPreferences", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                boolean firstRun = sharedPreferences.getBoolean("firstRun", true);
+
+                if (firstRun) {
+                    editor.putBoolean("firstRun", false);
+                    editor.commit();
+                    Intent intent = new Intent(SplashScreenActivity.this, HelpActivity.class);
+                    //Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                    startActivity(intent);
+                } else {
+
+                    Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
         }, SPLASH_TIME_OUT);
     }
