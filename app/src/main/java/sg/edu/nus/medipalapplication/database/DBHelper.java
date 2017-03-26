@@ -49,7 +49,7 @@ public class DBHelper extends SQLiteOpenHelper {
             Constant.MedicineThreshold + " INTEGER NOT NULL, " +
             Constant.MedicineExpireFactor + " INTEGER NOT NULL);";
 
-    private static final String CREATE_MEASUREMENT = "CREATE TABLE " + Constant.Measurement_Table_Name
+    private static final String CREATE_MEASUREMENT = " CREATE TABLE " + Constant.Measurement_Table_Name
             + "("
             + Constant.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + Constant.SYSTOLIC + " INTEGER  NULL, "
@@ -59,14 +59,14 @@ public class DBHelper extends SQLiteOpenHelper {
             + Constant.WEIGHT + " INTEGER  NULL, "
             + Constant.MEASUREDON + " TEXT  NULL);";
 
-    private static final String CREATE_CONSUMPTIION = "CREATE TABLE " + Constant.Consumption_Table_Name
+    private static final String CREATE_CONSUMPTIION = " CREATE TABLE " + Constant.Consumption_Table_Name
             + "("
             + Constant.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + Constant.MEDICINEID + "INTEGER NOT NULL, "
+            + Constant.MEDICINEID + " INTEGER NOT NULL, "
             + Constant.QUANTITY + " INTEGER NOT NULL, "
-            + Constant.CONSUMEDON + " INTEGER NOT NULL);";
+            + Constant.CONSUMEDON + " TEXT NOT NULL);";
 
-    private static final String CREATE_APPOINTEMENT = "CREATE TABLE " + Constant.Appointment_Table_Name
+    private static final String CREATE_APPOINTEMENT = " CREATE TABLE " + Constant.Appointment_Table_Name
             + "("
             + Constant.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + Constant.LOCATION +  " TEXT NOT NULL, "
@@ -74,7 +74,7 @@ public class DBHelper extends SQLiteOpenHelper {
             + Constant.APPOINTMENTTIME + " TEXT NOT NULL, "
             + Constant.DESCRIPTION + " TEXT NOT NULL);";
 
-    private static final String CREATE_REMINDER = "CREATE TABLE " + Constant.Reminder_Table_Name
+    private static final String CREATE_REMINDER = " CREATE TABLE " + Constant.Reminder_Table_Name
             + "("
             + Constant.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + Constant.FREQUENCY + " INTEGER  NOT NULL, "
@@ -122,15 +122,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS" + CREATE_PERSONALBIO);
-        db.execSQL("DROP TABLE IF EXISTS" + CREATE_HEALTHBIO);
-        db.execSQL("DROP TABLE IF EXISTS" + CREATE_CATEGORY);
-        db.execSQL("DROP TABLE IF EXISTS" + CREATE_MEDICINE);
-        db.execSQL("DROP TABLE IF EXISTS" + CREATE_MEASUREMENT);
-        db.execSQL("DROP TABLE IF EXISTS" + CREATE_CONSUMPTIION);
-        db.execSQL("DROP TABLE IF EXISTS" + CREATE_REMINDER);
-        db.execSQL("DROP TABLE IF EXISTS" + CREATE_APPOINTEMENT);
-        db.execSQL("DROP TABLE IF EXISTS" + CREATE_ICE);
+        db.execSQL("DROP TABLE IF EXISTS " + CREATE_PERSONALBIO);
+        db.execSQL("DROP TABLE IF EXISTS " + CREATE_HEALTHBIO);
+        db.execSQL("DROP TABLE IF EXISTS " + CREATE_CATEGORY);
+        db.execSQL("DROP TABLE IF EXISTS " + CREATE_MEDICINE);
+        db.execSQL("DROP TABLE IF EXISTS " + CREATE_MEASUREMENT);
+        db.execSQL("DROP TABLE IF EXISTS " + CREATE_CONSUMPTIION);
+        db.execSQL("DROP TABLE IF EXISTS " + CREATE_REMINDER);
+        db.execSQL("DROP TABLE IF EXISTS " + CREATE_APPOINTEMENT);
+        db.execSQL("DROP TABLE IF EXISTS " + CREATE_ICE);
     }
 }
 
