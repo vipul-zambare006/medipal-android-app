@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
 import android.text.InputFilter;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,6 +30,7 @@ import sg.edu.nus.medipalapplication.R;
 import sg.edu.nus.medipalapplication.Validate.InputFilterMinMax;
 import sg.edu.nus.medipalapplication.adapter.MedicineAdapter;
 import sg.edu.nus.medipalapplication.database.CategoryDAO;
+import sg.edu.nus.medipalapplication.database.Constant;
 import sg.edu.nus.medipalapplication.database.MedicineDAO;
 import sg.edu.nus.medipalapplication.database.ReminderDAO;
 
@@ -85,7 +87,9 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
             @Override
             public void onClick(View v) {
 
-                save(medicinename.getText().toString(), medicinedescription.getText().toString(), spinnerValueSelected, Medicineremind.getText().toString(), medicinequantity.getText().toString(), medicinedosage.getText().toString(), medicinedateissued.getText().toString(), medicineconsumequantity.getText().toString(), medicienthreshold.getText().toString(), mediceineexpire.getText().toString());
+                if (isValid()) {
+                    save(medicinename.getText().toString(), medicinedescription.getText().toString(), spinnerValueSelected, Medicineremind.getText().toString(), medicinequantity.getText().toString(), medicinedosage.getText().toString(), medicinedateissued.getText().toString(), medicineconsumequantity.getText().toString(), medicienthreshold.getText().toString(), mediceineexpire.getText().toString());
+                }
             }
         });
     }
@@ -174,6 +178,7 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
 
     public void onItemSelected(AdapterView<?> parent, View view, int position,
                                long id) {
+
         spinnerValueSelected = parent.getItemAtPosition(position).toString();
 
 //        Toast.makeText(parent.getContext(), "You selected: " + spinnerValueSelected,
@@ -181,7 +186,60 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
+    }
 
+    private boolean isValid() {
+        boolean isValid = true;
+        if (TextUtils.isEmpty(medicinename.getText().toString().trim())) {
+            medicinename.requestFocus();
+            medicinename.setError(Constant.ErrorMsg_PleaseEnterLocation);
+            isValid = false;
+        }
+
+        if (TextUtils.isEmpty(medicinedescription.getText().toString().trim())) {
+            medicinedescription.requestFocus();
+            medicinedescription.setError(Constant.ErrorMsg_PleaseEnterDescription);
+            isValid = false;
+        }
+
+        if (medicinecatid.getSelectedItem().toString().trim().equals("<Select Category>")) {
+            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+        }
+
+        if (TextUtils.isEmpty(medicinequantity.getText().toString().trim())) {
+            medicinequantity.requestFocus();
+            medicinequantity.setError(Constant.ErrorMsg_PleaseEnterDate);
+            isValid = false;
+        }
+
+        if (TextUtils.isEmpty(medicinedosage.getText().toString().trim())) {
+            medicinedosage.requestFocus();
+            medicinedosage.setError(Constant.ErrorMsg_PleaseEnterTime);
+            isValid = false;
+        }
+        if (TextUtils.isEmpty(medicinedateissued.getText().toString().trim())) {
+            medicinedateissued.requestFocus();
+            medicinedateissued.setError(Constant.ErrorMsg_PleaseEnterTime);
+            isValid = false;
+        }
+        if (TextUtils.isEmpty(medicineconsumequantity.getText().toString().trim())) {
+            medicineconsumequantity.requestFocus();
+            medicineconsumequantity.setError(Constant.ErrorMsg_PleaseEnterTime);
+            isValid = false;
+        }
+
+        if (TextUtils.isEmpty(medicienthreshold.getText().toString().trim())) {
+            medicienthreshold.requestFocus();
+            medicienthreshold.setError(Constant.ErrorMsg_PleaseEnterTime);
+            isValid = false;
+        }
+
+        if (TextUtils.isEmpty(mediceineexpire.getText().toString().trim())) {
+            mediceineexpire.requestFocus();
+            mediceineexpire.setError(Constant.ErrorMsg_PleaseEnterTime);
+            isValid = false;
+        }
+        return isValid;
     }
 
     public static class DatePickerFragment extends DialogFragment implements
