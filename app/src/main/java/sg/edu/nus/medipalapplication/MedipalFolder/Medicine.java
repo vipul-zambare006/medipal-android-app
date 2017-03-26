@@ -14,7 +14,8 @@ public class Medicine {
     private String medicinename, medicinedescription, medicinecatid, medicineremind, medicinequantity, medicinedosage, medicinedataissued, medicineconsumequantity, medicinethreshold, medicineexpirefactor;
     private int id, medicinereminderid;
 
-    public Medicine() {
+    public Medicine(String medicinename) {
+    this.medicinename=medicinename;
     }
 
     public Medicine(String medicineName, int quantityConsumed) {
@@ -40,6 +41,8 @@ public class Medicine {
     public String getMedicinename() {
         return medicinename;
     }
+
+    public void setMedicinename(String medicineName){this.medicinename=medicineName;}
 
     public String getMedicinedescription() {
         return medicinedescription;
