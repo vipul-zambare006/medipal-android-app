@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sg.edu.nus.medipalapplication">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,19 +22,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".MainActivity"></activity>
+
+
+        <activity
+            android:name=".activity.AddHealthBioActivity"
+            android:label="Add your details"></activity>
+
 
         <activity
             android:name=".activity.PersonActivity"
             android:label="Add your details"></activity>
-
-        <activity
-            android:name=".activity.HealthBioActivity"
-            android:label="HealthBio"></activity>
-
-        <activity
-            android:name=".activity.AddHealthBioActivity"
-            android:label="AddHealthBio"></activity>
 
         <activity
             android:name=".activity.AppointmentActivity"
@@ -69,6 +70,18 @@
             android:label="ICE"
             android:theme="@style/TabLayoutTheme"></activity>
 
+        <activity
+            android:name=".activity.AddReminderTestActivity"
+            android:label="Edit Category"></activity>
+
+        <receiver android:name=".activity.ReminderSetter">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+         </receiver>
+
+        <receiver android:name=".service.ReminderReceiver"></receiver>
+        <service android:name=".service.ReminderService"></service>
 
     </application>
 

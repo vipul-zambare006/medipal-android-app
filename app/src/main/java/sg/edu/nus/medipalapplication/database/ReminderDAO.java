@@ -29,17 +29,21 @@ public class ReminderDAO extends DBHelper {
     }
 
     public boolean addReminder(Reminder reminder) {
-        try {
+        try
+        {
             ContentValues contantValues = new ContentValues();
             contantValues.put(Constant.FREQUENCY, reminder.getFrequency());
             contantValues.put(Constant.INTERVAL, reminder.getInterval());
             contantValues.put(Constant.STARTTIME, reminder.getstartDateTime());
             db.insert(Constant.Reminder_Table_Name, null, contantValues);
             return true;
-        } catch (SQLiteException e) {
+        }
+        catch (SQLiteException e)
+        {
             Log.i("Reminder insert", "Unable to insert Reminder");
             return false;
-        } finally {
+        }
+        finally {
             db.close();
         }
     }

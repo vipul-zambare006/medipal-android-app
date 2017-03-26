@@ -18,7 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Locale;
 
 import sg.edu.nus.medipalapplication.MedipalFolder.Reminder;
@@ -28,7 +27,7 @@ import sg.edu.nus.medipalapplication.database.ReminderDAO;
 import sg.edu.nus.medipalapplication.service.ReminderService;
 
 /**
- * Created by DELL on 3/24/2017.
+ * Created by Vipul Zambare on 3/24/2017.
  */
 
 public class AddReminderTestActivity extends AppCompatActivity {
@@ -46,14 +45,10 @@ public class AddReminderTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
 
-//        timePicker = (TimePicker) findViewById(R.id.timePicker);
         editTime = (EditText) findViewById(R.id.reminder_time);
         frequency = (EditText) findViewById(R.id.frequency);
         interval = (EditText) findViewById(R.id.interval);
         save = (Button) findViewById(R.id.submit_area);
-
-//        hour = timePicker.getCurrentHour();
-//        min = timePicker.getCurrentMinute();
 
         View.OnClickListener timeClickListener = getTimePicker("");
         editTime.setOnClickListener(timeClickListener);
@@ -61,7 +56,7 @@ public class AddReminderTestActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save(frequency.getText().toString().trim(), interval.getText().toString().trim(),hour,min,editTime.getText().toString());
+                save(frequency.getText().toString().trim(), interval.getText().toString().trim(), editTime.getText().toString());
             }
         });
     }
@@ -96,7 +91,7 @@ public class AddReminderTestActivity extends AppCompatActivity {
         };
     }
 
-    private void save(String frequency, String interval, int hour, int min, String time) {
+    private void save(String frequency, String interval, String time) {
         int frequencyNumber = Integer.parseInt(frequency);
         int intervalNumber = Integer.parseInt(interval);
 
@@ -105,7 +100,6 @@ public class AddReminderTestActivity extends AppCompatActivity {
 
         StringBuffer dateTimeString = new StringBuffer();
         dateTimeString.append(dateFormat.format(date));
-        //sb.append(" " + time);
         dateTimeString.append(" " +time);
 
         Reminder reminder = new Reminder(frequencyNumber, intervalNumber, dateTimeString.toString());

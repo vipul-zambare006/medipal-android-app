@@ -12,6 +12,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.util.Log;
 
+import java.util.Calendar;
+
 import sg.edu.nus.medipalapplication.database.Constant;
 
 public class ReminderService extends IntentService {
@@ -57,12 +59,19 @@ public class ReminderService extends IntentService {
         intent.putExtra("ID", id);
         intent.putExtra("Message", msg);
 
+
+        Calendar calendar= Calendar.getInstance();
+
+        calendar.add(Calendar.HOUR,0);
+        calendar.add(Calendar.MINUTE,2);
+        Log.v("Calender Time",""+calendar.getTime());
+
         pi = PendingIntent.getBroadcast(this, id, intent, 0);
         Log.d("service remindid", String.valueOf(id));
         if (CREATE.equals(action)) {
 
             Log.d("service remindid2", String.valueOf(id));
-            am.set(AlarmManager.RTC_WAKEUP, startTime, pi);
+            am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pi);
             // am.setRepeating(AlarmManager.RTC_WAKEUP, startTime, AlarmManager.INTERVAL_DAY, pi);
 
         } else if (CANCEL.equals(action)) {
