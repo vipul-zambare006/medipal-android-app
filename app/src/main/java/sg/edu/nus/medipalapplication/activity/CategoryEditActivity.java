@@ -49,14 +49,14 @@ public class CategoryEditActivity extends AppCompatActivity {
 
         categoryreminder = (SwitchCompat) findViewById(R.id.AddCategoryRemind);
         categoryreminder.setOnCheckedChangeListener(onCheckedChanged());
-
+/*
         if (name.equals("CHRONIC")
                 || name.equals("INCIDENTAL")
                 || name.equals("COMPLETE COURSE")) {
             categoryreminder.setClickable(false);
         } else {
             categoryreminder.setClickable(true);
-        }
+        }*/
 
         editcode.setText(code);
         editcategory.setText(name);
@@ -88,6 +88,7 @@ public class CategoryEditActivity extends AppCompatActivity {
             editcode.setText(newcategotycode);
             editcategory.setText(newcategoryname);
             editdescription.setText(newcategorydescription);
+            categoryreminder.setText(newcategoryreminder);
 
             Toast.makeText(getApplicationContext(), "Updated Successfully", Toast.LENGTH_SHORT).show();
 

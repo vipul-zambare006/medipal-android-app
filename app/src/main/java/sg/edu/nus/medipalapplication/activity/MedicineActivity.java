@@ -88,5 +88,12 @@ public class MedicineActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadMedicine();
+        //tvEmpty.setVisibility(memberListAdapter.getCount() == 0 ? View.VISIBLE : View.GONE);
+    }
+
 
 }
