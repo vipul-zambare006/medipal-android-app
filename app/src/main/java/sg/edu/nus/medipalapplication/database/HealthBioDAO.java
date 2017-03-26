@@ -31,6 +31,7 @@ public class HealthBioDAO extends DBHelper {
     }
 
     public long save(HealthID member) {
+        SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         //values.put(DataBaseHelper.MID_COLUMN, member.getMemberNumber());
         values.put(Constant.CONDITION, member.getCondition());

@@ -57,7 +57,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.Medici
                 intent.putExtra("MedicineRemind", medicinelist.get(position).getMedicineremind());
                 intent.putExtra("MedicineQuantity", medicinelist.get(position).getMedicinequantity());
                 intent.putExtra("MedicineDosage", medicinelist.get(position).getMedicinedosage());
-                intent.putExtra("MedicineDateIssued", medicinelist.get(position).getMedicinedataissued());
+                intent.putExtra("MedicineDateissued", medicinelist.get(position).getMedicinedataissued());
                 intent.putExtra("MedicineConsumequantity", medicinelist.get(position).getMedicineconsumequantity());
                 intent.putExtra("MedicineThreshold", medicinelist.get(position).getMedicinethreshold());
                 intent.putExtra("MedicineExpire", medicinelist.get(position).getMedicineexpirefactor());

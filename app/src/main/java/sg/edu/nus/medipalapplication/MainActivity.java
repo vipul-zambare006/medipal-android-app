@@ -203,15 +203,20 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_medicine) {
             startActivity(new Intent(getApplicationContext(), MedicineActivity.class));
         }
-//       if (id == R.id.nav_measurement) {
-//            startActivity(new Intent(getApplicationContext(), MeasurementActivity.class));
-//        }
+        if (id == R.id.nav_measurement) {
+            startActivity(new Intent(getApplicationContext(), MeasurementActivity.class));
+        }
         if (id == R.id.nav_appointment) {
             startActivity(new Intent(getApplicationContext(), AppointmentActivity.class));
         }
 //       if (id == R.id.nav_reminder) {
 //            startActivity(new Intent(getApplicationContext(), ReminderActivity.class));
 //        }
+
+        if (id == R.id.nav_consumption) {
+            startActivity(new Intent(getApplicationContext(), ConsumptionActivity.class));
+        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

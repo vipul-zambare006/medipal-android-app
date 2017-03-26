@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,6 +23,7 @@ import java.util.Calendar;
 
 import sg.edu.nus.medipalapplication.MedipalFolder.Medicine;
 import sg.edu.nus.medipalapplication.R;
+import sg.edu.nus.medipalapplication.database.Constant;
 import sg.edu.nus.medipalapplication.database.MedicineDAO;
 
 public class MedicineEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -93,7 +95,10 @@ public class MedicineEditActivity extends AppCompatActivity implements AdapterVi
         medicineupdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                update(id, medicinename.getText().toString(), medicinedescription.getText().toString(), spinnerValueSelected,/* medicinereminderid.getText().toString(),*/ Medicineremind.getText().toString(), medicinequantity.getText().toString(), medicinedosage.getText().toString(), updatemedicinedateissued.getText().toString(), medicineconsumequantity.getText().toString(), medicienthreshold.getText().toString(), mediceineexpire.getText().toString());
+                if (isValid()) {
+                    update(id, medicinename.getText().toString(), medicinedescription.getText().toString(), spinnerValueSelected,/* medicinereminderid.getText().toString(),*/ Medicineremind.getText().toString(), medicinequantity.getText().toString(), medicinedosage.getText().toString(), updatemedicinedateissued.getText().toString(), medicineconsumequantity.getText().toString(), medicienthreshold.getText().toString(), mediceineexpire.getText().toString());
+                    finish();
+                }
             }
         });
 
@@ -190,6 +195,55 @@ public class MedicineEditActivity extends AppCompatActivity implements AdapterVi
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
+    private boolean isValid() {
+        boolean isValid = true;
+        if (TextUtils.isEmpty(medicinename.getText().toString().trim())) {
+            medicinename.requestFocus();
+            medicinename.setError(Constant.ErrorMsg_PleaseEnterLocation);
+            isValid = false;
+        }
+
+        if (TextUtils.isEmpty(medicinedescription.getText().toString().trim())) {
+            medicinedescription.requestFocus();
+            medicinedescription.setError(Constant.ErrorMsg_PleaseEnterDescription);
+            isValid = false;
+        }
+
+        if (TextUtils.isEmpty(updatemedicinedateissued.getText().toString().trim())) {
+            updatemedicinedateissued.requestFocus();
+            updatemedicinedateissued.setError(Constant.ErrorMsg_PleaseEnterTime);
+            isValid = false;
+        }
+
+        if (TextUtils.isEmpty(medicinequantity.getText().toString().trim())) {
+            medicinequantity.requestFocus();
+            medicinequantity.setError(Constant.ErrorMsg_PleaseEnterDate);
+            isValid = false;
+        }
+
+        if (TextUtils.isEmpty(medicinedosage.getText().toString().trim())) {
+            medicinedosage.requestFocus();
+            medicinedosage.setError(Constant.ErrorMsg_PleaseEnterTime);
+            isValid = false;
+        }
+        if (TextUtils.isEmpty(medicineconsumequantity.getText().toString().trim())) {
+            medicineconsumequantity.requestFocus();
+            medicineconsumequantity.setError(Constant.ErrorMsg_PleaseEnterTime);
+            isValid = false;
+        }
+        if (TextUtils.isEmpty(medicienthreshold.getText().toString().trim())) {
+            medicienthreshold.requestFocus();
+            medicienthreshold.setError(Constant.ErrorMsg_PleaseEnterTime);
+            isValid = false;
+        }
+        if (TextUtils.isEmpty(mediceineexpire.getText().toString().trim())) {
+            mediceineexpire.requestFocus();
+            mediceineexpire.setError(Constant.ErrorMsg_PleaseEnterTime);
+            isValid = false;
+        }
+        return isValid;
+    }
+
     public static class DatePickerFragment extends DialogFragment implements
             DatePickerDialog.OnDateSetListener {
 
@@ -208,5 +262,6 @@ public class MedicineEditActivity extends AppCompatActivity implements AdapterVi
             updatemedicinedateissued.setText(day + "/" + (month + 1) + "/" + year);
         }
     }
+
 
 }
