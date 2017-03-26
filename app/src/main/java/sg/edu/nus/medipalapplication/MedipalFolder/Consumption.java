@@ -1,5 +1,7 @@
 package sg.edu.nus.medipalapplication.MedipalFolder;
 
+import java.util.Date;
+
 import sg.edu.nus.medipalapplication.database.ConsumptionDAO;
 
 /**
@@ -10,18 +12,16 @@ public class Consumption {
     private int id;
     private int medicineID;
     private int quantity;
-    private int date;
-    //private String time;
+    private Date date;
 
     public Consumption() {
     }
 
-    public Consumption(int id, int medicineID, int quantity, int date) {
+    public Consumption(int id, int medicineID, int quantity, Date date) {
         this.id = id;
         this.medicineID = medicineID;
         this.quantity = quantity;
         this.date = date;
-        //this.time = time;
     }
 
     public int getId() {
@@ -36,36 +36,11 @@ public class Consumption {
         return quantity;
     }
 
-    public int getDate() {
+    public Date getDate() {
         return date;
     }
-
-   /**//* public String getTime() {
-        return time;
-    }*/
 
     public void addConsumption(Consumption consumption, ConsumptionDAO consumptionDAO) {
         consumptionDAO.addConsumption(consumption);
     }
-
-    /*public ArrayList<Consumption> getAppointments(ConsumptionDAO consumptionDAO) {
-
-        ArrayList<Consumption> consumptionArrayList = new ArrayList<>();
-        Cursor cursor = consumptionDAO.GetAllAppointment();
-
-        while (cursor.moveToNext()) {
-
-            int id = cursor.getInt(0);
-            String location = cursor.getString(1);
-            String appointmentDate = cursor.getString(2);
-            String appointmentTime = cursor.getString(3);
-            String description = cursor.getString(4);
-
-            Consumption consumption = new Consumption(id,location, description, appointmentDate,appointmentTime);
-            consumptionArrayList.add(consumption);
-        }
-        return consumptionArrayList;
-    }*/
-
-
 }
