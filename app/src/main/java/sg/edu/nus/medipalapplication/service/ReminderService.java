@@ -1,7 +1,7 @@
 package sg.edu.nus.medipalapplication.service;
 
 /**
- * Created by Gaurav on 22-03-2017.
+ * Created by Gaurav, Vipul on 22-03-2017.
  */
 
 import android.app.AlarmManager;
@@ -39,26 +39,51 @@ public class ReminderService extends IntentService {
     protected void onHandleIntent(Intent intent) {
 
         String action = intent.getAction();
-        int reminderID = intent.getIntExtra(Constant.COLUMN_ID, 0);
-        String reminderTime = intent.getStringExtra(Constant.REMINDERDATETIME);
-        int frequency = intent.getIntExtra(Constant.FREQUENCY, 0);
-        int interval = intent.getIntExtra(Constant.INTERVAL, 0);
-        String medicineName = intent.getStringExtra(Constant.MedicineName);
-        String consumeQty = intent.getStringExtra(Constant.MedicineConsumeQuantity);
-        String reminderMessage = intent.getStringExtra("Message");
+        String type = intent.getStringExtra("Type");
+        int reminderID = 0, appointmentId = 0, frequency = 0, interval = 0;
+        String reminderTime = "", medicineName = "", consumeQty = "", reminderMessage = "", appointmentDate = "", appointmentTime = "", appointmentLocation = "", appointmentDesc = "", appointmentMsg = "";
+
+        if (type == "Medicine") {
+            reminderID = intent.getIntExtra(Constant.COLUMN_ID, 0);
+            reminderTime = intent.getStringExtra(Constant.REMINDERDATETIME);
+            frequency = intent.getIntExtra(Constant.FREQUENCY, 0);
+            interval = intent.getIntExtra(Constant.INTERVAL, 0);
+            medicineName = intent.getStringExtra(Constant.MedicineName);
+            consumeQty = intent.getStringExtra(Constant.MedicineConsumeQuantity);
+            reminderMessage = intent.getStringExtra("Message");
+        } else if (type == "Appointment")
+        {
+            appointmentId = intent.getIntExtra(Constant.COLUMN_ID, 0);
+            appointmentDate = intent.getStringExtra(Constant.APPOINTMENTDATE);
+            appointmentTime = intent.getStringExtra(Constant.APPOINTMENTTIME);
+            appointmentLocation = intent.getStringExtra(Constant.LOCATION);
+            appointmentDesc = intent.getStringExtra(Constant.DESCRIPTION);
+            appointmentMsg = intent.getStringExtra(Constant.MESSAGE);
+        }
 
         if (matcher.matchAction(action)) {
             if (CREATE.equals(action)) {
-                execute(CREATE, reminderID, reminderMessage, reminderTime, frequency, interval, medicineName, consumeQty);
+                if (type == "Medicine") {
+                    executeMedicineReminder(CREATE, reminderID, reminderMessage, reminderTime, frequency, interval, medicineName, consumeQty);
+                }
+                else if(type == "Appointment")
+                {
+                    executeAppointmentReminder(CREATE, appointmentId, appointmentMsg, appointmentTime, appointmentDate, appointmentLocation);
+                }
             }
-
             if (CANCEL.equals(action)) {
-                execute(CANCEL, reminderID, reminderMessage, reminderTime, frequency, interval, medicineName, consumeQty);
+                if (type == "Medicine") {
+                    executeMedicineReminder(CANCEL, reminderID, reminderMessage, reminderTime, frequency, interval, medicineName, consumeQty);
+                }
+                else if(type == "Appointment")
+                {
+                    executeAppointmentReminder(CANCEL, appointmentId, appointmentMsg, appointmentTime, appointmentDate, appointmentLocation);
+                }
             }
         }
     }
 
-    private void execute(String action, int reminderID, String msg, String reminderTime, int frequency, int interval, String mediName, String consumeQty) {
+    private void executeMedicineReminder(String action, int reminderID, String msg, String reminderTime, int frequency, int interval, String mediName, String consumeQty) {
         Intent intent;
         PendingIntent pi;
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -95,6 +120,40 @@ public class ReminderService extends IntentService {
                // am.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), pi);
             }*/
 
+        } else if (CANCEL.equals(action)) {
+            am.cancel(pi);
+            pi.cancel();
+        }
+    }
+
+    private void executeAppointmentReminder(String action, int reminderID, String msg, String reminderTime, String reminderDate, String appointmentLocation) {
+        Intent intent;
+        PendingIntent pi;
+        AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        Date reminderDateTime = new Date();
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.ENGLISH);
+        try {
+            reminderDateTime = df.parse(reminderTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(reminderDateTime);
+
+        int input = (int) (new Date()).getTime();
+        intent = new Intent(this, ReminderReceiver.class);
+        intent.putExtra("ID", input);
+        intent.putExtra("Message", msg);
+        intent.putExtra(Constant.LOCATION, appointmentLocation);
+//        intent.putExtra(Constant.MedicineConsumeQuantity, );
+
+        pi = PendingIntent.getBroadcast(this, input, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Log.d("service remindid", String.valueOf(input));
+
+        if (CREATE.equals(action)) {
+            am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pi);
         } else if (CANCEL.equals(action)) {
             am.cancel(pi);
             pi.cancel();

@@ -134,6 +134,8 @@ public class Constant {
     public static final String NotificationMsg_AppointmentAdded = "Appointment Added Successfully";
     public static final String NotificationMsg_AppointmentUpdated = "Appointment Updated Successfully";
     public static final String NotificationMsg_AppointmentDeleted = "Appointment Deleted Successfully";
+    public static  final String MESSAGE ="MESSAGE";
+    public static final String APPOINTMENT_REMINDER_MESSAGE = "You have appointment today";
 
     public static final String NotificationMsg_ContactAdded = "Contact Added Successfully";
     public static final String NotificationMsg_ContactUpdated = "Contact Updated Successfully";

@@ -31,7 +31,6 @@ public class AppointmentActivity extends AppCompatActivity {
     private ArrayList<Appointment> appointmentArrayList;
     private FloatingActionButton fab;
 
-    Appointment appointment = new Appointment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,10 +66,7 @@ public class AppointmentActivity extends AppCompatActivity {
     {
         final AppointmentDAO appointmentDAO;
         appointmentDAO = new AppointmentDAO(context);
-
         appointmentArrayList = appointmentDAO.GetAllAppointment();
-
-        //appointmentArrayList = appointment.getAppointments(appointmentDAO);
 
         if (!(appointmentArrayList.size() < 1))
             recyclerView.setAdapter(adapter);

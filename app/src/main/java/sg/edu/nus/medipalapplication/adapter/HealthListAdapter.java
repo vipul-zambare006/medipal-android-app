@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sg.edu.nus.medipalapplication.MedipalFolder.HealthID;
+import sg.edu.nus.medipalapplication.MedipalFolder.ManageHealthBio;
 import sg.edu.nus.medipalapplication.R;
 import sg.edu.nus.medipalapplication.application.App;
 
@@ -25,6 +26,7 @@ public class HealthListAdapter extends ArrayAdapter<HealthID> {
     private Context context;
     private List<HealthID> members = new ArrayList<>();
     private int medicalID;
+    private ManageHealthBio manageHealthBio;
 
     public HealthListAdapter(Context context) {
         super(context, R.layout.health_row_layout);
@@ -61,7 +63,8 @@ public class HealthListAdapter extends ArrayAdapter<HealthID> {
 
     public void refreshMembers() {
         members.clear();
-        //   members.addAll(App.health_bio.getMembers(this.context));
+        manageHealthBio = new ManageHealthBio();
+        members.addAll(manageHealthBio.getMembers(context));
         notifyDataSetChanged();
     }
 

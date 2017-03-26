@@ -20,23 +20,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Instrumentation test, which will execute on an Android device.
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ * Created by Vipul Zambare on 3/19/2017.
  */
+
 
 @RunWith(AndroidJUnit4.class)
 public class AppointmentDAOTest {
     private DBHelper database;
     AppointmentDAO appointmentDAO;
-
-    @Test
-    public void useAppContext() throws Exception {
-        // Context of the app under test.
-        Context appContext = getTargetContext();
-
-        assertEquals("sg.edu.nus.medipalapplication", appContext.getPackageName());
-    }
 
     @Before
     public void setUp() throws Exception {
@@ -48,6 +39,12 @@ public class AppointmentDAOTest {
     @After
     public void tearDown() throws Exception {
         database.close();
+    }
+
+    @Test
+    public void useAppContext() throws Exception {
+        Context appContext = getTargetContext();
+        assertEquals("sg.edu.nus.medipalapplication", appContext.getPackageName());
     }
 
     @Test

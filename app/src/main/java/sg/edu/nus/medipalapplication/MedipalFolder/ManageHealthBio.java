@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutionException;
 import sg.edu.nus.medipalapplication.asynTask.DeleteHealthBio;
 import sg.edu.nus.medipalapplication.asynTask.ListHealthBio;
 import sg.edu.nus.medipalapplication.asynTask.addHealthBio;
+import sg.edu.nus.medipalapplication.database.HealthBioDAO;
 
 
 /**
@@ -59,7 +60,7 @@ public class ManageHealthBio {
         HealthID m = new HealthID(condition, startdate, conditiontype);
 
         taskHealthBioAdd = new addHealthBio(context);
-        taskHealthBioAdd.execute(m);
+        //taskHealthBioAdd.execute(m);
         return m;
     }
 
@@ -86,24 +87,9 @@ public class ManageHealthBio {
         }
     }
 
-
-    public List<HealthID> getMembers(Context context) {
-        // SQLite - Start
-        taskHealthBioList = new ListHealthBio(context);
-        taskHealthBioList.execute((Void) null);
-        try {
-            members = taskHealthBioList.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        if (members == null) {
-            members = new ArrayList<HealthID>();
-        }
-        // SQLite - End
-
-        return new ArrayList<HealthID>(members);
+    public List<HealthID> getMembers(Context context)
+    {
+        HealthBioDAO healthBioDAO = new HealthBioDAO(context);
+        return healthBioDAO.getMembers();
     }
 }

@@ -11,21 +11,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import sg.edu.nus.medipalapplication.MedipalFolder.ManageHealthBio;
 import sg.edu.nus.medipalapplication.R;
 import sg.edu.nus.medipalapplication.application.App;
-//import application.App;
 
 public class AddHealthBioActivity extends AppCompatActivity {
-
-    //public static final String CATEGORY = "0";
-    //public static final String ALLERGY = "1";
 
     private EditText condition, startdate;
     private String[] mConditionTypeArray;
     private Spinner mConditiontypeSpinner;
     private String spinnerString;
     private Button btnSave;
-
+    private ManageHealthBio health_bio = new ManageHealthBio();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +60,8 @@ public class AddHealthBioActivity extends AppCompatActivity {
 
 
                 if (isValid()) {
-                    App.health_bio.addMember(condition.getText().toString().trim(),
+
+                    health_bio.addMember(condition.getText().toString().trim(),
                             startdate.getText().toString().trim(), spinnerString, getApplicationContext());
 
 
