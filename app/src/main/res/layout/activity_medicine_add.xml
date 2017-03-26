@@ -195,8 +195,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="100dp">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/MedicineSave"
