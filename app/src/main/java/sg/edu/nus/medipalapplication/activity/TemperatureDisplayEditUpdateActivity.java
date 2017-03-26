@@ -33,7 +33,7 @@ public class TemperatureDisplayEditUpdateActivity extends AppCompatActivity {
     private static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
     EditText edittemperature;
     Button updateSave;
-
+    private int id = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +41,7 @@ public class TemperatureDisplayEditUpdateActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        final int id = intent.getExtras().getInt("measurementId");
+        id = intent.getExtras().getInt("measurementId");
         final String temperature = intent.getExtras().getString("temperature");
         final String MeasuredDateTime = intent.getExtras().getString("MeasuredOn");
 
