@@ -33,8 +33,8 @@ public class ReminderDAO extends DBHelper {
         {
             ContentValues contantValues = new ContentValues();
             contantValues.put(Constant.FREQUENCY, reminder.getFrequency());
-            contantValues.put(Constant.INTERVAL, reminder.getInterval());
             contantValues.put(Constant.STARTTIME, reminder.getstartDateTime());
+            contantValues.put(Constant.INTERVAL, reminder.getInterval());
             db.insert(Constant.Reminder_Table_Name, null, contantValues);
             return true;
         }
@@ -84,6 +84,22 @@ public class ReminderDAO extends DBHelper {
         SQLiteDatabase db=this.getReadableDatabase();
         Cursor cursor=db.rawQuery("Select * from Reminder",null);
         return cursor;
+    }
+
+    public Reminder getLastReminder() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = " SELECT * FROM Reminder WHERE _ID = " + " ( SELECT MAX ( " + Constant.COLUMN_ID + " )  FROM Reminder)";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        cursor.moveToFirst();
+
+        int id = cursor.getInt(0);
+        int frequency = cursor.getInt(1);
+        int interval = cursor.getInt(2);
+        String starttime = cursor.getString(3);
+        Reminder reminder = new Reminder(id, frequency, interval, starttime);
+
+        return reminder;
     }
 
     public int getLastReminderId() {

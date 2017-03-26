@@ -52,6 +52,8 @@ public class Constant {
     public static final String APPOINTMENTTIME = "APPOINTMENTTIME";
     public static final String STARTTIME = "STARTTIME";
     public static final String STARTDATE = "STARTDATE";
+    public static final String REMINDERDATETIME = "REMINDERDATETIME";
+
 
     //GOVARDHAN WORK
     public static final String TableName = "categorytable";

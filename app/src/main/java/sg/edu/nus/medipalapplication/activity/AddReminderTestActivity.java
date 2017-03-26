@@ -15,7 +15,6 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -26,20 +25,23 @@ import sg.edu.nus.medipalapplication.database.Constant;
 import sg.edu.nus.medipalapplication.database.ReminderDAO;
 import sg.edu.nus.medipalapplication.service.ReminderService;
 
+import static android.R.attr.id;
+
 /**
  * Created by Vipul Zambare on 3/24/2017.
  */
 
 public class AddReminderTestActivity extends AppCompatActivity {
 
+    EditText editLocation, editDate, editTime, editDescription;
     private TimePicker timePicker;
     private EditText frequency;
     private EditText interval, reminderId;
     private Button save;
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
-    private SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+    private SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm", Locale.getDefault());
     private int hour =0, min = 0;
-    EditText editLocation,editDate,editTime,editDescription;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,32 +97,50 @@ public class AddReminderTestActivity extends AppCompatActivity {
         int frequencyNumber = Integer.parseInt(frequency);
         int intervalNumber = Integer.parseInt(interval);
 
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = new Date();
+        String reminderTime[] = time.split(":");
 
-        StringBuffer dateTimeString = new StringBuffer();
-        dateTimeString.append(dateFormat.format(date));
-        dateTimeString.append(" " +time);
+        hour = Integer.parseInt(reminderTime[0]);
+        min = Integer.parseInt(reminderTime[1]);
+        Calendar calendar = Calendar.getInstance();
 
-        Reminder reminder = new Reminder(frequencyNumber, intervalNumber, dateTimeString.toString());
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, min);
+
+        Date date = calendar.getTime();
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        Log.v("Input Date", "" + date);
+        Reminder reminder = new Reminder(id, frequencyNumber, intervalNumber, df.format(date));
         ReminderDAO reminderDAO = new ReminderDAO(this);
 
         boolean result = reminderDAO.addReminder(reminder);
 
-        ArrayList<Long> longValues = reminder.getTimeinMillisecond(reminder.getInterval(),reminder.getFrequency(),reminder.getstartDateTimeLong());
+        //ArrayList<Long> longValues = reminder.getTimeinMillisecond(reminder.getInterval(),reminder.getFrequency(),reminder.getstartDateTimeLong());
 
-            for(int i=0; i<longValues.size(); i++) {
-                Log.d("remind", String.valueOf(longValues.get(i)));
-                Log.d("remindid", String.valueOf(reminder.getId()));
+        Intent service = new Intent(this, ReminderService.class);
+        service.putExtra(Constant.COLUMN_ID, reminder.getId());
+        service.putExtra(Constant.STARTDATE, hour);
+        service.putExtra(Constant.STARTTIME, min);
+        service.putExtra(Constant.FREQUENCY, reminder.getFrequency());
+        service.putExtra(Constant.INTERVAL, reminder.getInterval());
 
-                Intent service = new Intent(this, ReminderService.class);
-                service.putExtra(Constant.COLUMN_ID, reminder.getId());
-                service.putExtra(Constant.STARTTIME, longValues.get(i));
-                service.putExtra("Message", "Medicine reminder");
-                service.setAction(ReminderService.CREATE);
-                startService(service);
-            }
 
+        service.putExtra("Message", "Medicine reminder");
+       /* service.setAction(ReminderService.CREATE);
+        startService(service);
+*/
+
+//        for(int i=0; i<longValues.size(); i++) {
+//                Log.d("remind", String.valueOf(longValues.get(i)));
+//                Log.d("remindid", String.valueOf(reminder.getId()));
+//
+//                Intent service = new Intent(this, ReminderService.class);
+//                service.putExtra(Constant.COLUMN_ID, reminder.getId());
+//                service.putExtra(Constant.STARTTIME, longValues.get(i));
+//                service.putExtra("Message", "Medicine reminder");
+//                service.setAction(ReminderService.CREATE);
+//                startService(service);
+//            }
+//
         if (result) {
             Toast.makeText(getApplicationContext(), "Added Reminder", Toast.LENGTH_SHORT).show();
             finish();

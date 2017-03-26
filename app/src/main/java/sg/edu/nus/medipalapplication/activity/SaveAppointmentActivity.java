@@ -12,8 +12,6 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -35,17 +33,16 @@ import sg.edu.nus.medipalapplication.database.Constant;
 
 public class SaveAppointmentActivity extends AppCompatActivity
 {
+    private final AppointmentDAO appointmentDAO = new AppointmentDAO(this);
     EditText editLocation,editDate,editTime,editDescription;
     Appointment appointment;
-    private SimpleDateFormat dateFormatter = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
-    private SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mm a", Locale.getDefault());
     Calendar currentCal = Calendar.getInstance();
     Calendar selectedDate = Calendar.getInstance();
-
-    private final AppointmentDAO appointmentDAO = new AppointmentDAO(this);
+    SwitchCompat appointmentReminder;
+    private SimpleDateFormat dateFormatter = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+    private SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mm a", Locale.getDefault());
     private String action = "";
     private int appointmentId = 0;
-    SwitchCompat appointmentReminder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +154,7 @@ public class SaveAppointmentActivity extends AppCompatActivity
 
         if(action != null && !action.trim().isEmpty() && action.equals("add")){
             appointmentDAO.addAppointment(appointment);
+            //TODO:Appointment reminder logic
 
             Toast.makeText(getApplicationContext(), Constant.NotificationMsg_AppointmentAdded, Toast.LENGTH_SHORT).show();
             Intent i = new Intent(getApplicationContext(),AppointmentActivity.class);

@@ -25,14 +25,15 @@
             android:id="@+id/reminder_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:ems="10"
-            android:inputType="time"
             android:focusable="false"
             android:hint="Enter time"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:padding="10dp"/>
+            android:inputType="time"
+            android:padding="10dp"
+            android:phoneNumber="true" />
 
 
         <EditText
@@ -44,6 +45,8 @@
             android:layout_margin="16dp"
             android:gravity="center"
             android:hint="Frequency"
+            android:inputType="number"
+            android:maxLines="1"
             android:padding="5dp"
             android:paddingBottom="20dp"
             android:paddingLeft="10dp"
@@ -59,6 +62,8 @@
             android:layout_margin="16dp"
             android:gravity="center"
             android:hint="Interval"
+            android:inputType="number"
+            android:maxLines="1"
             android:padding="5dp"
             android:paddingBottom="20dp"
             android:paddingLeft="10dp"
@@ -70,6 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Submit" />
+
         />
 
     </LinearLayout>

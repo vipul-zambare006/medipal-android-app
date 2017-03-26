@@ -1,11 +1,5 @@
 package sg.edu.nus.medipalapplication.MedipalFolder;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
 import sg.edu.nus.medipalapplication.database.AppointmentDAO;
 import sg.edu.nus.medipalapplication.database.ReminderDAO;
 
@@ -23,14 +17,15 @@ public class Reminder {
 
     }
 
-    public Reminder(int frequency, int interval, String startDateTime) {
+    public Reminder(int id, int frequency, int interval, String startDateTime) {
+        this.id = id;
         this.frequency = frequency;
         this.interval = interval;
         this.startDateTime = startDateTime;
     }
 
     public int getId() {
-        return 2555;
+        return (int) Math.random();
     }
 
     public int getFrequency() {
@@ -44,6 +39,7 @@ public class Reminder {
     public String getstartDateTime() {
         return startDateTime;
     }
+/*
 
     public long getstartDateTimeLong() {
         String startDateString = startDateTime;
@@ -56,6 +52,7 @@ public class Reminder {
         }
         return startDate.getTime();
     }
+*/
 
     public boolean equals(Object obj) {
         if (this == obj)
@@ -91,14 +88,15 @@ public class Reminder {
         appointmentDAO.DeleteAppointment(appointmentId);
     }
 
-    public ArrayList<Long> getTimeinMillisecond(int interval, int frequency, long startDateTime) {
-
-        ArrayList<Long> reminderTimeList = new ArrayList<Long>();
-        for (int i = 0; i < frequency; i++) {
-
-            long reminderTime = (60 * 60 * 1000) * (interval * frequency) + startDateTime;
-            reminderTimeList.add(reminderTime);
-        }
-        return reminderTimeList;
-    }
+//    public ArrayList<Long> getTimeinMillisecond(int interval, int frequency, long startDateTime) {
+//
+//        ArrayList<Long> reminderTimeList = new ArrayList<Long>();
+//        reminderTimeList.add(startDateTime);
+//        for (int i = 1; i < frequency; i++) {
+//
+//             long reminderTime = (60 * 60 * 1000) * (interval * frequency) + startDateTime;
+//            reminderTimeList.add(reminderTime);
+//        }
+//        return reminderTimeList;
+//    }
 }

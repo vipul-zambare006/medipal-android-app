@@ -16,14 +16,13 @@ import android.widget.Toast;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import sg.edu.nus.medipalapplication.MainActivity;
 import sg.edu.nus.medipalapplication.MedipalFolder.Consumption;
 import sg.edu.nus.medipalapplication.R;
 import sg.edu.nus.medipalapplication.database.ConsumptionDAO;
-
-import static sg.edu.nus.medipalapplication.R.id.quantity;
 
 /**
  * Created by Rach on 25/3/2017.
@@ -39,9 +38,12 @@ public class ReminderConsumptionActivity extends AppCompatActivity {
     Calendar selectedDate = Calendar.getInstance();
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
     private SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mm a", Locale.getDefault());
-    private String action = "";
+    //  private String action = "";
     private int id = 1;
     private int medicineID = 1;
+    private int quantity;
+    //// Begin here
+    private String medicineName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,10 @@ public class ReminderConsumptionActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        medicineName = intent.getExtras().getString("MedicineName");
+        //quantity = Integer.parseInt(intent.getExtras().getString("Quantiy"));
+
+
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,33 +66,27 @@ public class ReminderConsumptionActivity extends AppCompatActivity {
             }
         });
 
-        //medicineID = intent.getExtras().getInt("Id");
-        /*final int quantity = intent.getExtras().getInt("quantity");
-        final String date = intent.getExtras().getString("date");
-        final String time = intent.getExtras().getString("time");
-        action = intent.getExtras().getString("action");*/
-
         editMedicineName = (EditText) findViewById(R.id.medicine_name);
+        editMedicineName.setText(medicineName);
         editQuantity = (EditText) findViewById(quantity);
-        editDate = (EditText) findViewById(R.id.txtDate);
-        editTime = (EditText) findViewById(R.id.txtTime);
+
+        //TODO  need to get the quantity on the following screen
+        //quantity= Integer.parseInt(editQuantity.getText().toString());
+
+
+//        editDate = (EditText) findViewById(R.id.txtDate);
+//        editTime = (EditText) findViewById(R.id.txtTime);
         btn_cancel = (Button) findViewById(R.id.btn_cancel);
         btn_ok = (Button) findViewById(R.id.btn_ok);
-
-        //editMedicineName.setText(location);
-
-        //getDatePicker(date);
-        //View.OnClickListener timeClickListener = getTimePicker(time);
-        //editTime.setOnClickListener(timeClickListener);
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addConsumption(id, medicineID, quantity, "25/3/2017", "7:28");
+                Calendar calendar = Calendar.getInstance();
+
+                addConsumption(id, medicineID, quantity, calendar.getTime());
             }
         });
-
-
     }
 
     private View.OnClickListener getTimePicker(String time) {
@@ -143,15 +143,16 @@ public class ReminderConsumptionActivity extends AppCompatActivity {
     }
 
 
-    private void addConsumption(int id, int medicineID, int quantity, String date, String time) {
-        Consumption consumption = new Consumption(id, medicineID, quantity, date, time);
-        if (action != null && !action.trim().isEmpty() && action.equals("add")) {
-            consumption.addConsumption(consumption, consumptionDAO);
+    private void addConsumption(int id, int medicineID, int quantity, Date dateTime) {
+        Consumption consumption = new Consumption(id, medicineID, quantity, dateTime);
 
-            Toast.makeText(getApplicationContext(), "Consumption Added ", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(i);
-        }
+        consumption.addConsumption(consumption, consumptionDAO);
+
+        Toast.makeText(getApplicationContext(), "Consumption Added ", Toast.LENGTH_SHORT).show();
+        //TODO   need to replace MainActivity with the Consumption Screen
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
+
     }
 
 }
