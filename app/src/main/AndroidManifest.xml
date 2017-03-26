@@ -66,10 +66,14 @@
 
         <activity
             android:name=".activity.CategoryActivity"
-            android:label="Category"></activity>
+            android:label="Category"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeToolBar"></activity>
         <activity
             android:name=".activity.CategoryEditActivity"
-            android:label="Edit Category"></activity>
+            android:label="Edit Category"
+            android:parentActivityName=".activity.CategoryActivity"
+            android:theme="@style/AppThemeToolBar"></activity>
 
         <activity
             android:name=".activity.ConsumptionActivity"
@@ -79,16 +83,19 @@
         <activity
             android:name=".activity.ICETabLayoutActivity"
             android:label="ICE"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/TabLayoutTheme"></activity>
 
         <activity
             android:name=".activity.AddNOKActivity"
             android:label="ICE"
+            android:parentActivityName=".activity.ICETabLayoutActivity"
             android:theme="@style/TabLayoutTheme"></activity>
 
         <activity
             android:name=".activity.AddDoctorActivity"
             android:label="ICE"
+            android:parentActivityName=".activity.ICETabLayoutActivity"
             android:theme="@style/TabLayoutTheme"></activity>
 
         <activity
