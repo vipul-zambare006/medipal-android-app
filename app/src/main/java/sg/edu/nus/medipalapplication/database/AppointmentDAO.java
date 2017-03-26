@@ -3,10 +3,11 @@ package sg.edu.nus.medipalapplication.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
+
+import java.util.ArrayList;
 
 import sg.edu.nus.medipalapplication.MedipalFolder.Appointment;
 
@@ -68,9 +69,22 @@ public class AppointmentDAO extends DBHelper {
         return db.delete(Constant.Appointment_Table_Name, Constant.COLUMN_ID + "= ?", new String[]{Integer.toString(id)});
     }
 
-    public Cursor GetAllAppointment(){
+    public ArrayList<Appointment> GetAllAppointment(){
         SQLiteDatabase db=this.getReadableDatabase();
+        ArrayList<Appointment> appointmentArrayList = new ArrayList<>();
         Cursor cursor=db.rawQuery(Constant.AppointmentSelectQuery,null);
-        return cursor;
+
+        while (cursor.moveToNext())
+        {
+            int id = cursor.getInt(0);
+            String location = cursor.getString(1);
+            String appointmentDate = cursor.getString(2);
+            String appointmentTime = cursor.getString(3);
+            String description = cursor.getString(4);
+
+            Appointment appointment = new Appointment(id,location, description, appointmentDate,appointmentTime);
+            appointmentArrayList.add(appointment);
+        }
+        return appointmentArrayList;
     }
 }

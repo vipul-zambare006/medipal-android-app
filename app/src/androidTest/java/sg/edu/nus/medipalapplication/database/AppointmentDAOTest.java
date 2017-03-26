@@ -1,4 +1,4 @@
-package sg.edu.nus.medipalapplication;
+package sg.edu.nus.medipalapplication.database;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -26,7 +26,7 @@ import static org.junit.Assert.assertTrue;
  */
 
 @RunWith(AndroidJUnit4.class)
-public class ExampleInstrumentedTest {
+public class AppointmentDAOTest {
     private DBHelper database;
     AppointmentDAO appointmentDAO;
 
@@ -55,19 +55,8 @@ public class ExampleInstrumentedTest {
     {
         ArrayList<Appointment> appointments = new ArrayList<Appointment>();
         appointmentDAO.addAppointment(new Appointment(1,"Clementi Hospital","Routine checkup","22-10-2017","3:00 PM"));
-        Cursor appointmentsCursor = appointmentDAO.GetAllAppointment();
+        appointments = appointmentDAO.GetAllAppointment();
 
-        while (appointmentsCursor.moveToNext())
-        {
-            int id = appointmentsCursor.getInt(0);
-            String location = appointmentsCursor.getString(1);
-            String appointmentDate = appointmentsCursor.getString(2);
-            String appointmentTime = appointmentsCursor.getString(3);
-            String description = appointmentsCursor.getString(4);
-
-            Appointment appointment = new Appointment(id,location, description, appointmentDate,appointmentTime);
-            appointments.add(appointment);
-        }
-       assertTrue(appointments.size() == 1);
+        assertTrue(appointments.size() == 1);
     }
 }

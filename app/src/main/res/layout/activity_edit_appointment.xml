@@ -39,20 +39,8 @@
             android:hint="Enter location"
             android:inputType="text"
             android:textSize="18sp"
-            android:maxLength="5"
+            android:maxLength="100"
             android:paddingTop="?attr/actionBarSize"/>
-
-        <!--<EditText-->
-            <!--android:inputType="textMultiLine" &lt;!&ndash; Multiline input &ndash;&gt;-->
-        <!--android:lines="8" &lt;!&ndash; Total Lines prior display &ndash;&gt;-->
-        <!--android:minLines="6" &lt;!&ndash; Minimum lines &ndash;&gt;-->
-        <!--android:gravity="top|left" &lt;!&ndash; Cursor Position &ndash;&gt;-->
-        <!--android:maxLines="10" &lt;!&ndash; Maximum Lines &ndash;&gt;-->
-        <!--android:layout_height="wrap_content" &lt;!&ndash; Height determined by content &ndash;&gt;-->
-        <!--android:layout_width="fill_parent" &lt;!&ndash; Fill entire width &ndash;&gt;-->
-        <!--android:scrollbars="vertical" &lt;!&ndash; Vertical Scroll Bar &ndash;&gt;-->
-        <!--/>-->
-
 
         <EditText
             android:id="@+id/txtDescription"

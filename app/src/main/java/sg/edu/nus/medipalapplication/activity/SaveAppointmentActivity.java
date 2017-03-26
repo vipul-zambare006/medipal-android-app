@@ -80,7 +80,6 @@ public class SaveAppointmentActivity extends AppCompatActivity
         editDescription.setText(description);
 
         appointmentReminder = (SwitchCompat) findViewById(R.id.AddMedicineRemind);
-        //  appointmentReminder.setOnCheckedChangeListener(onCheckedChanged());
 
         getDatePicker(date);
         View.OnClickListener timeClickListener = getTimePicker(time);
@@ -143,7 +142,8 @@ public class SaveAppointmentActivity extends AppCompatActivity
 
     private void delete(int id, AppointmentDAO appointmentDAO) {
         appointment = new Appointment();
-        appointment.DeleteAppointmentById(id, appointmentDAO);
+        appointmentDAO.DeleteAppointment(id);
+        //appointment.DeleteAppointmentById(id, appointmentDAO);
 
         Toast.makeText(getApplicationContext(), Constant.NotificationMsg_AppointmentDeleted, Toast.LENGTH_SHORT).show();
 
@@ -156,7 +156,7 @@ public class SaveAppointmentActivity extends AppCompatActivity
         Appointment appointment = new Appointment(id, location, desc, date, time);
 
         if(action != null && !action.trim().isEmpty() && action.equals("add")){
-            appointment.addAppointment(appointment, appointmentDAO);
+            appointmentDAO.addAppointment(appointment);
 
             Toast.makeText(getApplicationContext(), Constant.NotificationMsg_AppointmentAdded, Toast.LENGTH_SHORT).show();
             Intent i = new Intent(getApplicationContext(),AppointmentActivity.class);
@@ -164,8 +164,8 @@ public class SaveAppointmentActivity extends AppCompatActivity
         }
         else
         {
-            boolean result = appointment.UpdateAppointmentById(appointment, appointmentDAO);
-
+            //boolean result = appointment.UpdateAppointmentById(appointment, appointmentDAO);
+            boolean result =  appointmentDAO.UpdateAppointment(appointment);
             if(result)
             {
                 editLocation.setText(location);
@@ -231,31 +231,5 @@ public class SaveAppointmentActivity extends AppCompatActivity
         }
         return isValid;
     }
-/*
-
-    private CompoundButton.OnCheckedChangeListener onCheckedChanged(final View v) {
-        return new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                switch (buttonView.getId()) {
-                    case R.id.AddMedicineRemind:
-                        setButtonState(isChecked,v);
-                        break;
-                }
-            }
-        };
-    }
-
-    private void setButtonState(boolean state, View v) {
-        if (state) {
-            v.setEnabled(true);
-            Toast.makeText(SaveAppointmentActivity.this, "Button enabled!", Toast.LENGTH_SHORT).show();
-        } else {
-            v.setEnabled(false);
-            Toast.makeText(SaveAppointmentActivity.this, "Button disabled!", Toast.LENGTH_SHORT).show();
-        }
-    }
-*/
-
 }
 
