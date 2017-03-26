@@ -40,7 +40,7 @@ public class DBHelper extends SQLiteOpenHelper {
             Constant.MedicineName + " TEXT NOT NULL, " +
             Constant.MedicineDescription + " TEXT NOT NULL, " +
             Constant.MedicineCatId + " INTEGER NOT NULL, " +
-            Constant.MedicineRemenderId + " INTEGER NULL, " +
+            Constant.MedicineRemenderId + " INTEGER NULL DEFAULT 0, " +
             Constant.MedicineRemind + " INTEGER NOT NULL DEFAULT 0, " +
             Constant.MedicineQuantity + " INTEGER NOT NULL, " +
             Constant.MedicineDosage + " INTEGER NOT NULL, " +

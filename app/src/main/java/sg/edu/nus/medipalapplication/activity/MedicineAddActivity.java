@@ -102,9 +102,9 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
         CategoryDAO categoryDAO = new CategoryDAO(this);
         medicineDatabase.openDb();
 
-        // String reminderId = String.valueOf(reminderDAO.getLastReminderId());
+        String reminderId = String.valueOf(reminderDAO.getLastReminderId());
         String categoryId = String.valueOf(categoryDAO.getCategoryIdByName(catName));
-        String reminderId = "90";
+       // String reminderId = "90";
         remind = "Yes";
 
         long result = medicineDatabase.medicineAdd(name, description, categoryId, reminderId, remind, quantity, dosage, dataissued, consumequantity, threshold, expirefactor);
