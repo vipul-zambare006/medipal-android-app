@@ -31,7 +31,7 @@ public class ConsumptionDAO extends DBHelper {
             ContentValues contantValues = new ContentValues();
             contantValues.put(Constant.MEDICINEID, consumption.getMedicineID());
             contantValues.put(Constant.QUANTITY, consumption.getQuantity());
-            contantValues.put(Constant.CONSUMEDON, consumption.getDate());
+            contantValues.put(Constant.CONSUMEDON, consumption.getDate().toString());
 
             db.insert(Constant.Consumption_Table_Name, null, contantValues);
             return true;
