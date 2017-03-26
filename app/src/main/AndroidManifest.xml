@@ -82,6 +82,16 @@
             android:theme="@style/TabLayoutTheme"></activity>
 
         <activity
+            android:name=".activity.AddNOKActivity"
+            android:label="ICE"
+            android:theme="@style/TabLayoutTheme"></activity>
+
+        <activity
+            android:name=".activity.AddDoctorActivity"
+            android:label="ICE"
+            android:theme="@style/TabLayoutTheme"></activity>
+
+        <activity
             android:name=".activity.MeasurementActivity"
             android:label="Measurement"
             android:theme="@style/TabLayoutTheme"></activity>

@@ -81,4 +81,15 @@ public class CategoryDAO {
         String[] columns = {Constant.CategoryId, Constant.CategoryCode, Constant.Categoryname, Constant.CategoryDescription,Constant.CategoryReminder};
         return db.query(Constant.TableName, columns, null, null, null, null, null);
     }
+
+    public int getCategoryIdByName(String name) {
+        String query = "Select * from " + Constant.TableName + " where " + Constant.Categoryname + " = " + "'" + name + "'";
+
+        Cursor cursor = databaseHelper.getReadableDatabase().rawQuery(query, null);
+        int id = 0;
+        while (cursor.moveToNext()) {
+            id = cursor.getInt(0);
+        }
+        return id;
+    }
 }

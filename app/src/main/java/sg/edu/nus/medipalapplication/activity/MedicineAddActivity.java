@@ -28,7 +28,9 @@ import sg.edu.nus.medipalapplication.MedipalFolder.Medicine;
 import sg.edu.nus.medipalapplication.R;
 import sg.edu.nus.medipalapplication.Validate.InputFilterMinMax;
 import sg.edu.nus.medipalapplication.adapter.MedicineAdapter;
+import sg.edu.nus.medipalapplication.database.CategoryDAO;
 import sg.edu.nus.medipalapplication.database.MedicineDAO;
+import sg.edu.nus.medipalapplication.database.ReminderDAO;
 
 public class MedicineAddActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -56,7 +58,6 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
         medicinename = (EditText) findViewById(R.id.AddMedicineName);
         medicinedescription = (EditText) findViewById(R.id.AddMedicineDescription);
         medicinecatid = (Spinner) findViewById(R.id.AddMedicineCatId);
-        //medicinereminderid = (EditText) findViewById(R.id.AddMedicineRemindId);
         medicinequantity = (EditText) findViewById(R.id.AddMedicineQuantity);
         medicinedosage = (EditText) findViewById(R.id.AddMedicineDosage);
         medicineconsumequantity = (EditText) findViewById(R.id.AddMedicineConsumeQuality);
@@ -84,25 +85,31 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
             @Override
             public void onClick(View v) {
 
-                save(medicinename.getText().toString(), medicinedescription.getText().toString(), spinnerValueSelected, medicinereminderid.getText().toString(), Medicineremind.getText().toString(), medicinequantity.getText().toString(), medicinedosage.getText().toString(), medicinedateissued.getText().toString(), medicineconsumequantity.getText().toString(), medicienthreshold.getText().toString(), mediceineexpire.getText().toString());
+                save(medicinename.getText().toString(), medicinedescription.getText().toString(), spinnerValueSelected, Medicineremind.getText().toString(), medicinequantity.getText().toString(), medicinedosage.getText().toString(), medicinedateissued.getText().toString(), medicineconsumequantity.getText().toString(), medicienthreshold.getText().toString(), mediceineexpire.getText().toString());
             }
         });
     }
 
-    private void save(String name, String description, String catid, String reminderid, String remind, String quantity, String dosage, String dataissued, String consumequantity, String threshold, String expirefactor) {
+    private void save(String name, String description, String catName, String remind, String quantity, String dosage, String dataissued, String consumequantity, String threshold, String expirefactor) {
 
         MedicineDAO medicineDatabase = new MedicineDAO(this);
 
+        ReminderDAO reminderDAO = new ReminderDAO(this);
+        CategoryDAO categoryDAO = new CategoryDAO(this);
         medicineDatabase.openDb();
 
-        long result = medicineDatabase.medicineAdd(name, description, catid, reminderid, remind, quantity, dosage, dataissued, consumequantity, threshold, expirefactor);
+        // String reminderId = String.valueOf(reminderDAO.getLastReminderId());
+        String categoryId = String.valueOf(categoryDAO.getCategoryIdByName(catName));
+        String reminderId = "90";
+        remind = "Yes";
+
+        long result = medicineDatabase.medicineAdd(name, description, categoryId, reminderId, remind, quantity, dosage, dataissued, consumequantity, threshold, expirefactor);
 
         if (result > 0) {
 
             medicinename.setText("");
             medicinedescription.setText("");
             medicinecatid.setTag(spinnerValueSelected);
-            medicinereminderid.setText("");
             Medicineremind.setText("");
             medicinequantity.setText("");
             medicinedosage.setText("");

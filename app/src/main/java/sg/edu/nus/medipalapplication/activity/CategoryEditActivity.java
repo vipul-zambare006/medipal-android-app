@@ -50,9 +50,11 @@ public class CategoryEditActivity extends AppCompatActivity {
         categoryreminder = (SwitchCompat) findViewById(R.id.AddCategoryRemind);
         categoryreminder.setOnCheckedChangeListener(onCheckedChanged());
 
-        if (editcategory.getText().toString().trim().equals("CHRONIC")) {
-            categoryreminder.setClickable(true);
-        } else if (editcategory.getText().toString().trim().equals("CHRONIC")) {
+        if (name.equals("CHRONIC")
+                || name.equals("INCIDENTAL")
+                || name.equals("COMPLETE COURSE")) {
+            categoryreminder.setClickable(false);
+        } else {
             categoryreminder.setClickable(true);
         }
 
