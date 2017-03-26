@@ -25,12 +25,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import sg.edu.nus.medipalapplication.MedipalFolder.Medicine;
+import sg.edu.nus.medipalapplication.MedipalFolder.Reminder;
 import sg.edu.nus.medipalapplication.R;
 import sg.edu.nus.medipalapplication.Validate.InputFilterMinMax;
 import sg.edu.nus.medipalapplication.adapter.MedicineAdapter;
 import sg.edu.nus.medipalapplication.database.CategoryDAO;
+import sg.edu.nus.medipalapplication.database.Constant;
 import sg.edu.nus.medipalapplication.database.MedicineDAO;
 import sg.edu.nus.medipalapplication.database.ReminderDAO;
+import sg.edu.nus.medipalapplication.service.ReminderService;
 
 public class MedicineAddActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -98,15 +101,29 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
         CategoryDAO categoryDAO = new CategoryDAO(this);
         medicineDatabase.openDb();
 
-        // String reminderId = String.valueOf(reminderDAO.getLastReminderId());
+        String reminderId = String.valueOf(reminderDAO.getLastReminderId());
         String categoryId = String.valueOf(categoryDAO.getCategoryIdByName(catName));
-        String reminderId = "90";
+
         remind = "Yes";
 
         long result = medicineDatabase.medicineAdd(name, description, categoryId, reminderId, remind, quantity, dosage, dataissued, consumequantity, threshold, expirefactor);
 
         if (result > 0) {
 
+            Reminder reminder = reminderDAO.getLastReminder();
+            String dateTimeString = reminder.getstartDateTime();
+
+            Intent service = new Intent(this, ReminderService.class);
+            service.putExtra(Constant.COLUMN_ID, reminder.getId());
+            service.putExtra(Constant.REMINDERDATETIME, dateTimeString);
+            service.putExtra(Constant.FREQUENCY, reminder.getFrequency());
+            service.putExtra(Constant.INTERVAL, reminder.getInterval());
+            service.putExtra(Constant.MedicineName, name);
+            service.putExtra(Constant.MedicineConsumeQuantity, consumequantity);
+            service.putExtra("Message", "Medicine Reminder");
+            service.setAction(ReminderService.CREATE);
+            startService(service);
+            
             medicinename.setText("");
             medicinedescription.setText("");
             medicinecatid.setTag(spinnerValueSelected);
