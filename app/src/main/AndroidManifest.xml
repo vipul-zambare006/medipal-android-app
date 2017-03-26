@@ -36,21 +36,21 @@
 
         <activity
             android:name=".activity.PersonActivity"
+            android:label="Add your details"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeToolBar"
-            android:label="Add your details"></activity>
+            android:theme="@style/AppThemeToolBar"></activity>
 
         <activity
             android:name=".activity.HealthBioActivity"
+            android:label="HealthBio"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeToolBar"
-            android:label="HealthBio"></activity>
+            android:theme="@style/AppThemeToolBar"></activity>
 
         <activity
             android:name=".activity.AddHealthBioActivity"
+            android:label="AddHealthBio"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeToolBar"
-            android:label="AddHealthBio"></activity>
+            android:theme="@style/AppThemeToolBar"></activity>
 
         <activity
             android:name=".activity.AppointmentActivity"
@@ -63,19 +63,19 @@
 
         <activity
             android:name=".activity.MedicineActivity"
+            android:label="Medicine"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeToolBar"
-            android:label="Medicine"></activity>
+            android:theme="@style/AppThemeToolBar"></activity>
         <activity
             android:name=".activity.MedicineAddActivity"
+            android:label="Add Medicine"
             android:parentActivityName=".activity.MedicineActivity"
-            android:theme="@style/AppThemeToolBar"
-            android:label="Add Medicine"></activity>
+            android:theme="@style/AppThemeToolBar"></activity>
         <activity
             android:name=".activity.MedicineEditActivity"
+            android:label="Edit Medicine"
             android:parentActivityName=".activity.MedicineActivity"
-            android:theme="@style/AppThemeToolBar"
-            android:label="Edit Medicine"></activity>
+            android:theme="@style/AppThemeToolBar"></activity>
 
         <activity
             android:name=".activity.CategoryActivity"
@@ -125,6 +125,13 @@
         <activity
             android:name=".activity.MeasurementActivity"
             android:label="Measurement"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/TabLayoutTheme"></activity>
+
+
+        <activity
+            android:name=".activity.HelpActivity"
+            android:label="Help"
             android:parentActivityName=".MainActivity"
             android:theme="@style/TabLayoutTheme"></activity>
 

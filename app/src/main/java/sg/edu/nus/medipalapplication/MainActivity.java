@@ -21,6 +21,7 @@ import sg.edu.nus.medipalapplication.activity.AppointmentActivity;
 import sg.edu.nus.medipalapplication.activity.CategoryActivity;
 import sg.edu.nus.medipalapplication.activity.ConsumptionActivity;
 import sg.edu.nus.medipalapplication.activity.HealthBioActivity;
+import sg.edu.nus.medipalapplication.activity.HelpActivity;
 import sg.edu.nus.medipalapplication.activity.ICETabLayoutActivity;
 import sg.edu.nus.medipalapplication.activity.MeasurementActivity;
 import sg.edu.nus.medipalapplication.activity.MedicineActivity;
@@ -175,7 +176,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            return true;
+            startActivity(new Intent(getApplicationContext(), HelpActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

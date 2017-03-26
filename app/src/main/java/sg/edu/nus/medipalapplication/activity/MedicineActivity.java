@@ -67,7 +67,7 @@ public class MedicineActivity extends AppCompatActivity {
             String medicinename = cursor.getString(1);
             String medicinedescription = cursor.getString(2);
             String medicinecatid = cursor.getString(3);
-            String medicinereminderid = cursor.getString(4);
+            int medicinereminderid = cursor.getInt(4);
             String medicineremind = cursor.getString(5);
             String medicinequantity = cursor.getString(6);
             String medicinedosage = cursor.getString(7);
@@ -76,7 +76,7 @@ public class MedicineActivity extends AppCompatActivity {
             String medicienthreshold = cursor.getString(10);
             String mediceineexpire = cursor.getString(11);
 
-            Medicine medicineItems = new Medicine(id, medicinename, medicinedescription, medicinecatid, medicineremind, medicinequantity, medicinedosage, medicinedateissued, medicineconsumequantity, medicienthreshold, mediceineexpire);
+            Medicine medicineItems = new Medicine(id, medicinename, medicinedescription, medicinecatid,medicinereminderid, medicineremind, medicinequantity, medicinedosage, medicinedateissued, medicineconsumequantity, medicienthreshold, mediceineexpire);
 
             medicineitem.add(medicineItems);
         }

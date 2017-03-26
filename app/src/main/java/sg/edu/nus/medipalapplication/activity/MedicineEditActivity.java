@@ -1,7 +1,10 @@
 package sg.edu.nus.medipalapplication.activity;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
@@ -9,11 +12,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import sg.edu.nus.medipalapplication.MedipalFolder.Medicine;
 import sg.edu.nus.medipalapplication.R;
@@ -21,9 +26,9 @@ import sg.edu.nus.medipalapplication.database.MedicineDAO;
 
 public class MedicineEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    static EditText updatemedicinedateissued;
     EditText medicinename, medicinedescription, medicinereminderid, medicinequantity, medicinedosage, medicineconsumequantity, medicienthreshold, mediceineexpire;
     SwitchCompat Medicineremind;
-    EditText medicinedateissued;
     Button medicineupdate, medicinedelete;
     Spinner medicinecatid;
     private String spinnerValueSelected;
@@ -39,7 +44,7 @@ public class MedicineEditActivity extends AppCompatActivity implements AdapterVi
         final String name = intent.getExtras().getString("MedicineName");
         final String description = intent.getExtras().getString("MedicineDescription");
         final String catid = intent.getExtras().getString("MedicineCatId");
-        final String reminderid = intent.getExtras().getString("MedicineReminderId");
+        final String reminderid = intent.getExtras().getString("MedicineReminderId") == null ? "0" : intent.getExtras().getString("MedicineReminderId");
         final String remind = intent.getExtras().getString("MedicineRemind");
         final String quantity = intent.getExtras().getString("MedicineQuantity");
         final String dosage = intent.getExtras().getString("MedicineDosage");
@@ -59,7 +64,14 @@ public class MedicineEditActivity extends AppCompatActivity implements AdapterVi
         medicienthreshold = (EditText) findViewById(R.id.EditMedicineThreshold);
         mediceineexpire = (EditText) findViewById(R.id.EditMedicineExpire);
         Medicineremind = (SwitchCompat) findViewById(R.id.EditMedicineRemind);
-        medicinedateissued = (EditText) findViewById(R.id.EditMedicineDateIssued);
+
+        updatemedicinedateissued = (EditText) findViewById(R.id.EditMedicineDateIssued);
+//        updatemedicinedateissued.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showTruitonDatePickerDialog(v);
+//            }
+//        });
 
 
         medicinecatid.setOnItemSelectedListener(this);
@@ -67,21 +79,21 @@ public class MedicineEditActivity extends AppCompatActivity implements AdapterVi
 
         medicinename.setText(name);
         medicinedescription.setText(description);
-        medicinereminderid.setText(reminderid);
-        medicinequantity.setText(remind);
-        medicinedosage.setText(quantity);
-        medicineconsumequantity.setText(dosage);
-        medicienthreshold.setText(dateissued);
-        mediceineexpire.setText(consumequantity);
-        Medicineremind.setText(threshold);
-        medicinedateissued.setText(expire);
+      //  medicinereminderid.setText(reminderid);
+        medicinequantity.setText(quantity);
+        medicinedosage.setText(dosage);
+        medicineconsumequantity.setText(consumequantity);
+        medicienthreshold.setText(threshold);
+        mediceineexpire.setText(expire);
+        Medicineremind.setChecked(remind.equalsIgnoreCase("yes"));
+        updatemedicinedateissued.setText(dateissued);
 
 
         medicineupdate = (Button) findViewById(R.id.EditMedicineUpdate);
         medicineupdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                update(id, medicinename.getText().toString(), medicinedescription.getText().toString(), spinnerValueSelected, medicinereminderid.getText().toString(), Medicineremind.getText().toString(), medicinequantity.getText().toString(), medicinedosage.getText().toString(), medicinedateissued.getText().toString(), medicineconsumequantity.getText().toString(), medicienthreshold.getText().toString(), mediceineexpire.getText().toString());
+                update(id, medicinename.getText().toString(), medicinedescription.getText().toString(), spinnerValueSelected,/* medicinereminderid.getText().toString(),*/ Medicineremind.getText().toString(), medicinequantity.getText().toString(), medicinedosage.getText().toString(), updatemedicinedateissued.getText().toString(), medicineconsumequantity.getText().toString(), medicienthreshold.getText().toString(), mediceineexpire.getText().toString());
             }
         });
 
@@ -95,26 +107,28 @@ public class MedicineEditActivity extends AppCompatActivity implements AdapterVi
         });
     }
 
-    private void update(int id, String newmedicinename, String newmedicinedescription, String newmedicinecatid, String newmedicinereminderid, String newmedicineremind, String newmedicinequantity, String newmedicinedosage, String newmedicinedataissued, String newmedicineconsumequantity, String newmedicinethreshold, String newmedicineexpirefactor) {
+    private void update(int id, String newmedicinename, String newmedicinedescription, String newmedicinecatid, /*String newmedicinereminderid,*/ String newmedicineremind, String newmedicinequantity, String newmedicinedosage, String newmedicinedataissued, String newmedicineconsumequantity, String newmedicinethreshold, String newmedicineexpirefactor) {
 
         MedicineDAO medicineDatabase = new MedicineDAO(this);
 
         medicineDatabase.openDb();
 
-        long result = medicineDatabase.medicineUpdate(id, newmedicinename, newmedicinedescription, newmedicinecatid, newmedicinereminderid, newmedicineremind, newmedicinequantity, newmedicinedosage, newmedicinedataissued, newmedicineconsumequantity, newmedicinethreshold, newmedicineexpirefactor);
+        long result = medicineDatabase.medicineUpdate(id, newmedicinename, newmedicinedescription, newmedicinecatid, "2", newmedicineremind, newmedicinequantity, newmedicinedosage, newmedicinedataissued, newmedicineconsumequantity, newmedicinethreshold, newmedicineexpirefactor);
         Log.v("ResultValues", Long.toString(result));
         if (result >= 0) {
 
             medicinename.setText(newmedicinename);
             medicinedescription.setText(newmedicinedescription);
             //medicinereminderid.setText(newmedicinereminderid);
-            medicinequantity.setText(newmedicineremind);
-            medicinedosage.setText(newmedicinequantity);
-            medicineconsumequantity.setText(newmedicinedosage);
-            medicienthreshold.setText(newmedicinedataissued);
-            mediceineexpire.setText(newmedicineconsumequantity);
-            Medicineremind.setText(newmedicinethreshold);
-            medicinedateissued.setText(newmedicineexpirefactor);
+            Medicineremind.setText(newmedicineremind);
+            medicinequantity.setText(newmedicinequantity);
+            medicinedosage.setText(newmedicinedosage);
+            updatemedicinedateissued.setText(newmedicinedataissued);
+            mediceineexpire.setText(newmedicineexpirefactor);
+            medicineconsumequantity.setText(newmedicineconsumequantity);
+            medicienthreshold.setText(newmedicinethreshold);
+
+
 
             Toast.makeText(getApplicationContext(), "Updated Successfully", Toast.LENGTH_SHORT).show();
         } else {
@@ -171,5 +185,28 @@ public class MedicineEditActivity extends AppCompatActivity implements AdapterVi
 
     }
 
+    public void showTruitonDatePickerDialog(View v) {
+        DialogFragment newFragment = new MedicineAddActivity.DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    public static class DatePickerFragment extends DialogFragment implements
+            DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            updatemedicinedateissued.setText(day + "/" + (month + 1) + "/" + year);
+        }
+    }
 
 }
