@@ -10,7 +10,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
-import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,8 +41,6 @@ public class EmergencyAdapter extends RecyclerView.Adapter<EmergencyAdapter.View
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        /*LayoutInflater inflater =
-                (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);*/
 
         LayoutInflater inflater = activity.getLayoutInflater();
         View view = inflater.inflate(R.layout.card_view_emergency, viewGroup, false);
@@ -63,12 +60,12 @@ public class EmergencyAdapter extends RecyclerView.Adapter<EmergencyAdapter.View
             public void onClick(View v) {
                 try {
                     Intent callIntent = new Intent(Intent.ACTION_CALL);
-                    callIntent.setData(Uri.parse("tel:" + viewHolder.number));
-                    if (ActivityCompat.checkSelfPermission(context,
+                    callIntent.setData(Uri.parse("tel:" + viewHolder.number.getText().toString()));
+                    if (ActivityCompat.checkSelfPermission(viewHolder.context,
                             Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                         return;
                     }
-                    context.startActivity(callIntent);
+                    viewHolder.context.startActivity(callIntent);
                 } catch (ActivityNotFoundException activityException) {
                 }
             }
@@ -76,10 +73,11 @@ public class EmergencyAdapter extends RecyclerView.Adapter<EmergencyAdapter.View
         viewHolder.btn_msg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendSMS("123456", "Please reach out to XXX");
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + viewHolder.number.getText().toString()));
+                intent.putExtra("sms_body", "Please reach out to xxx");
+                viewHolder.context.startActivity(intent);
             }
         });
-        //viewHolder.container.setOnClickListener(onClickListener(position));
     }
 
     @Override
@@ -109,11 +107,6 @@ public class EmergencyAdapter extends RecyclerView.Adapter<EmergencyAdapter.View
         notifyDataSetChanged();
     }
 
-    public void sendSMS(String number, String text) {
-        SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage(number, null, text, null, null);
-    }
-
     protected class ViewHolder extends RecyclerView.ViewHolder {
 
         Button btn_call, btn_msg;
@@ -121,12 +114,13 @@ public class EmergencyAdapter extends RecyclerView.Adapter<EmergencyAdapter.View
         private TextView number;
         private TextView description;
         private View container;
+        private Context context;
 
         public ViewHolder(View view) {
             super(view);
 
             container = view.findViewById(R.id.card_view_emergency);
-
+            context = view.getContext();
             name = (TextView) view.findViewById(R.id.tv_name);
             number = (TextView) view.findViewById(R.id.tv_number);
             description = (TextView) view.findViewById(R.id.tv_description);

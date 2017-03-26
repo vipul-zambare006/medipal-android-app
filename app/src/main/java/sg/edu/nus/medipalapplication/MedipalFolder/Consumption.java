@@ -1,7 +1,5 @@
 package sg.edu.nus.medipalapplication.MedipalFolder;
 
-import java.util.Date;
-
 import sg.edu.nus.medipalapplication.database.ConsumptionDAO;
 
 /**
@@ -12,16 +10,18 @@ public class Consumption {
     private int id;
     private int medicineID;
     private int quantity;
-    private Date dateTime;
+    private int date;
+    //private String time;
 
     public Consumption() {
     }
 
-    public Consumption(int id, int medicineID, int quantity, Date dateTime) {
+    public Consumption(int id, int medicineID, int quantity, int date) {
         this.id = id;
         this.medicineID = medicineID;
         this.quantity = quantity;
-        this.dateTime = dateTime;
+        this.date = date;
+        //this.time = time;
     }
 
     public int getId() {
@@ -36,10 +36,13 @@ public class Consumption {
         return quantity;
     }
 
-    public Date getDate() {
-        return dateTime;
+    public int getDate() {
+        return date;
     }
 
+   /**//* public String getTime() {
+        return time;
+    }*/
 
     public void addConsumption(Consumption consumption, ConsumptionDAO consumptionDAO) {
         consumptionDAO.addConsumption(consumption);

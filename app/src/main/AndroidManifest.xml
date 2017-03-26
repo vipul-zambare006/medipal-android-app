@@ -92,7 +92,8 @@
         <activity
             android:name=".activity.ConsumptionActivity"
             android:label="Consumption"
-            android:theme="@style/TabLayoutTheme"></activity>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeToolBar"></activity>
 
         <activity
             android:name=".activity.ICETabLayoutActivity"

@@ -124,15 +124,16 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
-//        reminderimage = (ImageView) findViewById(R.id.Reminder);
-//        reminderimage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this,Mea.class);
-////                startActivity(intent);
-//            }
-//        });
+/*
+        reminderimage = (ImageView) findViewById(R.id.Reminder);
+        reminderimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Mea.class);
+                startActivity(intent);
+            }
+        });
+*/
 
         appoinmentimage = (ImageView) findViewById(R.id.Appointment);
         appoinmentimage.setOnClickListener(new View.OnClickListener() {
@@ -146,25 +147,16 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-//        consumptionimage = (ImageView) findViewById(R.id.Consumption);
-//        consumptionimage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, .class);
-//                startActivity(intent);
-//            }
-//        });
+/*        consumptionimage = (ImageView) findViewById(R.id.Consumption);
+        consumptionimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, .class);
+                startActivity(intent);
+            }
+        });*/
     }
-//
-//    @Override
-//    public void onBackPressed() {
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//        } else {
-//            super.onBackPressed();
-//        }
-//    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

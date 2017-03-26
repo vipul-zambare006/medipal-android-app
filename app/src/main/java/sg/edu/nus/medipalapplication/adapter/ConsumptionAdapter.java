@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import sg.edu.nus.medipalapplication.MedipalFolder.Medicine;
+import sg.edu.nus.medipalapplication.Model.MedicineConsumption;
 import sg.edu.nus.medipalapplication.R;
 
 /**
@@ -18,48 +19,50 @@ import sg.edu.nus.medipalapplication.R;
 
 public class ConsumptionAdapter extends RecyclerView.Adapter<ConsumptionAdapter.ViewHolder> {
 
-    private List<Medicine> medicineList;
+    private List<MedicineConsumption> medicineConsumptionList;
+
     private Activity activity;
 
-    public ConsumptionAdapter(Activity activity, List<Medicine> medicines) {
-        this.medicineList = medicines;
+    public ConsumptionAdapter(Activity activity, List<Medicine> medicines, List<MedicineConsumption> medicineConsumptionList) {
+        this.medicineConsumptionList=medicineConsumptionList;
         this.activity = activity;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        LayoutInflater inflater = activity.getLayoutInflater();
-        View view = inflater.inflate(R.layout.item_recycler_consumption, viewGroup, false);
-        ViewHolder viewHolder = new ViewHolder(view);
 
-        return viewHolder;
+        View itemView = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.item_recycler_consumption, viewGroup, false);
+
+        return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(ConsumptionAdapter.ViewHolder viewHolder, int position) {
-        viewHolder.txtMedicineName.setText(medicineList.get(position).getMedicinename());
-        viewHolder.txtQuantityConsumed.setText(medicineList.get(position).getMedicinedescription());
+        viewHolder.txtMedicineName.setText(medicineConsumptionList.get(position).getMedicineName());
+        viewHolder.txtQuantityConsumed.setText(Integer.toString(medicineConsumptionList.get(position).getConsumedQty()));
+        viewHolder.txtConsumedOn.setText(Integer.toString(medicineConsumptionList.get(position).getConsumedOn()));
 
     }
 
     @Override
     public int getItemCount() {
-        return (null != medicineList ? medicineList.size() : 0);
+        return (null != medicineConsumptionList ? medicineConsumptionList.size() : 0);
     }
 
     protected class ViewHolder extends RecyclerView.ViewHolder {
         private TextView txtMedicineName;
         private TextView txtQuantityConsumed;
-        private TextView txtMissedQuantity;
+        private TextView txtConsumedOn;
         private View container;
 
         public ViewHolder(View view) {
             super(view);
 
-            container = view.findViewById(R.id.card_view);
+            container = view.findViewById(R.id.card_view_consumption);
             txtMedicineName = (TextView) view.findViewById(R.id.txtMedicineName);
             txtQuantityConsumed = (TextView) view.findViewById(R.id.txtQuantityConsumed);
-            //txtMissedQuantity = (TextView) view.findViewById(R.id.txtMissedQuantity);
+            txtConsumedOn = (TextView) view.findViewById(R.id.txtConsumedOn);
         }
     }
 }
