@@ -108,7 +108,4 @@ public class AppointmentDAOTest {
         Appointment deletedAppointment = appointmentDAO.getAppointmentById(2);
         assertEquals(deletedAppointment, null);
     }
-
-
-
 }

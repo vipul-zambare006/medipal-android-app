@@ -97,7 +97,7 @@ public class SaveAppointmentActivity extends AppCompatActivity
         int id = item.getItemId();
         if (id == R.id.action_save) {
             if (isValid()) {
-                update(appointmentId, editLocation.getText().toString(), editDescription.getText().toString(), editDate.getText().toString(), editTime.getText().toString(), appointmentDAO, action);
+                addUpdateAppointment(appointmentId, editLocation.getText().toString(), editDescription.getText().toString(), editDate.getText().toString(), editTime.getText().toString(), appointmentDAO, action);
             }
         }
         if (id == R.id.action_delete) {
@@ -171,7 +171,7 @@ public class SaveAppointmentActivity extends AppCompatActivity
         startActivity(i);
     }
 
-    private void update(int id, String location,String desc, String date, String time,AppointmentDAO appointmentDAO, String action)
+    private void addUpdateAppointment(int id, String location,String desc, String date, String time,AppointmentDAO appointmentDAO, String action)
     {
         Appointment appointment = new Appointment(id, location, desc, date, time);
 
