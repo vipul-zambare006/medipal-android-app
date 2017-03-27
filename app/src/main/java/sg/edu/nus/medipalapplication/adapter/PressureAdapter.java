@@ -49,7 +49,7 @@ public class PressureAdapter extends RecyclerView.Adapter<PressureAdapter.pressu
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, PressureDisplayEditUpdateActivity.class);
-                intent.putExtra("measurementId", String.valueOf(pressurelist.get(position).getMeasurementId()));
+                intent.putExtra("measurementId", pressurelist.get(position).getMeasurementId());
                 intent.putExtra("systolic", String.valueOf(pressurelist.get(position).getSystolic()));
                 intent.putExtra("Diastolic", String.valueOf(pressurelist.get(position).getDiastolic()));
                 intent.putExtra("MeasuredOn", String.valueOf(pressurelist.get(position).getMeasuredOn()));

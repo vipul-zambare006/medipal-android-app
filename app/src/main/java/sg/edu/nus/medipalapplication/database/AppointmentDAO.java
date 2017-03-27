@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -24,12 +25,10 @@ public class AppointmentDAO extends DBHelper {
         SQLiteDatabase db=this.getWritableDatabase();
         try
         {
-            ContentValues contantValues = new ContentValues();
-            contantValues.put(Constant.LOCATION,appointment.getLocation());
-            contantValues.put(Constant.DESCRIPTION, appointment.getDescription());
-            contantValues.put(Constant.APPOINTMENTDATE,appointment.getDate());
-            contantValues.put(Constant.APPOINTMENTTIME,appointment.getTime());
-            db.insert(Constant.Appointment_Table_Name, null, contantValues);
+            String appointmentDateTime = appointment.getDate() +"_" +appointment.getTime();
+            ContentValues contentValues = fillContentValues(appointment, appointmentDateTime);
+
+            db.insert(Constant.Appointment_Table_Name, null, contentValues);
             return true;
         }
         catch (SQLiteException e)
@@ -42,16 +41,14 @@ public class AppointmentDAO extends DBHelper {
         }
     }
 
-    public boolean UpdateAppointment(Appointment appointmentToUpdate)
+    public boolean updateAppointment(Appointment appointmentToUpdate)
     {
         SQLiteDatabase db=this.getWritableDatabase();
         try {
-            ContentValues contantValues = new ContentValues();
-            contantValues.put(Constant.LOCATION, appointmentToUpdate.getLocation());
-            contantValues.put(Constant.DESCRIPTION, appointmentToUpdate.getDescription());
-            contantValues.put(Constant.APPOINTMENTDATE, appointmentToUpdate.getDate());
-            contantValues.put(Constant.APPOINTMENTTIME, appointmentToUpdate.getTime());
-            db.update(Constant.Appointment_Table_Name, contantValues, Constant.COLUMN_ID + "= ?", new String[]{Integer.toString(appointmentToUpdate.getId())});
+            String appointmentDateTime = appointmentToUpdate.getDate() +"_" +appointmentToUpdate.getTime();
+            ContentValues contentValues = fillContentValues(appointmentToUpdate, appointmentDateTime);
+
+            db.update(Constant.Appointment_Table_Name, contentValues, Constant.COLUMN_ID + "= ?", new String[]{Integer.toString(appointmentToUpdate.getId())});
             return true;
         }
         catch(SQLiteException ex)
@@ -64,27 +61,63 @@ public class AppointmentDAO extends DBHelper {
         }
     }
 
-    public Integer DeleteAppointment(Integer id){
+    public Integer deleteAppointment(Integer id){
         SQLiteDatabase db=this.getWritableDatabase();
         return db.delete(Constant.Appointment_Table_Name, Constant.COLUMN_ID + "= ?", new String[]{Integer.toString(id)});
     }
 
-    public ArrayList<Appointment> GetAllAppointment(){
+    public ArrayList<Appointment> getAllAppointments(){
         SQLiteDatabase db=this.getReadableDatabase();
         ArrayList<Appointment> appointmentArrayList = new ArrayList<>();
         Cursor cursor=db.rawQuery(Constant.AppointmentSelectQuery,null);
 
         while (cursor.moveToNext())
         {
-            int id = cursor.getInt(0);
-            String location = cursor.getString(1);
-            String appointmentDate = cursor.getString(2);
-            String appointmentTime = cursor.getString(3);
-            String description = cursor.getString(4);
-
-            Appointment appointment = new Appointment(id,location, description, appointmentDate,appointmentTime);
+            Appointment appointment = processAppointmentCursor(cursor);
             appointmentArrayList.add(appointment);
         }
         return appointmentArrayList;
     }
+
+    public Appointment getAppointmentById(int appointmentId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = " SELECT * FROM Appointment WHERE _ID = "+ appointmentId;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        cursor.moveToFirst();
+
+        try{
+            Appointment appointment = processAppointmentCursor(cursor);
+            return appointment;
+        }
+        catch (Exception e){
+            return null;
+        }
+        finally {
+            db.close();
+        }
+    }
+
+    @NonNull
+    private Appointment processAppointmentCursor(Cursor cursor) {
+        int id = cursor.getInt(0);
+        String location = cursor.getString(1);
+        String appointmentDateTime = cursor.getString(2);
+        String description = cursor.getString(3);
+
+        String array[] = appointmentDateTime.split("_");
+        String appointmentDate = array[0];
+        String appointmentTime = array[1];
+
+        return new Appointment(id,location, description, appointmentDate,appointmentTime);
+    }
+
+    @NonNull
+    private ContentValues fillContentValues(Appointment appointmentToUpdate, String appointmentDateTime) {
+        ContentValues contantValues = new ContentValues();
+        contantValues.put(Constant.LOCATION, appointmentToUpdate.getLocation());
+        contantValues.put(Constant.DESCRIPTION, appointmentToUpdate.getDescription());
+        contantValues.put(Constant.APPOINTMENTDATETIME, appointmentDateTime);
+        return contantValues;
+    }
+
 }

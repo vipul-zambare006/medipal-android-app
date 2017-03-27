@@ -26,6 +26,7 @@ import sg.edu.nus.medipalapplication.MedipalFolder.Appointment;
 import sg.edu.nus.medipalapplication.R;
 import sg.edu.nus.medipalapplication.database.AppointmentDAO;
 import sg.edu.nus.medipalapplication.database.Constant;
+import sg.edu.nus.medipalapplication.service.ReminderService;
 
 /**
  * Created by Vipul Zambare on 3/19/2017.
@@ -33,6 +34,7 @@ import sg.edu.nus.medipalapplication.database.Constant;
 
 public class SaveAppointmentActivity extends AppCompatActivity
 {
+    public static final String APPOINTMENT = "Appointment";
     private final AppointmentDAO appointmentDAO = new AppointmentDAO(this);
     EditText editLocation,editDate,editTime,editDescription;
     Appointment appointment;
@@ -83,6 +85,26 @@ public class SaveAppointmentActivity extends AppCompatActivity
         editTime.setOnClickListener(timeClickListener);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.appointment_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_save) {
+            if (isValid()) {
+                update(appointmentId, editLocation.getText().toString(), editDescription.getText().toString(), editDate.getText().toString(), editTime.getText().toString(), appointmentDAO, action);
+            }
+        }
+        if (id == R.id.action_delete) {
+            delete(appointmentId,appointmentDAO);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @NonNull
     private View.OnClickListener getTimePicker(String time) {
         editTime.setText(time);
@@ -97,6 +119,7 @@ public class SaveAppointmentActivity extends AppCompatActivity
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
                                         calendar.get(Calendar.DAY_OF_MONTH), hourOfDay, minute);
+                                selectedDate = calendar;
                                 editText.setText(timeFormatter.format(calendar.getTime()));
                             }
                         };
@@ -104,7 +127,7 @@ public class SaveAppointmentActivity extends AppCompatActivity
                 try {
                     timeCalendar.setTime(timeFormatter.parse(editText.getText().toString()));
                 } catch (ParseException e) {
-                           /* Toast.makeText(MainActivity.this, R.string.generic_error, Toast.LENGTH_SHORT).show();*/
+                           Toast.makeText(SaveAppointmentActivity.this, Constant.ErrorMsg_DateParseError, Toast.LENGTH_SHORT).show();
                 }
                 TimePickerDialog timePickerDialog =
                         new TimePickerDialog(SaveAppointmentActivity.this, timeSetListener, timeCalendar.get(Calendar.HOUR_OF_DAY), timeCalendar.get(Calendar.MINUTE), false);
@@ -139,8 +162,7 @@ public class SaveAppointmentActivity extends AppCompatActivity
 
     private void delete(int id, AppointmentDAO appointmentDAO) {
         appointment = new Appointment();
-        appointmentDAO.DeleteAppointment(id);
-        //appointment.DeleteAppointmentById(id, appointmentDAO);
+        appointmentDAO.deleteAppointment(id);
 
         Toast.makeText(getApplicationContext(), Constant.NotificationMsg_AppointmentDeleted, Toast.LENGTH_SHORT).show();
 
@@ -152,18 +174,14 @@ public class SaveAppointmentActivity extends AppCompatActivity
     {
         Appointment appointment = new Appointment(id, location, desc, date, time);
 
-        if(action != null && !action.trim().isEmpty() && action.equals("add")){
+        if(action != null && !action.trim().isEmpty() && action.equals("add"))
+        {
             appointmentDAO.addAppointment(appointment);
-            //TODO:Appointment reminder logic
-
-            Toast.makeText(getApplicationContext(), Constant.NotificationMsg_AppointmentAdded, Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(getApplicationContext(),AppointmentActivity.class);
-            startActivity(i);
+            setReminder(appointment);
         }
         else
         {
-            //boolean result = appointment.UpdateAppointmentById(appointment, appointmentDAO);
-            boolean result =  appointmentDAO.UpdateAppointment(appointment);
+            boolean result =  appointmentDAO.updateAppointment(appointment);
             if(result)
             {
                 editLocation.setText(location);
@@ -182,24 +200,24 @@ public class SaveAppointmentActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.appointment_menu, menu);
-        return true;
-    }
+    private void setReminder(Appointment appointment)
+    {
+        Intent service = new Intent(this, ReminderService.class);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_save) {
-            if (isValid()) {
-                update(appointmentId, editLocation.getText().toString(), editDescription.getText().toString(), editDate.getText().toString(), editTime.getText().toString(), appointmentDAO, action);
-            }
-        }
-        if (id == R.id.action_delete) {
-            delete(appointmentId,appointmentDAO);
-        }
-        return super.onOptionsItemSelected(item);
+        service.putExtra(Constant.COLUMN_ID, appointment.getId());
+        service.putExtra(Constant.APPOINTMENTDATE,selectedDate);
+        service.putExtra(Constant.APPOINTMENTTIME,appointment.getTime());
+        service.putExtra(Constant.LOCATION, appointment.getLocation());
+        service.putExtra(Constant.DESCRIPTION, appointment.getDescription());
+        service.putExtra(Constant.MESSAGE, Constant.APPOINTMENT_REMINDER_MESSAGE);
+        service.putExtra("Type", APPOINTMENT);
+
+        service.setAction(ReminderService.CREATE);
+        startService(service);
+
+        Toast.makeText(getApplicationContext(), Constant.NotificationMsg_AppointmentAdded, Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(getApplicationContext(),AppointmentActivity.class);
+        startActivity(i);
     }
 
     private boolean isValid() {
@@ -230,4 +248,3 @@ public class SaveAppointmentActivity extends AppCompatActivity
         return isValid;
     }
 }
-
