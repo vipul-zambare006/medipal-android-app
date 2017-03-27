@@ -178,6 +178,12 @@
             android:parentActivityName=".activity.MeasurementActivity"
             android:theme="@style/AppThemeToolBar" />
 
+        <activity
+            android:name=".activity.AboutUsActivity"
+            android:label="About Us"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeToolBar" />
+
     </application>
 
 </manifest>
