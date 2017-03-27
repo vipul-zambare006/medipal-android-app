@@ -42,7 +42,7 @@ public class AppointmentDAO extends DBHelper {
         }
     }
 
-    public boolean UpdateAppointment(Appointment appointmentToUpdate)
+    public boolean updateAppointment(Appointment appointmentToUpdate)
     {
         SQLiteDatabase db=this.getWritableDatabase();
         try {
@@ -64,12 +64,12 @@ public class AppointmentDAO extends DBHelper {
         }
     }
 
-    public Integer DeleteAppointment(Integer id){
+    public Integer deleteAppointment(Integer id){
         SQLiteDatabase db=this.getWritableDatabase();
         return db.delete(Constant.Appointment_Table_Name, Constant.COLUMN_ID + "= ?", new String[]{Integer.toString(id)});
     }
 
-    public ArrayList<Appointment> GetAllAppointment(){
+    public ArrayList<Appointment> getAllAppointments(){
         SQLiteDatabase db=this.getReadableDatabase();
         ArrayList<Appointment> appointmentArrayList = new ArrayList<>();
         Cursor cursor=db.rawQuery(Constant.AppointmentSelectQuery,null);
@@ -86,5 +86,30 @@ public class AppointmentDAO extends DBHelper {
             appointmentArrayList.add(appointment);
         }
         return appointmentArrayList;
+    }
+
+    public Appointment getAppointmentById(int appointmentId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = " SELECT * FROM Appointment WHERE _ID = "+ appointmentId;
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        cursor.moveToFirst();
+
+        try{
+            int id = cursor.getInt(0);
+            String location = cursor.getString(1);
+            String appointmentDate = cursor.getString(2);
+            String appointmentTime = cursor.getString(3);
+            String description = cursor.getString(4);
+
+            Appointment appointment = new Appointment(id,location, description, appointmentDate,appointmentTime);
+            return appointment;
+        }
+        catch (Exception e){
+            return null;
+        }
+        finally {
+            db.close();
+        }
     }
 }

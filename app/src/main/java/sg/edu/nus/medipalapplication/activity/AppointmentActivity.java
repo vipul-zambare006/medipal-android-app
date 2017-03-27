@@ -66,7 +66,7 @@ public class AppointmentActivity extends AppCompatActivity {
     {
         final AppointmentDAO appointmentDAO;
         appointmentDAO = new AppointmentDAO(context);
-        appointmentArrayList = appointmentDAO.GetAllAppointment();
+        appointmentArrayList = appointmentDAO.getAllAppointments();
 
         if (!(appointmentArrayList.size() < 1))
             recyclerView.setAdapter(adapter);

@@ -118,6 +118,7 @@ public class SaveAppointmentActivity extends AppCompatActivity
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
                                         calendar.get(Calendar.DAY_OF_MONTH), hourOfDay, minute);
+                                selectedDate = calendar;
                                 editText.setText(timeFormatter.format(calendar.getTime()));
                             }
                         };
@@ -160,7 +161,7 @@ public class SaveAppointmentActivity extends AppCompatActivity
 
     private void delete(int id, AppointmentDAO appointmentDAO) {
         appointment = new Appointment();
-        appointmentDAO.DeleteAppointment(id);
+        appointmentDAO.deleteAppointment(id);
 
         Toast.makeText(getApplicationContext(), Constant.NotificationMsg_AppointmentDeleted, Toast.LENGTH_SHORT).show();
 
@@ -179,7 +180,7 @@ public class SaveAppointmentActivity extends AppCompatActivity
         }
         else
         {
-            boolean result =  appointmentDAO.UpdateAppointment(appointment);
+            boolean result =  appointmentDAO.updateAppointment(appointment);
             if(result)
             {
                 editLocation.setText(location);
@@ -203,7 +204,7 @@ public class SaveAppointmentActivity extends AppCompatActivity
         Intent service = new Intent(this, ReminderService.class);
 
         service.putExtra(Constant.COLUMN_ID, appointment.getId());
-        service.putExtra(Constant.APPOINTMENTDATE,appointment.getDate());
+        service.putExtra(Constant.APPOINTMENTDATE,selectedDate);
         service.putExtra(Constant.APPOINTMENTTIME,appointment.getTime());
         service.putExtra(Constant.LOCATION, appointment.getLocation());
         service.putExtra(Constant.DESCRIPTION, appointment.getDescription());
