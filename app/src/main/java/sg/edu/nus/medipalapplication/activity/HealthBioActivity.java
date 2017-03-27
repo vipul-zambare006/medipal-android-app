@@ -86,7 +86,6 @@ public class HealthBioActivity extends AppCompatActivity {
                 intent.putExtra("conditiontype", "");
                 intent.putExtra("action", "add");
 
-
                 activity.startActivity(intent);
             }
         };
@@ -96,6 +95,5 @@ public class HealthBioActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         loadHealthBio(getApplicationContext());
-        //tvEmpty.setVisibility(memberListAdapter.getCount() == 0 ? View.VISIBLE : View.GONE);
     }
 }

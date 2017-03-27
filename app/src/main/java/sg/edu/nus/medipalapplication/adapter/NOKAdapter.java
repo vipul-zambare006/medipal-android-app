@@ -22,7 +22,6 @@ import sg.edu.nus.medipalapplication.database.EmergencyContactDAO;
 
 public class NOKAdapter extends RecyclerView.Adapter<NOKAdapter.ViewHolder> {
 
-    //private List<EmergencyContact> emergencyContact;
     private ArrayList<EmergencyContact> emergencyContactList;
     private Activity activity;
 
@@ -94,9 +93,6 @@ public class NOKAdapter extends RecyclerView.Adapter<NOKAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
 
-    /**
-     * View holder to display each RecylerView item
-     */
     protected class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView name;
@@ -116,6 +112,4 @@ public class NOKAdapter extends RecyclerView.Adapter<NOKAdapter.ViewHolder> {
             description = (TextView) view.findViewById(R.id.tv_description);
         }
     }
-
-
 }

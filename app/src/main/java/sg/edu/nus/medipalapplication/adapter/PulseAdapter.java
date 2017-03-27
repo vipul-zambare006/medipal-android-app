@@ -15,7 +15,7 @@ import sg.edu.nus.medipalapplication.R;
 import sg.edu.nus.medipalapplication.activity.PulseDisplayEditUpdateActivity;
 
 /**
- * Created by USER on 23/3/2017.
+ * Created by Mahesh Inna Kedage on 23/3/2017.
  */
 
 public class PulseAdapter extends RecyclerView.Adapter<PulseAdapter.pulseHolder> {

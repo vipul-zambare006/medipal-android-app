@@ -115,29 +115,5 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder
             description = (TextView) view.findViewById(R.id.tv_description);
         }
     }
-
-//    public void loadDoctor(EmergencyContactDAO emergencyContactDAO) {
-//
-//        emergencyContactList = new ArrayList<EmergencyContact>();
-//        EmergencyContact emergencyContact = new EmergencyContact();
-//        Cursor cursor = emergencyContact.getDoctorContacts(emergencyContactDAO);
-//
-//        while (cursor.moveToNext()) {
-//
-//            int id = cursor.getInt(0);
-//            String name = cursor.getString(1);
-//            String number = cursor.getString(2);
-//            String contactType = cursor.getString(3);
-//            String description = cursor.getString(4);
-//            String preference = cursor.getString(5);
-//
-//
-//            emergencyContact = new EmergencyContact(id, name, number, contactType, description, preference);
-//            emergencyContactList.add(emergencyContact);
-//        }
-//        notifyDataSetChanged();
-//    }
-
-
 }
 

@@ -9,7 +9,7 @@ import sg.edu.nus.medipalapplication.database.PressureDAO;
 
 
 /**
- * Created by USER on 19/3/2017.
+ * Created by Mahesh Inna Kedage on 19/3/2017.
  */
 
 public class Pressure extends Measurement {

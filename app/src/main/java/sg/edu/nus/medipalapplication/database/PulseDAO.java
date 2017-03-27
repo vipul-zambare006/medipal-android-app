@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- * Created by USER on 21/3/2017.
+ * Created by Mahesh Inna Kedage on 21/3/2017.
  */
 
 public class PulseDAO extends DBHelper {

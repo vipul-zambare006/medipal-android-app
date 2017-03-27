@@ -15,8 +15,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 import sg.edu.nus.medipalapplication.MedipalFolder.EmergencyContact;
 import sg.edu.nus.medipalapplication.R;
 import sg.edu.nus.medipalapplication.database.Constant;
@@ -28,10 +26,8 @@ public class AddDoctorActivity extends AppCompatActivity {
     private EditText editName, editNumber, editDesc;
     private CheckBox editCheckbox;
     private String contactType = "Doctor";
-    private String preferences = "No";
     private String action = "";
     private int contactID = 0;
-    private ArrayList<EmergencyContact> emergencyContactArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +38,10 @@ public class AddDoctorActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final EmergencyContactDAO emergencyContactDAO;
-        emergencyContactDAO = new EmergencyContactDAO(this);
         contactID = intent.getExtras().getInt("Id");
         final String contactName = intent.getExtras().getString("name");
         final String contactNumber = intent.getExtras().getString("number");
-        final String description = intent.getExtras().getString("desc");
-        final String preference = intent.getExtras().getString("pref");
         action = intent.getExtras().getString("action");
-
 
         editName = (EditText) findViewById(R.id.input_name);
         editNumber = (EditText) findViewById(R.id.input_number);
@@ -134,7 +125,6 @@ public class AddDoctorActivity extends AppCompatActivity {
             editName.setError("This field can't be empty!");
             isValid = false;
         }
-
         return isValid;
     }
 }

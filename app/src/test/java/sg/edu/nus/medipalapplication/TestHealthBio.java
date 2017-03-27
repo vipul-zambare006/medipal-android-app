@@ -9,7 +9,7 @@ import sg.edu.nus.medipalapplication.MedipalFolder.HealthBio;
 
 
 /**
- * Created by USER on 27/3/2017.
+ * Created by Mahesh Inna Kedage on 27/3/2017.
  */
 
 public class TestHealthBio extends TestCase {

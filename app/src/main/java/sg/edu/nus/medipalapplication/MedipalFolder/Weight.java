@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import sg.edu.nus.medipalapplication.database.WeightDAO;
 
 /**
- * Created by USER on 20/3/2017.
+ * Created by Mahesh Inna Kedage on 20/3/2017.
  */
 
 public class Weight extends Measurement {

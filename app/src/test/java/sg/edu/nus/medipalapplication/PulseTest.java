@@ -10,7 +10,7 @@ import sg.edu.nus.medipalapplication.MedipalFolder.Pulse;
 
 
 /**
- * Created by USER on 26/3/2017.
+ * Created by Mahesh Inna Kedage on 26/3/2017.
  */
 
 public class PulseTest extends TestCase {

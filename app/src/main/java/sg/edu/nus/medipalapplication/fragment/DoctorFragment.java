@@ -30,12 +30,10 @@ import sg.edu.nus.medipalapplication.database.EmergencyContactDAO;
 public class DoctorFragment extends Fragment {
 
     EmergencyContact emergencyContact = new EmergencyContact();
-   // private TextView tvEmpty;
     private RecyclerView recyclerView;
     private DoctorAdapter adapter;
     private ArrayList<EmergencyContact> emergencyContactArrayList;
     private EmergencyContactDAO emergencyContactDAO;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,8 +74,6 @@ public class DoctorFragment extends Fragment {
                 intent.putExtra("action","add");
 
                 startActivity(intent);
-
-                //getActivity().startActivity(new Intent(getActivity(), AddDoctorActivity.class));
             }
         });
         return doctorView;
@@ -103,28 +99,9 @@ public class DoctorFragment extends Fragment {
         return emergencyContactArrayList;
     }
 
-    private View.OnClickListener onAddingListener(final Activity activity) {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(activity, SaveAppointmentActivity.class);
-
-                intent.putExtra("Id",0);
-                intent.putExtra("location","");
-                intent.putExtra("date","");
-                intent.putExtra("time","");
-                intent.putExtra("description","");
-                intent.putExtra("action","add");
-
-                activity.startActivity(intent);
-            }
-        };
-    }
-
     @Override public void onResume() {
         super.onResume();
         adapter.loadDoctor(emergencyContactDAO);
-        //tvEmpty.setVisibility(memberListAdapter.getCount() == 0 ? View.VISIBLE : View.GONE);
     }
 
 }

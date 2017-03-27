@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * Created by USER on 19/3/2017.
+ * Created by Mahesh Inna Kedage on 19/3/2017.
  */
 
 public class Measurement {

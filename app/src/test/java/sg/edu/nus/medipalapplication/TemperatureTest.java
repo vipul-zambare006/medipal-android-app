@@ -10,7 +10,7 @@ import sg.edu.nus.medipalapplication.MedipalFolder.Temperature;
 
 
 /**
- * Created by USER on 26/3/2017.
+ * Created by Mahesh Inna Kedage on 26/3/2017.
  */
 
 public class TemperatureTest extends TestCase {

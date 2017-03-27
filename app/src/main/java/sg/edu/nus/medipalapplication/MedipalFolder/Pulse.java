@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import sg.edu.nus.medipalapplication.database.PulseDAO;
 
 /**
- * Created by USER on 19/3/2017.
+ * Created by Mahesh Inna Kedage on 19/3/2017.
  */
 
 public class Pulse extends Measurement {

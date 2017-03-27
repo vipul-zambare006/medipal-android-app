@@ -1,6 +1,5 @@
 package sg.edu.nus.medipalapplication.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -19,7 +18,6 @@ import java.util.ArrayList;
 import sg.edu.nus.medipalapplication.MedipalFolder.EmergencyContact;
 import sg.edu.nus.medipalapplication.R;
 import sg.edu.nus.medipalapplication.activity.AddNOKActivity;
-import sg.edu.nus.medipalapplication.activity.SaveAppointmentActivity;
 import sg.edu.nus.medipalapplication.adapter.NOKAdapter;
 import sg.edu.nus.medipalapplication.database.EmergencyContactDAO;
 
@@ -29,13 +27,11 @@ import sg.edu.nus.medipalapplication.database.EmergencyContactDAO;
 
 public class NOKFragment extends Fragment {
 
-    private TextView tvEmpty;
     private RecyclerView recyclerView;
     private NOKAdapter adapter;
     private ArrayList<EmergencyContact> emergencyContactArrayList;
     EmergencyContact emergencyContact = new EmergencyContact();
     private EmergencyContactDAO emergencyContactDAO;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,27 +78,8 @@ public class NOKFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
-
         return nokView;
-
     }
-
-    /*public void loadContact(EmergencyContactDAO emergencyContactDAO) {
-        emergencyContactArrayList = new ArrayList<EmergencyContact>();
-
-
-
-        if (!(emergencyContactArrayList.size() < 1)) {
-
-            recyclerView.setAdapter(adapter);
-        }
-    }
-
-    @Override public void onResume() {
-        super.onResume();
-        adapter.loadDoctor(emergencyContactDAO);
-        //tvEmpty.setVisibility(memberListAdapter.getCount() == 0 ? View.VISIBLE : View.GONE);
-    }*/
 
     public ArrayList<EmergencyContact> loadContact(EmergencyContactDAO emergencyContactDAO) {
         emergencyContactArrayList = new ArrayList<EmergencyContact>();
@@ -117,36 +94,14 @@ public class NOKFragment extends Fragment {
             String description = cursor.getString(4);
             String preference = cursor.getString(5);
 
-
             EmergencyContact emergencyContact  = new EmergencyContact(id,name, number,contactType,description,preference);
             emergencyContactArrayList.add(emergencyContact);
         }
         return emergencyContactArrayList;
     }
 
-    private View.OnClickListener onAddingListener(final Activity activity) {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(activity, SaveAppointmentActivity.class);
-
-                intent.putExtra("Id",0);
-                intent.putExtra("location","");
-                intent.putExtra("date","");
-                intent.putExtra("time","");
-                intent.putExtra("description","");
-                intent.putExtra("action","add");
-
-                activity.startActivity(intent);
-            }
-        };
-    }
-
     @Override public void onResume() {
         super.onResume();
         adapter.loadNOK(emergencyContactDAO);
-        //tvEmpty.setVisibility(memberListAdapter.getCount() == 0 ? View.VISIBLE : View.GONE);
     }
-
-
 }
