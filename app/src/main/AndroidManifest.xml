@@ -36,14 +36,14 @@
 
         <activity
             android:name=".activity.PersonActivity"
-            android:label="Add your details"
+            android:label="Add Details"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppThemeToolBar"></activity>
 
         <activity android:name=".activity.HealthBioActivity"></activity>
 
         <activity android:name=".activity.AddHealthBioActivity"
-            android:label="Add your details"
+            android:label="Add Details"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppThemeToolBar"></activity>
 

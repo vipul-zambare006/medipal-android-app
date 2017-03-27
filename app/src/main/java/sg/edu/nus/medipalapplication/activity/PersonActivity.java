@@ -5,8 +5,9 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -68,7 +69,7 @@ public class PersonActivity extends AppCompatActivity {
             }
         });
 
-        Button btnSave = (Button) findViewById(R.id.btn_save);
+        /*Button btnSave = (Button) findViewById(R.id.btn_save);
         btnSave.setOnClickListener(new View.OnClickListener()
         {
             @Override public void onClick (View v)
@@ -79,7 +80,26 @@ public class PersonActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Successfully added your details", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_person, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_save_person) {
+            if (isValid()) {
+                save(personname.getText().toString().trim(), personidno.getText().toString().trim(), persondate.getText().toString().trim(), personaddress.getText().toString().trim(), personmBloodType.getText().toString().trim(), personpostalcode.getText().toString().trim(), personheight.getText().toString().trim());
+                Toast.makeText(getApplicationContext(), "Successfully added your details", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private boolean isValid()
