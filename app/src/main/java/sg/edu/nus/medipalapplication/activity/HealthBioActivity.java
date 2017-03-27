@@ -63,7 +63,6 @@ public class HealthBioActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
-
     }
 
     public void loadHealthBio(Context context) {
@@ -93,4 +92,10 @@ public class HealthBioActivity extends AppCompatActivity {
         };
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadHealthBio(getApplicationContext());
+        //tvEmpty.setVisibility(memberListAdapter.getCount() == 0 ? View.VISIBLE : View.GONE);
+    }
 }

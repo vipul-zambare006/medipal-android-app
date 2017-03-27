@@ -42,11 +42,13 @@
 
         <activity android:name=".activity.HealthBioActivity"></activity>
 
-        <activity android:name=".activity.AddHealthBioActivity"></activity>
+        <activity android:name=".activity.AddHealthBioActivity"
+            android:label="Add your details"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeToolBar"></activity>
 
         <activity
             android:name=".activity.AppointmentActivity"
-
             android:label="My Appointments"></activity>
 
         <activity
@@ -91,7 +93,7 @@
             android:label="ICE"
             android:parentActivityName=".MainActivity"
             android:theme="@style/TabLayoutTheme"></activity>
-        <activity android:name=".activity.AddReminderTestActivity" />
+        <activity android:name=".activity.AddReminderActivity" />
 
         <receiver android:name=".activity.ReminderSetter">
             <intent-filter>
@@ -175,7 +177,6 @@
             android:label="Edit Weight"
             android:parentActivityName=".activity.MeasurementActivity"
             android:theme="@style/AppThemeToolBar" />
-
 
     </application>
 

@@ -24,7 +24,6 @@ public class MedicineActivity extends AppCompatActivity {
     RecyclerView medicinerecyclerView;
     MedicineAdapter medicineAdapter;
     ArrayList<Medicine> medicineitem = new ArrayList<Medicine>();
-    MedicineAddActivity medicineAddActivity = new MedicineAddActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

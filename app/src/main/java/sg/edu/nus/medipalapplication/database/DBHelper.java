@@ -25,7 +25,7 @@ public class DBHelper extends SQLiteOpenHelper {
             + "("
             + Constant.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + Constant.CONDITION + " TEXT NOT NULL, "
-            + Constant.STARTDATE + " INTEGER NOT NULL, "
+            + Constant.STARTDATE + " TEXT NOT NULL, "
             + Constant.CONDITIONTYPE + " TEXT NOT NULL );";
 
     private static final String CREATE_CATEGORY = "CREATE TABLE " + Constant.TableName + "(" +
