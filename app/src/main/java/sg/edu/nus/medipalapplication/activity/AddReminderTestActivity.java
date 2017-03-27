@@ -1,7 +1,6 @@
 package sg.edu.nus.medipalapplication.activity;
 
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -21,9 +20,7 @@ import java.util.Locale;
 
 import sg.edu.nus.medipalapplication.MedipalFolder.Reminder;
 import sg.edu.nus.medipalapplication.R;
-import sg.edu.nus.medipalapplication.database.Constant;
 import sg.edu.nus.medipalapplication.database.ReminderDAO;
-import sg.edu.nus.medipalapplication.service.ReminderService;
 
 import static android.R.attr.id;
 
@@ -114,17 +111,17 @@ public class AddReminderTestActivity extends AppCompatActivity {
 
         boolean result = reminderDAO.addReminder(reminder);
 
-        //ArrayList<Long> longValues = reminder.getTimeinMillisecond(reminder.getInterval(),reminder.getFrequency(),reminder.getstartDateTimeLong());
+       /* //ArrayList<Long> longValues = reminder.getTimeinMillisecond(reminder.getInterval(),reminder.getFrequency(),reminder.getstartDateTimeLong());
 
         Intent service = new Intent(this, ReminderService.class);
         service.putExtra(Constant.COLUMN_ID, reminder.getId());
         service.putExtra(Constant.STARTDATE, hour);
         service.putExtra(Constant.STARTTIME, min);
         service.putExtra(Constant.FREQUENCY, reminder.getFrequency());
-        service.putExtra(Constant.INTERVAL, reminder.getInterval());
+        service.putExtra(Constant.INTERVAL, reminder.getInterval());*/
 
 
-        service.putExtra("Message", "Medicine reminder");
+     /*   service.putExtra("Message", "Medicine reminder");*/
        /* service.setAction(ReminderService.CREATE);
         startService(service);
 */

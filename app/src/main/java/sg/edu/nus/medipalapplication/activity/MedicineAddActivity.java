@@ -107,7 +107,7 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
         String reminderId = String.valueOf(reminderDAO.getLastReminderId());
         String categoryId = String.valueOf(categoryDAO.getCategoryIdByName(catName));
 
-        remind = "Yes";
+//        remind = "Yes";
 
         long result = medicineDatabase.medicineAdd(name, description, categoryId, reminderId, remind, quantity, dosage, dataissued, consumequantity, threshold, expirefactor);
 
@@ -126,7 +126,7 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
             service.putExtra("Message", "Medicine Reminder");
             service.setAction(ReminderService.CREATE);
             startService(service);
-            
+
             medicinename.setText("");
             medicinedescription.setText("");
             medicinecatid.setTag(spinnerValueSelected);

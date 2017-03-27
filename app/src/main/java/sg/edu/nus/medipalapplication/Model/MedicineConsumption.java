@@ -10,9 +10,9 @@ public class MedicineConsumption {
     private String medicineName;
     private Consumption consumption;
     private int consumedQty;
-    //private String consumedOn
-private int consumedOn;
-    public MedicineConsumption(String medicineName, int consumptionQty, int consumedOn){
+    private int consumedOn;
+
+    public MedicineConsumption(String medicineName, int consumptionQty, int consumedOn) {
         this.medicineName = medicineName;
         this.consumedQty = consumptionQty;
         this.consumedOn = consumedOn;
