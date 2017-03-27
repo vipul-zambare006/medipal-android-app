@@ -97,6 +97,7 @@ public class MedicineEditActivity extends AppCompatActivity implements AdapterVi
             @Override
             public void onClick(View v) {
                 delete(id);
+                finish();
             }
         });
     }
