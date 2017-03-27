@@ -28,7 +28,7 @@ import static android.R.attr.id;
  * Created by Gaurav Sharma  & Vipul Zambare on 3/24/2017.
  */
 
-public class AddReminderTestActivity extends AppCompatActivity {
+public class AddReminderActivity extends AppCompatActivity {
 
     EditText editLocation, editDate, editTime, editDescription;
     private EditText frequency;
@@ -83,7 +83,7 @@ public class AddReminderTestActivity extends AppCompatActivity {
 
                 }
                 TimePickerDialog timePickerDialog =
-                        new TimePickerDialog(AddReminderTestActivity.this, timeSetListener, timeCalendar.get(Calendar.HOUR_OF_DAY), timeCalendar.get(Calendar.MINUTE), false);
+                        new TimePickerDialog(AddReminderActivity.this, timeSetListener, timeCalendar.get(Calendar.HOUR_OF_DAY), timeCalendar.get(Calendar.MINUTE), false);
                 timePickerDialog.show();
             }
         };

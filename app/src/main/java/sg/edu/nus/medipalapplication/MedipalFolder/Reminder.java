@@ -44,5 +44,6 @@ public class Reminder {
             return false;
 
         return id == ((Reminder) obj).id;
+        
     }
 }

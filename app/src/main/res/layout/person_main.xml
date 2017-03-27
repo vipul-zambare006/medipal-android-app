@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,132 +8,85 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="409dp"
-        android:layout_height="163dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
 
     <android.support.design.widget.TextInputLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="177dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/et_idno"
-            android:layout_width="352dp"
-            android:layout_height="44dp"
-            android:ems="10"
-            android:hint="ID No."
-            android:inputType="textPersonName"
-            android:text="ID No."
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="233dp" />
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:inputType="textPersonName" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="242dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_idno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="passport/NRIC"
+            android:inputType="textPersonName" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/et_dob"
             android:layout_width="352dp"
             android:layout_height="44dp"
-            android:ems="10"
+            android:clickable="true"
             android:hint="Date of birth"
-            android:inputType="date"
-            android:text="Date of birth"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="296dp" />
+            android:inputType="date" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="378dp">
-
-        <EditText
-            android:id="@+id/et_postal"
-            android:layout_width="352dp"
-            android:layout_height="44dp"
-            android:ems="10"
-            android:hint="Postal"
-            android:inputType="number"
-            android:text="Postal"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="429dp" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="450dp">
 
         <EditText
             android:id="@+id/et_height"
-            android:layout_width="350dp"
-            android:layout_height="47dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Height"
-            android:inputType="textPersonName"
-            android:text="Height"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="450dp" />
+            android:inputType="textPersonName" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="524dp">
 
         <EditText
             android:id="@+id/bloodtype_spinner"
-            android:layout_width="352dp"
-            android:layout_height="44dp"
-            android:ems="10"
-            android:hint="Blood Type"
-            android:inputType="textPersonName"
-            android:text="Blood Type"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="512dp" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="81dp"
-        tools:layout_editor_absoluteY="93dp">
-
-        <EditText
-            android:id="@+id/et_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Name"
-            android:inputType="textPersonName"
-            android:text="Name"
-            tools:layout_editor_absoluteX="81dp"
-            tools:layout_editor_absoluteY="104dp" />
+            android:hint="Blood Type"
+            android:inputType="textPersonName" />
+
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="309dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/et_address"
@@ -142,19 +94,31 @@
             android:layout_height="46dp"
             android:ems="10"
             android:hint="Address"
-            android:inputType="textPersonName"
-            android:text="Address"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="359dp" />
+            android:inputType="textPersonName" />
 
     </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:id="@+id/btn_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save"
-        tools:layout_editor_absoluteX="140dp"
-        tools:layout_editor_absoluteY="591dp" />
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</android.support.constraint.ConstraintLayout>
+        <EditText
+            android:id="@+id/et_postal"
+            android:layout_width="352dp"
+            android:layout_height="44dp"
+            android:ems="10"
+            android:hint="Postal"
+            android:inputType="number" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <!--
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:text="Save" />
+    -->
+
+</LinearLayout>

@@ -74,6 +74,4 @@ public class HealthBio {
     public int getId() {
         return id;
     }
-
-
 }
