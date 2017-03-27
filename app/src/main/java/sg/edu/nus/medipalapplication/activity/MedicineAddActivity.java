@@ -49,6 +49,7 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
     MedicineAdapter medicineAdapter;
     ArrayList<Medicine> medicineitem = new ArrayList<Medicine>();
     private String spinnerValueSelected;
+    public static final String MEDICINE = "Medicine";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,30 +90,52 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
             @Override
             public void onClick(View v) {
                 if (isValid()) {
-                    save(medicinename.getText().toString(), medicinedescription.getText().toString(), spinnerValueSelected, Medicineremind.getText().toString(), medicinequantity.getText().toString(), medicinedosage.getText().toString(), medicinedateissued.getText().toString(), medicineconsumequantity.getText().toString(), medicienthreshold.getText().toString(), mediceineexpire.getText().toString());
+                    save(medicinename.getText().toString(), medicinedescription.getText().toString(), spinnerValueSelected, Medicineremind.isChecked(), medicinequantity.getText().toString(), medicinedosage.getText().toString(), medicinedateissued.getText().toString(), medicineconsumequantity.getText().toString(), medicienthreshold.getText().toString(), mediceineexpire.getText().toString());
                     finish();
                 }
             }
         });
     }
 
-    private void save(String name, String description, String catName, String remind, String quantity, String dosage, String dataissued, String consumequantity, String threshold, String expirefactor) {
+    private void save(String name, String description, String catName, boolean remind, String quantity, String dosage, String dataissued, String consumequantity, String threshold, String expirefactor) {
 
         MedicineDAO medicineDatabase = new MedicineDAO(this);
-
         ReminderDAO reminderDAO = new ReminderDAO(this);
         CategoryDAO categoryDAO = new CategoryDAO(this);
         medicineDatabase.openDb();
 
         String reminderId = String.valueOf(reminderDAO.getLastReminderId());
         String categoryId = String.valueOf(categoryDAO.getCategoryIdByName(catName));
+        String remindSwitch = "";
+        remindSwitch = remind ? "YES" : "NO";
 
-//        remind = "Yes";
-
-        long result = medicineDatabase.medicineAdd(name, description, categoryId, reminderId, remind, quantity, dosage, dataissued, consumequantity, threshold, expirefactor);
+        long result = medicineDatabase.medicineAdd(name, description, categoryId, reminderId, remindSwitch, quantity, dosage, dataissued, consumequantity, threshold, expirefactor);
 
         if (result > 0) {
+            if(remind) {
+                setReminder(name, consumequantity, reminderDAO);
+            }
+            setDisplay();
+        } else {
+            Toast.makeText(getApplicationContext(), "Unable to insert", Toast.LENGTH_SHORT).show();
+        }
+        medicineDatabase.close();
+    }
 
+    private void setDisplay() {
+        medicinename.setText("");
+        medicinedescription.setText("");
+        medicinecatid.setTag(spinnerValueSelected);
+        Medicineremind.setText("");
+        medicinequantity.setText("");
+        medicinedosage.setText("");
+        medicinedateissued.setText("");
+        medicineconsumequantity.setText("");
+        medicienthreshold.setText("");
+        mediceineexpire.setText("");
+    }
+
+    private void setReminder(String name, String consumequantity, ReminderDAO reminderDAO) {
             Reminder reminder = reminderDAO.getLastReminder();
             String dateTimeString = reminder.getstartDateTime();
 
@@ -124,24 +147,9 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
             service.putExtra(Constant.MedicineName, name);
             service.putExtra(Constant.MedicineConsumeQuantity, consumequantity);
             service.putExtra("Message", "Medicine Reminder");
+            service.putExtra("Type",MEDICINE);
             service.setAction(ReminderService.CREATE);
             startService(service);
-
-            medicinename.setText("");
-            medicinedescription.setText("");
-            medicinecatid.setTag(spinnerValueSelected);
-            Medicineremind.setText("");
-            medicinequantity.setText("");
-            medicinedosage.setText("");
-            medicinedateissued.setText("");
-            medicineconsumequantity.setText("");
-            medicienthreshold.setText("");
-            mediceineexpire.setText("");
-
-        } else {
-            Toast.makeText(getApplicationContext(), "Unable to insert", Toast.LENGTH_SHORT).show();
-        }
-        medicineDatabase.close();
     }
 
     protected void onResume() {
@@ -164,8 +172,7 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
     private void setButtonState(boolean state) {
         if (state) {
             mview.setEnabled(true);
-//            AddReminderTestActivity
-                    Intent i = new Intent(this,AddReminderTestActivity.class);
+                    Intent i = new Intent(this,AddReminderActivity.class);
             startActivity(i);
             Toast.makeText(MedicineAddActivity.this, "Button enabled!", Toast.LENGTH_SHORT).show();
         } else {
@@ -258,7 +265,6 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current date as the default date in the picker
             final Calendar c = Calendar.getInstance();
             int year = c.get(Calendar.YEAR);
             int month = c.get(Calendar.MONTH);
