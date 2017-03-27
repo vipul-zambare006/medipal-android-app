@@ -47,27 +47,16 @@ public class AddHealthBioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_healthbio);
 
         Intent intent = getIntent();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        /*toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), HealthBioActivity.class));
-            }
-        });*/
 
         healthId = intent.getExtras().getInt("Id");
         final String condition = intent.getExtras().getString("condition");
-        final String startdate = intent.getExtras().getString("date");
+        final String startdate = intent.getExtras().getString("startdate");
         final String conditiontype = intent.getExtras().getString("conditiontype");
         action = intent.getExtras().getString("action");
 
         editCondition = (EditText) findViewById(R.id.et_condition);
         editStartDate = (EditText) findViewById(R.id.et_start_date);
         editConditionType = (EditText) findViewById(R.id.et_condition_type);
-
 
         editCondition.setText(condition);
         editStartDate.setText(startdate);
@@ -111,6 +100,7 @@ public class AddHealthBioActivity extends AppCompatActivity {
     }
 
     private void update(int id, String condition, String startdate, String conditiontype, HealthBioDAO healthBioDAO, String action) {
+
         HealthBio healthBio = new HealthBio(id, condition, startdate, conditiontype);
 
         if (action != null && !action.trim().isEmpty() && action.equals("add")) {
@@ -119,13 +109,13 @@ public class AddHealthBioActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), Constant.NotificationMsg_HealthBioAdded, Toast.LENGTH_SHORT).show();
             Intent i = new Intent(getApplicationContext(), HealthBioActivity.class);
             startActivity(i);
-        } else {
+        }
+        else {
             boolean result = healthBio.UpdateHealthBioById(healthBio, healthBioDAO);
 
             if (result) {
                 editCondition.setText(condition);
                 editStartDate.setText(startdate);
-//                editDate.setText(type);
 
                 Toast.makeText(getApplicationContext(), Constant.NotificationMsg_HealthBioUpdated, Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplicationContext(), HealthBioActivity.class);
@@ -148,6 +138,7 @@ public class AddHealthBioActivity extends AppCompatActivity {
         if (id == R.id.action_save_healthBio) {
             if (isValid()) {
                 update(healthId, editCondition.getText().toString(), editStartDate.getText().toString(), editConditionType.getText().toString(), healthBioDAO, action);
+                finish();
             }
         }
         if (id == R.id.action_delete) {
@@ -175,7 +166,6 @@ public class AddHealthBioActivity extends AppCompatActivity {
             editConditionType.setError(Constant.ErrorMsg_PleaseEnterDate);
             isValid = false;
         }
-
         return isValid;
     }
 
