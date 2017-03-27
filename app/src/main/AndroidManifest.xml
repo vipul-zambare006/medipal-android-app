@@ -93,7 +93,7 @@
             android:label="ICE"
             android:parentActivityName=".MainActivity"
             android:theme="@style/TabLayoutTheme"></activity>
-        <activity android:name=".activity.AddReminderTestActivity" />
+        <activity android:name=".activity.AddReminderActivity" />
 
         <receiver android:name=".activity.ReminderSetter">
             <intent-filter>
