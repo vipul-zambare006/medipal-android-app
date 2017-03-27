@@ -64,8 +64,10 @@ public class WeightDisplayEditUpdateActivity extends AppCompatActivity {
         updateSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                update(id, editweight.getText().toString(), editdate.getText().toString(), edittime.getText().toString());
-                finish();
+                if (isValid()) {
+                    update(id, editweight.getText().toString(), editdate.getText().toString(), edittime.getText().toString());
+                    finish();
+                }
             }
         });
         editdate.setOnClickListener(new View.OnClickListener() {
@@ -107,14 +109,17 @@ public class WeightDisplayEditUpdateActivity extends AppCompatActivity {
     private boolean isValid() {
         boolean isValid = true;
         if (TextUtils.isEmpty(editweight.getText().toString().trim())) {
+            editweight.requestFocus();
             editweight.setError("please add weight value");
             isValid = false;
         }
         if (TextUtils.isEmpty(editdate.getText().toString().trim())) {
+            editdate.requestFocus();
             editdate.setError("please add date");
             isValid = false;
         }
         if (TextUtils.isEmpty(edittime.getText().toString().trim())) {
+            edittime.requestFocus();
             edittime.setError("please add time");
             isValid = false;
         }

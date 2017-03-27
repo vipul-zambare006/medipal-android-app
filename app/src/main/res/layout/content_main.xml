@@ -163,32 +163,6 @@
         app:layout_constraintVertical_bias="0.889" />
 
     <ImageView
-        android:id="@+id/Reminder"
-        android:layout_width="43dp"
-        android:layout_height="42dp"
-        android:clickable="true"
-        android:src="@drawable/ic_menu_reminder"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.774"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.588" />
-
-    <TextView
-        android:id="@+id/tv_reminder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reminder"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.775"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.67" />
-
-
-    <ImageView
         android:id="@+id/Consumption"
         android:layout_width="43dp"
         android:layout_height="42dp"
@@ -212,7 +186,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.89" />
-
 
 
 </android.support.constraint.ConstraintLayout>

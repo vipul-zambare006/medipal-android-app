@@ -85,7 +85,7 @@ public class Reminder {
     }
 
     public void DeleteReminder(int appointmentId, AppointmentDAO appointmentDAO) {
-        appointmentDAO.DeleteAppointment(appointmentId);
+        // appointmentDAO.DeleteAppointment(appointmentId);
     }
 
 //    public ArrayList<Long> getTimeinMillisecond(int interval, int frequency, long startDateTime) {

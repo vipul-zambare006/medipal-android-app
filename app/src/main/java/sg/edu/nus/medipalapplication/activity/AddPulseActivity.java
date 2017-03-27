@@ -99,14 +99,17 @@ public class AddPulseActivity extends AppCompatActivity {
     private boolean isValid() {
         boolean isValid = true;
         if (TextUtils.isEmpty(pulse.getText().toString().trim())) {
+            pulse.requestFocus();
             pulse.setError("please add pulse value");
             isValid = false;
         }
         if (TextUtils.isEmpty(DateEdit.getText().toString().trim())) {
+            DateEdit.requestFocus();
             DateEdit.setError("please add date");
             isValid = false;
         }
         if (TextUtils.isEmpty(TimeEdit.getText().toString().trim())) {
+            TimeEdit.requestFocus();
             TimeEdit.setError("please add time");
             isValid = false;
         }

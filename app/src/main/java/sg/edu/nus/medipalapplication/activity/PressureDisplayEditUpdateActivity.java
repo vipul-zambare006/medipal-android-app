@@ -66,8 +66,10 @@ public class PressureDisplayEditUpdateActivity extends AppCompatActivity {
         updateSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                update(id, editsystolic.getText().toString(), editdiastolic.getText().toString(), editdate.getText().toString(), edittime.getText().toString());
-                finish();
+                if (isValid()) {
+                    update(id, editsystolic.getText().toString(), editdiastolic.getText().toString(), editdate.getText().toString(), edittime.getText().toString());
+                    finish();
+                }
             }
         });
         editdate.setOnClickListener(new View.OnClickListener() {
@@ -111,18 +113,22 @@ public class PressureDisplayEditUpdateActivity extends AppCompatActivity {
     private boolean isValid() {
         boolean isValid = true;
         if (TextUtils.isEmpty(editsystolic.getText().toString().trim())) {
+            editsystolic.requestFocus();
             editsystolic.setError("please add systolic value");
             isValid = false;
         }
         if (TextUtils.isEmpty(editdiastolic.getText().toString().trim())) {
+            editdiastolic.requestFocus();
             editdiastolic.setError("Please add diastolic value");
             isValid = false;
         }
         if (TextUtils.isEmpty(editdate.getText().toString().trim())) {
+            editdate.requestFocus();
             editdate.setError("please add date");
             isValid = false;
         }
         if (TextUtils.isEmpty(edittime.getText().toString().trim())) {
+            edittime.requestFocus();
             edittime.setError("please add time");
             isValid = false;
         }

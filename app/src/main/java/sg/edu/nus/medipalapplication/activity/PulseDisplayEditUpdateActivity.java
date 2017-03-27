@@ -61,8 +61,10 @@ public class PulseDisplayEditUpdateActivity extends AppCompatActivity {
         updateSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                update(id, editpulse.getText().toString(), editdate.getText().toString(), edittime.getText().toString());
-                finish();
+                if (isValid()) {
+                    update(id, editpulse.getText().toString(), editdate.getText().toString(), edittime.getText().toString());
+                    finish();
+                }
             }
         });
         editdate.setOnClickListener(new View.OnClickListener() {
@@ -104,14 +106,17 @@ public class PulseDisplayEditUpdateActivity extends AppCompatActivity {
     private boolean isValid() {
         boolean isValid = true;
         if (TextUtils.isEmpty(editpulse.getText().toString().trim())) {
+            editpulse.requestFocus();
             editpulse.setError("please add pulse value");
             isValid = false;
         }
         if (TextUtils.isEmpty(editdate.getText().toString().trim())) {
+            editdate.requestFocus();
             editdate.setError("please add date");
             isValid = false;
         }
         if (TextUtils.isEmpty(edittime.getText().toString().trim())) {
+            edittime.requestFocus();
             edittime.setError("please add time");
             isValid = false;
         }

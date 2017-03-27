@@ -14,9 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import sg.edu.nus.medipalapplication.MedipalFolder.Medicine;
 import sg.edu.nus.medipalapplication.activity.AppointmentActivity;
 import sg.edu.nus.medipalapplication.activity.CategoryActivity;
 import sg.edu.nus.medipalapplication.activity.ConsumptionActivity;
@@ -33,8 +31,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    ImageView categoryimage, appoinmentimage, iceimage, healthbioimage, medicineimage, measurementimage, reminderimage, consumptionimage;
-    TextView medicine;
+    ImageView categoryimage, appoinmentimage, iceimage, healthbioimage, medicineimage, measurementimage, consumptionimage;
     View mview;
 
 
@@ -44,17 +41,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        
-//            private View.OnClickListener medicalListener = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            Intent intent = new Intent(MainActivity.this, MedicalLayout.class);
-//            startActivity(intent);
-//            Log.w("Done EmMedicalActivity", "");
-//
-//        }
-//    };
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -94,7 +80,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
         categoryimage = (ImageView) findViewById(R.id.Category);
         categoryimage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,16 +109,6 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-/*
-        reminderimage = (ImageView) findViewById(R.id.Reminder);
-        reminderimage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,Mea.class);
-                startActivity(intent);
-            }
-        });
-*/
 
         appoinmentimage = (ImageView) findViewById(R.id.Appointment);
         appoinmentimage.setOnClickListener(new View.OnClickListener() {
@@ -142,19 +117,9 @@ public class MainActivity extends AppCompatActivity
 
                 Intent intent = new Intent(MainActivity.this, AppointmentActivity.class);
                 startActivity(intent);
-
-
             }
         });
 
-/*        consumptionimage = (ImageView) findViewById(R.id.Consumption);
-        consumptionimage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, .class);
-                startActivity(intent);
-            }
-        });*/
     }
 
 
@@ -183,8 +148,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_person) {
           startActivity(new Intent(getApplicationContext(), PersonActivity.class));
         }
-        if (id == R.id.nav_medical) {
-            startActivity(new Intent(getApplicationContext(), Medicine.class));
+        if (id == R.id.nav_healthBio) {
+            startActivity(new Intent(getApplicationContext(), HealthBioActivity.class));
         }
         if (id == R.id.nav_ICE) {
             startActivity(new Intent(getApplicationContext(), ICETabLayoutActivity.class));
@@ -201,9 +166,6 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_appointment) {
             startActivity(new Intent(getApplicationContext(), AppointmentActivity.class));
         }
-//       if (id == R.id.nav_reminder) {
-//            startActivity(new Intent(getApplicationContext(), ReminderActivity.class));
-//        }
 
         if (id == R.id.nav_consumption) {
             startActivity(new Intent(getApplicationContext(), ConsumptionActivity.class));

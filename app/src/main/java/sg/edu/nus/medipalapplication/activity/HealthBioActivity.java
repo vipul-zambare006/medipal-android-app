@@ -1,58 +1,96 @@
 package sg.edu.nus.medipalapplication.activity;
 
-import android.content.DialogInterface;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.FrameLayout;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 
+import java.util.ArrayList;
+
+import sg.edu.nus.medipalapplication.MainActivity;
+import sg.edu.nus.medipalapplication.MedipalFolder.HealthBio;
 import sg.edu.nus.medipalapplication.R;
-import sg.edu.nus.medipalapplication.fragment.HealthBioFragment;
+import sg.edu.nus.medipalapplication.adapter.HealthBioRecyclerViewAdapter;
+import sg.edu.nus.medipalapplication.database.HealthBioDAO;
 
 
 /**
- * Created by monalisadebnth on 20/3/17.
+ * Created by monalisadebnth on 25/3/17.
  */
 
 public class HealthBioActivity extends AppCompatActivity {
 
-    private FrameLayout mContainer;
+    HealthBio healthbio = new HealthBio();
+    private RecyclerView recyclerView;
+    private HealthBioRecyclerViewAdapter adapter;
+    private ArrayList<HealthBio> healthArrayList;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_health_bio);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        mContainer = (FrameLayout) findViewById(R.id.container);
-        setFragment();
+        setContentView(R.layout.health_bio_main);
+
+
+        recyclerView = (RecyclerView) findViewById(R.id.recyle_view);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        recyclerView.setHasFixedSize(true);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        loadHealthBio(this);
+
+        adapter = new HealthBioRecyclerViewAdapter(this, healthArrayList);
+        recyclerView.setAdapter(adapter);
+        fab.setOnClickListener(onAddingListener(this));
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
+
     }
 
-    private void setFragment() {
-        FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().add(mContainer.getId(), HealthBioFragment.newInstance(), "HealthID Bio fragment").commit();
+    public void loadHealthBio(Context context) {
+        final HealthBioDAO healthBioDAO;
+        healthBioDAO = new HealthBioDAO(context);
+        healthArrayList = healthbio.getHealthbio(healthBioDAO);
+
+        if (!(healthArrayList.size() < 1))
+            recyclerView.setAdapter(adapter);
     }
 
-    @Override
-    public void onBackPressed() {
-        //super.onBackPressed();
+    private View.OnClickListener onAddingListener(final Activity activity) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, AddHealthBioActivity.class);
 
-        new AlertDialog.Builder(this)
-                .setMessage("Are you sure you want to exit?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        finish();
-                    }
-                })
-                .setNegativeButton("No", null)
-                .show();
+                intent.putExtra("Id", 0);
+                intent.putExtra("condition", "");
+                intent.putExtra("date", "");
+                intent.putExtra("conditiontype", "");
+                intent.putExtra("action", "add");
+
+
+                activity.startActivity(intent);
+            }
+        };
     }
 
-    @Override
-    protected void onStop() {
-        //App.clubStore.saveAll(this);
-        super.onStop();
-    }
 }
