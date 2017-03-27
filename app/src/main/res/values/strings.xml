@@ -17,9 +17,10 @@
     <string name="temperature">temperature</string>
     <string name="weight">weight</string>
     <string name="title_activity_display">DisplayActivity</string>
-    <string name="red">RED</string>
-    <string name="blue">BLUE</string>
-    <string name="green">GREEN</string>
+    <string name="Medicine">Medicine</string>
+    <string name="Ice">Ice</string>
+    <string name="Category">Category</string>
+    <string name="Appointment">Appointment</string>
 
 
     <string-array name="condition_type">
