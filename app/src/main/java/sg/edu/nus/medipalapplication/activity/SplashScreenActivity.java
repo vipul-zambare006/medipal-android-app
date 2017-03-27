@@ -1,9 +1,7 @@
 package sg.edu.nus.medipalapplication.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -16,7 +14,7 @@ import sg.edu.nus.medipalapplication.R;
 
 public class SplashScreenActivity extends Activity {
 
-    private static int SPLASH_TIME_OUT = 2000;
+    private static int SPLASH_TIME_OUT = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +31,9 @@ public class SplashScreenActivity extends Activity {
             @Override
             public void run() {
 
+                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                startActivity(intent);
+/*
                 SharedPreferences sharedPreferences = getSharedPreferences("ShaPreferences", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -41,7 +42,7 @@ public class SplashScreenActivity extends Activity {
                 if (firstRun) {
                     editor.putBoolean("firstRun", false);
                     editor.commit();
-                    Intent intent = new Intent(SplashScreenActivity.this, HelpActivity.class);
+                    Intent intent = new Intent(SplashScreenActivity.this, PersonActivity.class);
                     //Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {
@@ -49,8 +50,11 @@ public class SplashScreenActivity extends Activity {
                     Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
+*/
             }
         }, SPLASH_TIME_OUT);
+
+        finish();
     }
 }
 
