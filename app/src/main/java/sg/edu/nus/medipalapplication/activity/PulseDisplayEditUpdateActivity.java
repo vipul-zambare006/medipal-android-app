@@ -110,6 +110,11 @@ public class PulseDisplayEditUpdateActivity extends AppCompatActivity {
             editpulse.setError("please add pulse value");
             isValid = false;
         }
+        if ((Integer.valueOf(editpulse.getText().toString().trim()) <= 60) || (Integer.valueOf(editpulse.getText().toString().trim()) >= 200)) {
+            editpulse.requestFocus();
+            editpulse.setError("Pulse value should be in range of 60-200");
+            isValid = false;
+        }
         if (TextUtils.isEmpty(editdate.getText().toString().trim())) {
             editdate.requestFocus();
             editdate.setError("please add date");

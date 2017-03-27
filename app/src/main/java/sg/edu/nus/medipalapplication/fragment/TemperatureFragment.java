@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import sg.edu.nus.medipalapplication.MedipalFolder.Measurement;
+import sg.edu.nus.medipalapplication.MedipalFolder.Pressure;
 import sg.edu.nus.medipalapplication.MedipalFolder.Temperature;
 import sg.edu.nus.medipalapplication.R;
 import sg.edu.nus.medipalapplication.activity.AddTemperatureActivity;
@@ -45,6 +46,11 @@ public class TemperatureFragment extends Fragment {
         temperatureRecycleView = (RecyclerView) view.findViewById(R.id.temperaturerecycleviewid);
         temperatureRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
         temperatureRecycleView.setItemAnimator(new DefaultItemAnimator());
+        loadTemperatureOnResume();
+        return view;
+    }
+
+    private void loadTemperatureOnResume() {
         Measurement showtemperature = new Temperature();
         temperatureitem = showtemperature.showDisplayMeasurements(getActivity().getApplicationContext());
 
@@ -53,7 +59,12 @@ public class TemperatureFragment extends Fragment {
             temperatureAdapter = new TemperatureAdapter(getActivity(), temperatureitem);
             temperatureRecycleView.setAdapter(temperatureAdapter);
         }
-        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadTemperatureOnResume();
     }
 
 }

@@ -117,9 +117,20 @@ public class PressureDisplayEditUpdateActivity extends AppCompatActivity {
             editsystolic.setError("please add systolic value");
             isValid = false;
         }
+        if ((Integer.valueOf(editsystolic.getText().toString().trim()) <= 80) || (Integer.valueOf(editsystolic.getText().toString().trim()) >= 200)) {
+            editsystolic.requestFocus();
+            editsystolic.setError("Systolic value should be in range of 80-200");
+            isValid = false;
+        }
+
         if (TextUtils.isEmpty(editdiastolic.getText().toString().trim())) {
             editdiastolic.requestFocus();
             editdiastolic.setError("Please add diastolic value");
+            isValid = false;
+        }
+        if ((Integer.valueOf(editdiastolic.getText().toString().trim()) <= 60) || (Integer.valueOf(editdiastolic.getText().toString().trim()) >= 150)) {
+            editdiastolic.requestFocus();
+            editdiastolic.setError("Diastolic value should be in range of 60-150");
             isValid = false;
         }
         if (TextUtils.isEmpty(editdate.getText().toString().trim())) {

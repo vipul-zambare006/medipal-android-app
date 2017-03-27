@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import sg.edu.nus.medipalapplication.MedipalFolder.Measurement;
+import sg.edu.nus.medipalapplication.MedipalFolder.Temperature;
 import sg.edu.nus.medipalapplication.MedipalFolder.Weight;
 import sg.edu.nus.medipalapplication.R;
 import sg.edu.nus.medipalapplication.activity.AddWeightActivity;
@@ -45,6 +46,12 @@ public class WeightFragment extends Fragment {
         weightRecycleView = (RecyclerView) view.findViewById(R.id.weightrecycleviewid);
         weightRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
         weightRecycleView.setItemAnimator(new DefaultItemAnimator());
+        setWeightOnResume();
+
+        return view;
+    }
+
+    private void setWeightOnResume() {
         Measurement showweight = new Weight();
         weightitem = showweight.showDisplayMeasurements(getActivity().getApplicationContext());
 
@@ -53,7 +60,12 @@ public class WeightFragment extends Fragment {
             weightAdapter = new WeightAdapter(getActivity(), weightitem);
             weightRecycleView.setAdapter(weightAdapter);
         }
-        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setWeightOnResume();
     }
 
 }

@@ -103,7 +103,7 @@ public class ReminderService extends IntentService {
             int i = 1;
             while(i < frequency ){
                 calendar.add(Calendar.HOUR_OF_DAY, interval);
-                am.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), pi);
+                am.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pi);
                 i++;
             }
         } else if (CANCEL.equals(action)) {

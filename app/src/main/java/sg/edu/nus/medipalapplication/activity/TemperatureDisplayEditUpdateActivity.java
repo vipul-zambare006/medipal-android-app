@@ -84,7 +84,7 @@ public class TemperatureDisplayEditUpdateActivity extends AppCompatActivity {
     }
 
     private void update(int id, String temperature, String editdate, String edittime) {
-        Integer valueOfTemperature = Integer.valueOf(temperature);
+        Float valueOfTemperature = Float.valueOf(temperature);
         StringBuffer dateTime = new StringBuffer(editdate);
         dateTime.append("_");
         dateTime.append(edittime);
@@ -109,6 +109,11 @@ public class TemperatureDisplayEditUpdateActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(edittemperature.getText().toString().trim())) {
             edittemperature.requestFocus();
             edittemperature.setError("please add temperature value");
+            isValid = false;
+        }
+        if ((Float.valueOf(edittemperature.getText().toString().trim()) <= 95) || (Float.valueOf(edittemperature.getText().toString().trim()) >= 110)) {
+            edittemperature.requestFocus();
+            edittemperature.setError("Temperature value should be in range of 60-200");
             isValid = false;
         }
         if (TextUtils.isEmpty(editdate.getText().toString().trim())) {

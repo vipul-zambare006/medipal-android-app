@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.sql.Time;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -103,11 +104,17 @@ public class AddPulseActivity extends AppCompatActivity {
             pulse.setError("please add pulse value");
             isValid = false;
         }
+        if ((Integer.valueOf(pulse.getText().toString().trim()) <= 60) || (Integer.valueOf(pulse.getText().toString().trim()) >= 200)) {
+            pulse.requestFocus();
+            pulse.setError("Pulse value should be in range of 60-200");
+            isValid = false;
+        }
         if (TextUtils.isEmpty(DateEdit.getText().toString().trim())) {
             DateEdit.requestFocus();
             DateEdit.setError("please add date");
             isValid = false;
         }
+
         if (TextUtils.isEmpty(TimeEdit.getText().toString().trim())) {
             TimeEdit.requestFocus();
             TimeEdit.setError("please add time");

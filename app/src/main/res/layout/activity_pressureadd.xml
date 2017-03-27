@@ -15,7 +15,7 @@
         android:layout_marginBottom="14dp"
         android:ems="10"
         android:gravity="center_vertical"
-        android:hint="systolic"
+        android:hint="systolic "
         android:inputType="number" />
 
     <EditText
@@ -36,7 +36,7 @@
         android:layout_alignStart="@+id/Date"
         android:layout_below="@+id/Date"
         android:ems="10"
-        android:focusable="true"
+        android:focusable="false"
         android:hint="Enter Time"
         android:inputType="time" />
 
@@ -64,7 +64,7 @@
         android:layout_alignStart="@+id/diastolic"
         android:layout_centerVertical="true"
         android:ems="10"
-        android:focusable="true"
+        android:focusable="false"
         android:hint="Enter Date"
         android:inputType="date" />
 

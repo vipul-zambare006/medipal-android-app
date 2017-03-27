@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import sg.edu.nus.medipalapplication.MedipalFolder.Measurement;
 import sg.edu.nus.medipalapplication.MedipalFolder.Pulse;
+import sg.edu.nus.medipalapplication.MedipalFolder.Temperature;
 import sg.edu.nus.medipalapplication.R;
 import sg.edu.nus.medipalapplication.activity.AddPulseActivity;
 import sg.edu.nus.medipalapplication.adapter.PulseAdapter;
@@ -32,7 +33,6 @@ public class PulseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pulse, container, false);
-
         addPulse = (FloatingActionButton) view.findViewById(R.id.addPulse);
         addPulse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +45,11 @@ public class PulseFragment extends Fragment {
         pulseRecycleView = (RecyclerView) view.findViewById(R.id.pulserecycleviewid);
         pulseRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
         pulseRecycleView.setItemAnimator(new DefaultItemAnimator());
+        loadPulseOnResume();
+        return view;
+    }
+
+    private void loadPulseOnResume() {
         Measurement showpulse = new Pulse();
         pulseitem = showpulse.showDisplayMeasurements(getActivity().getApplicationContext());
 
@@ -53,7 +58,11 @@ public class PulseFragment extends Fragment {
             pulseAdapter = new PulseAdapter(getActivity(), pulseitem);
             pulseRecycleView.setAdapter(pulseAdapter);
         }
-        return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadPulseOnResume();
+    }
 }

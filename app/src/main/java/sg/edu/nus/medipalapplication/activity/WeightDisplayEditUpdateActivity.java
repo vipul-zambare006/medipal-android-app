@@ -113,6 +113,11 @@ public class WeightDisplayEditUpdateActivity extends AppCompatActivity {
             editweight.setError("please add weight value");
             isValid = false;
         }
+        if ((Integer.valueOf(editweight.getText().toString().trim()) <= 1) || (Integer.valueOf(editweight.getText().toString().trim()) >= 150)) {
+            editweight.requestFocus();
+            editweight.setError("Weight value should be in range of 60-200");
+            isValid = false;
+        }
         if (TextUtils.isEmpty(editdate.getText().toString().trim())) {
             editdate.requestFocus();
             editdate.setError("please add date");

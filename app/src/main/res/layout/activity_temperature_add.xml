@@ -36,7 +36,8 @@
         android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="Date"
-        android:inputType="date" />
+        android:inputType="date"
+        android:focusable="false"/>
 
     <EditText
         android:id="@+id/time"
@@ -47,7 +48,8 @@
         android:layout_marginTop="25dp"
         android:ems="10"
         android:hint="time"
-        android:inputType="time" />
+        android:inputType="time"
+        android:focusable="false"/>
 
     <Button
         android:id="@+id/AddToTemperature"

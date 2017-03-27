@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -24,6 +25,7 @@ import java.util.Locale;
 import sg.edu.nus.medipalapplication.MedipalFolder.Measurement;
 import sg.edu.nus.medipalapplication.MedipalFolder.Pressure;
 import sg.edu.nus.medipalapplication.R;
+import sg.edu.nus.medipalapplication.Validate.InputFilterMinMax;
 
 @RequiresApi(api = Build.VERSION_CODES.N)
 public class AddPressureActivity extends AppCompatActivity {
@@ -45,7 +47,6 @@ public class AddPressureActivity extends AppCompatActivity {
 
         DateEdit = (EditText) findViewById(R.id.Date);
         systolic = (EditText) findViewById(R.id.systolic);
-        // systolic.setFilters(new InputFilter[]{new InputFilterMinMax("80", "200")});
         diastolic = (EditText) findViewById(R.id.diastolic);
         TimeEdit = (EditText) findViewById(R.id.time);
         systolicunit = (TextView) findViewById(R.id.systolic_unit);
@@ -110,9 +111,21 @@ public class AddPressureActivity extends AppCompatActivity {
             systolic.setError("please add systolic value");
             isValid = false;
         }
+
+        if ((Integer.valueOf(systolic.getText().toString().trim()) <= 80) || (Integer.valueOf(systolic.getText().toString().trim()) >= 200)) {
+            systolic.requestFocus();
+            systolic.setError("Systolic value should be in range of 80-200");
+            isValid = false;
+        }
+
         if (TextUtils.isEmpty(diastolic.getText().toString().trim())) {
             diastolic.requestFocus();
             diastolic.setError("Please add diastolic value");
+            isValid = false;
+        }
+        if ((Integer.valueOf(diastolic.getText().toString().trim()) <= 60) || (Integer.valueOf(diastolic.getText().toString().trim()) >= 150)) {
+            diastolic.requestFocus();
+            diastolic.setError("Diastolic value should be in range of 60-150");
             isValid = false;
         }
         if (TextUtils.isEmpty(DateEdit.getText().toString().trim())) {

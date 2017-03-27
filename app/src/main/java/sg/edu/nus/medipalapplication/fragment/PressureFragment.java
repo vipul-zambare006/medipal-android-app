@@ -45,6 +45,11 @@ public class PressureFragment extends Fragment {
         pressureRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
         pressureRecycleView.setItemAnimator(new DefaultItemAnimator());
 
+        loadPressureOnResume();
+        return view;
+    }
+
+    private void loadPressureOnResume() {
         Measurement showpressure = new Pressure();
         pressureitem = showpressure.showDisplayMeasurements(getActivity().getApplicationContext());
 
@@ -53,7 +58,11 @@ public class PressureFragment extends Fragment {
             pressureAdapter = new PressureAdapter(getActivity(), pressureitem);
             pressureRecycleView.setAdapter(pressureAdapter);
         }
-        return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadPressureOnResume();
+    }
 }

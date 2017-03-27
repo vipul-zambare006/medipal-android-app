@@ -100,6 +100,11 @@ public class AddTemperatureActivity extends AppCompatActivity {
             temperature.setError("please add temperature value");
             isValid = false;
         }
+        if ((Float.valueOf(temperature.getText().toString().trim()) <= 95) || (Float.valueOf(temperature.getText().toString().trim()) >= 110)) {
+            temperature.requestFocus();
+            temperature.setError("Temperature value should be in range of 60-200");
+            isValid = false;
+        }
         if (TextUtils.isEmpty(DateEdit.getText().toString().trim())) {
             DateEdit.requestFocus();
             DateEdit.setError("please add date");

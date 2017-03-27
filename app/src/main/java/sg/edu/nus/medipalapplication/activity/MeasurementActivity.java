@@ -51,4 +51,10 @@ public class MeasurementActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
 }
