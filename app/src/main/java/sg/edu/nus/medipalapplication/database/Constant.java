@@ -153,6 +153,7 @@ public class Constant {
     public static final String NotificationMsg_HealthBioAdded = "HealthBio Added Successfully";
     public static final String NotificationMsg_HealthBioUpdated = "HealthBio Updated Successfully";
     public static final String NotificationMsg_HealthBioDeleted = "HealthBio Deleted Successfully";
+    public static final String ErrorMsg_pleaseenter_condtion = "Please Enter Condition";
 
     public static final String HealthBioSelectQuery = "Select * from HealthBio";
 }

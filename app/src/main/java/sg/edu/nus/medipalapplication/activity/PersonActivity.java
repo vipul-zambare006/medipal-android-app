@@ -8,8 +8,11 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -29,8 +32,11 @@ public class PersonActivity extends AppCompatActivity {
     Person person = new Person();
     Calendar currentCal = Calendar.getInstance();
     Calendar selectedDate = Calendar.getInstance();
-    private EditText personname, persondate, personidno, personaddress, personpostalcode, personheight, personmBloodType;
+    private EditText personname, persondate, personidno, personaddress, personpostalcode, personheight;
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+    private String[] mBloodTypeArray;
+    private Spinner mBloodtypeSpinner;
+    private String spinnerString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +48,27 @@ public class PersonActivity extends AppCompatActivity {
         personidno = (EditText) findViewById(R.id.et_idno);
         personaddress = (EditText) findViewById(R.id.et_address);
         personpostalcode = (EditText) findViewById(R.id.et_postal);
-        personmBloodType= (EditText) findViewById(R.id.bloodtype_spinner);
         personheight = (EditText) findViewById(R.id.et_height);
 
+        mBloodtypeSpinner = (Spinner) findViewById(R.id.bloodtype_spinner);
+        mBloodTypeArray = getResources().getStringArray(R.array.blood_types);
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, mBloodTypeArray);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mBloodtypeSpinner.setAdapter(dataAdapter);
+
+        mBloodtypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spinnerString = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         final PersonDAO personDAO = new PersonDAO(this);
         loadPerson(personDAO);
 
@@ -69,18 +93,6 @@ public class PersonActivity extends AppCompatActivity {
             }
         });
 
-        /*Button btnSave = (Button) findViewById(R.id.btn_save);
-        btnSave.setOnClickListener(new View.OnClickListener()
-        {
-            @Override public void onClick (View v)
-            {
-                if (isValid())
-                {
-                    save(personname.getText().toString().trim(), personidno.getText().toString().trim(), persondate.getText().toString().trim(), personaddress.getText().toString().trim(), personmBloodType.getText().toString().trim(), personpostalcode.getText().toString().trim(), personheight.getText().toString().trim());
-                    Toast.makeText(getApplicationContext(), "Successfully added your details", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });*/
     }
 
     @Override
@@ -94,7 +106,8 @@ public class PersonActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_save_person) {
             if (isValid()) {
-                save(personname.getText().toString().trim(), personidno.getText().toString().trim(), persondate.getText().toString().trim(), personaddress.getText().toString().trim(), personmBloodType.getText().toString().trim(), personpostalcode.getText().toString().trim(), personheight.getText().toString().trim());
+                save(personname.getText().toString().trim(), personidno.getText().toString().trim(), persondate.getText().toString().trim(), personaddress.getText().toString().trim(), spinnerString, personpostalcode.getText().toString().trim(), personheight.getText().toString().trim());
+                finish();
                 Toast.makeText(getApplicationContext(), "Successfully added your details", Toast.LENGTH_SHORT).show();
             }
         }
@@ -118,10 +131,10 @@ public class PersonActivity extends AppCompatActivity {
         return isValid;
     }
 
-    private void save(String name,String idno, String dateofbirth,String address,String bloodtype,String postalcode,String height)
+    private void save(String name, String idno, String dateofbirth, String address, String spinnerString, String postalcode, String height)
     {
         PersonDAO personDAO = new PersonDAO(this);
-        long result = personDAO.addPerson(name, idno, dateofbirth, address, bloodtype, postalcode, height);
+        long result = personDAO.addPerson(name, idno, dateofbirth, address, spinnerString, postalcode, height);
 
         if (result > 0) {
             loadPerson(personDAO);
@@ -151,7 +164,7 @@ public class PersonActivity extends AppCompatActivity {
             personaddress.setText(address);
             personpostalcode.setText(postalcode);
             personheight.setText(height);
-            personmBloodType.setText(bloodtype);
+            mBloodtypeSpinner.setTag(bloodtype);
         }
     }
 }

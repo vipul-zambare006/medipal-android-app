@@ -8,9 +8,12 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -39,6 +42,9 @@ public class AddHealthBioActivity extends AppCompatActivity {
     private String action = "";
     private int healthId = 0;
     private String text;
+    private String[] mConditionTypeArray;
+    private Spinner mConditiontypeSpinner;
+    private String spinnerString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,18 +56,38 @@ public class AddHealthBioActivity extends AppCompatActivity {
         healthId = intent.getExtras().getInt("Id");
         final String condition = intent.getExtras().getString("condition");
         final String startdate = intent.getExtras().getString("startdate");
-        final String conditiontype = intent.getExtras().getString("conditiontype");
+
         action = intent.getExtras().getString("action");
 
         editCondition = (EditText) findViewById(R.id.et_condition);
         editStartDate = (EditText) findViewById(R.id.et_start_date);
-        editConditionType = (EditText) findViewById(R.id.et_condition_type);
+
 
         editCondition.setText(condition);
         editStartDate.setText(startdate);
-        editConditionType.setText(conditiontype);
+
 
         getDatePicker(startdate);
+
+
+        mConditiontypeSpinner = (Spinner) findViewById(R.id.condition_type_spinner);
+        mConditionTypeArray = getResources().getStringArray(R.array.condition_type);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, mConditionTypeArray);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mConditiontypeSpinner.setAdapter(dataAdapter);
+        mConditiontypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spinnerString = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     private void getDatePicker(String date) {
@@ -98,9 +124,9 @@ public class AddHealthBioActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private void update(int id, String condition, String startdate, String conditiontype, HealthBioDAO healthBioDAO, String action) {
+    private void update(int id, String condition, String startdate, String spinnerString, HealthBioDAO healthBioDAO, String action) {
 
-        HealthBio healthBio = new HealthBio(id, condition, startdate, conditiontype);
+        HealthBio healthBio = new HealthBio(id, condition, startdate, spinnerString);
 
         if (action != null && !action.trim().isEmpty() && action.equals("add")) {
             healthBio.addHealthBio(healthBio, healthBioDAO);
@@ -113,7 +139,7 @@ public class AddHealthBioActivity extends AppCompatActivity {
             boolean result = healthBio.UpdateHealthBioById(healthBio, healthBioDAO);
 
             if (result) {
-                editCondition.setText(condition);
+                editCondition.setText(spinnerString);
                 editStartDate.setText(startdate);
 
                 Toast.makeText(getApplicationContext(), Constant.NotificationMsg_HealthBioUpdated, Toast.LENGTH_SHORT).show();
@@ -136,7 +162,7 @@ public class AddHealthBioActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_save_healthBio) {
             if (isValid()) {
-                update(healthId, editCondition.getText().toString(), editStartDate.getText().toString(), editConditionType.getText().toString(), healthBioDAO, action);
+                update(healthId, editCondition.getText().toString(), editStartDate.getText().toString(), spinnerString, healthBioDAO, action);
                 finish();
             }
         }
@@ -150,21 +176,16 @@ public class AddHealthBioActivity extends AppCompatActivity {
         boolean isValid = true;
         if (TextUtils.isEmpty(editCondition.getText().toString().trim())) {
             editCondition.requestFocus();
-            editCondition.setError(Constant.ErrorMsg_PleaseEnterLocation);
+            editCondition.setError(Constant.ErrorMsg_pleaseenter_condtion);
             isValid = false;
         }
 
         if (TextUtils.isEmpty(editStartDate.getText().toString().trim())) {
             editStartDate.requestFocus();
-            editStartDate.setError(Constant.ErrorMsg_PleaseEnterDescription);
+            editStartDate.setError(Constant.ErrorMsg_PleaseEnterDate);
             isValid = false;
         }
 
-        if (TextUtils.isEmpty(editConditionType.getText().toString().trim())) {
-            editConditionType.requestFocus();
-            editConditionType.setError(Constant.ErrorMsg_PleaseEnterDate);
-            isValid = false;
-        }
         return isValid;
     }
 }

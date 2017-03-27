@@ -38,6 +38,7 @@ import sg.edu.nus.medipalapplication.service.ReminderService;
 
 public class MedicineAddActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    public static final String MEDICINE = "Medicine";
     static EditText medicinedateissued;
     EditText medicinename, medicinedescription, medicinereminderid, medicinequantity, medicinedosage, medicineconsumequantity, medicienthreshold, mediceineexpire;
     SwitchCompat Medicineremind;
@@ -49,7 +50,6 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
     MedicineAdapter medicineAdapter;
     ArrayList<Medicine> medicineitem = new ArrayList<Medicine>();
     private String spinnerValueSelected;
-    public static final String MEDICINE = "Medicine";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,8 +203,6 @@ public class MedicineAddActivity extends AppCompatActivity implements AdapterVie
                                long id) {
         spinnerValueSelected = parent.getItemAtPosition(position).toString();
 
-//        Toast.makeText(parent.getContext(), "You selected: " + spinnerValueSelected,
-//                Toast.LENGTH_LONG).show();
     }
 
     public void onNothingSelected(AdapterView<?> parent) {

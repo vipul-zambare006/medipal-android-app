@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        android:text="Click on the Add button to add new Appointments."
+        android:text="@string/add_appointment"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="18dp" />

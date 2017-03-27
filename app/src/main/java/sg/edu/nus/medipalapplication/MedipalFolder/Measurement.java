@@ -49,4 +49,14 @@ public class Measurement {
     public void updateMeasurement(Measurement measurement, Context context) {
 
     }
+
+    public boolean equals(Object measurement) {
+        if (measurement instanceof Measurement) {
+            Measurement measurement1 = (Measurement) measurement;
+            return this.getMeasurementId() == (measurement1.getMeasurementId())
+                    && (this.getMeasuredOn().equals(measurement1.getMeasuredOn()));
+        }
+        return true;
+    }
+    
 }

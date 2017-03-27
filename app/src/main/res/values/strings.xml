@@ -21,6 +21,8 @@
     <string name="Ice">Ice</string>
     <string name="Category">Category</string>
     <string name="Appointment">Appointment</string>
+    <string name="add_appointment">Click on the Add button to add new Appointments</string>
+    <string name="ErrorMsg_pleaseenter_condtion">Please Enter Condition</string>
 
 
     <string-array name="condition_type">

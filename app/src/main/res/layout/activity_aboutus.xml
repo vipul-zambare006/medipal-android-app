@@ -104,7 +104,7 @@
 
         <TextView
             android:padding="3dip"
-            android:text="4" />
+            android:text="5" />
 
         <TextView
             android:padding="3dip"
@@ -120,7 +120,7 @@
 
         <TextView
             android:padding="3dip"
-            android:text="2" />
+            android:text="6" />
 
         <TextView
             android:padding="3dip"

@@ -15,8 +15,8 @@ import sg.edu.nus.medipalapplication.MedipalFolder.Measurement;
 
 public class MeasurementTest extends TestCase {
 
-    private Measurement measure1 = null;
-    private Measurement measure2 = null;
+    private Measurement measure1;
+    private Measurement measure2;
 
     @Before
     public void setUp() throws Exception {
