@@ -45,17 +45,12 @@ public class MedicineActivity extends AppCompatActivity {
         loadMedicine();
         medicineAdapter = new MedicineAdapter(this, medicineitem);
         medicinerecyclerView.setAdapter(medicineAdapter);
-
     }
-
 
     public void loadMedicine() {
         MedicineDAO medicineDatabase = new MedicineDAO(this);
-
         medicineitem = new ArrayList<Medicine>();
-
         medicineDatabase.openDb();
-
         medicineitem.clear();
 
         Cursor cursor = medicineDatabase.getAllMedicine();
@@ -91,7 +86,6 @@ public class MedicineActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         loadMedicine();
-        //tvEmpty.setVisibility(memberListAdapter.getCount() == 0 ? View.VISIBLE : View.GONE);
     }
 
 

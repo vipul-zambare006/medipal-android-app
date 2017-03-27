@@ -13,8 +13,7 @@ import sg.edu.nus.medipalapplication.R;
  */
 
 public class SplashScreenActivity extends Activity {
-
-    private static int SPLASH_TIME_OUT = 1500;
+    private static int SPLASH_TIME_OUT = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,39 +21,12 @@ public class SplashScreenActivity extends Activity {
         setContentView(R.layout.activity_splash);
 
         new Handler().postDelayed(new Runnable() {
-
-            /*
-             * Showing splash screen with a timer. This will be useful when you
-             * want to show case your app logo / company
-             */
-
             @Override
             public void run() {
-
                 Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
                 startActivity(intent);
-/*
-                SharedPreferences sharedPreferences = getSharedPreferences("ShaPreferences", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                boolean firstRun = sharedPreferences.getBoolean("firstRun", true);
-
-                if (firstRun) {
-                    editor.putBoolean("firstRun", false);
-                    editor.commit();
-                    Intent intent = new Intent(SplashScreenActivity.this, PersonActivity.class);
-                    //Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                    startActivity(intent);
-                } else {
-
-                    Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }
-*/
+                finish();
             }
         }, SPLASH_TIME_OUT);
-
-        finish();
     }
 }
-
