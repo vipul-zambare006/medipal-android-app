@@ -31,7 +31,6 @@ import static android.R.attr.id;
 public class AddReminderTestActivity extends AppCompatActivity {
 
     EditText editLocation, editDate, editTime, editDescription;
-    private TimePicker timePicker;
     private EditText frequency;
     private EditText interval, reminderId;
     private Button save;
