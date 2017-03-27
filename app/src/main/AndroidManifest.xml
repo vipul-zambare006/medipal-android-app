@@ -56,7 +56,7 @@
         <activity
             android:name=".activity.AppointmentActivity"
 
-            android:label="Add Appointment"></activity>
+            android:label="My Appointments"></activity>
 
         <activity
             android:name=".activity.SaveAppointmentActivity"

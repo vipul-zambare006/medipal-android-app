@@ -11,42 +11,62 @@ import android.support.v4.content.WakefulBroadcastReceiver;
 import android.support.v7.app.NotificationCompat;
 
 import sg.edu.nus.medipalapplication.R;
+import sg.edu.nus.medipalapplication.activity.AppointmentActivity;
 import sg.edu.nus.medipalapplication.activity.ReminderConsumptionActivity;
 import sg.edu.nus.medipalapplication.database.Constant;
 
 /**
- * Created by Gaurav on 22-03-2017.
+ * Created by Gaurav, Vipul on 22-03-2017.
  */
 
 public class ReminderReceiver extends WakefulBroadcastReceiver {
-
+    private NotificationManager notificationManager;
+    private Notification notification;
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(Context context, Intent intent)
+    {
         Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-        Intent popupIntent = new Intent(context, ReminderConsumptionActivity.class);
         String medicineName = intent.getExtras().getString(Constant.MedicineName);
         String quantity = intent.getExtras().getString(Constant.MedicineConsumeQuantity);
+        String aptLocation = intent.getExtras().getString(Constant.LOCATION);
 
-        //Set values of popup for the next screen
-        popupIntent.putExtra(Constant.MedicineName, medicineName);
-        popupIntent.putExtra(Constant.MedicineConsumeQuantity, quantity);
+        if(medicineName != null){
+            Intent popupIntent = new Intent(context, ReminderConsumptionActivity.class);
 
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            popupIntent.putExtra(Constant.MedicineName, medicineName);
+            popupIntent.putExtra(Constant.MedicineConsumeQuantity, quantity);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, intent.getIntExtra("ID", 10), popupIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        Notification notification = new NotificationCompat.Builder(context)
-                .setContentTitle("Medicine " + medicineName)
-                .setContentText(intent.getStringExtra("Message "))
-                .setSound(sound)
-                .setContentIntent(pendingIntent)
-                .addAction(0, "Attention you have one new notification", pendingIntent)
-                .setSmallIcon(R.drawable.ic_medication)
-                .setAutoCancel(true)
-                .build();
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, intent.getIntExtra("ID", 10), popupIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+             notification = new NotificationCompat.Builder(context)
+                    .setContentTitle("Medicine " + medicineName)
+                    .setContentText(intent.getStringExtra("Message "))
+                    .setSound(sound)
+                    .setContentIntent(pendingIntent)
+                    .addAction(0, Constant.MEDICINE_REMINDER_MESSAGE, pendingIntent)
+                    .setSmallIcon(R.drawable.ic_medication)
+                    .setAutoCancel(true)
+                    .build();
+        }
+        else
+        {
+            Intent popupIntent = new Intent(context, AppointmentActivity.class);
+            notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, intent.getIntExtra("ID", 10), popupIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+            notification = new NotificationCompat.Builder(context)
+                    .setContentTitle("Appointment: " + aptLocation)
+                    .setContentText(intent.getStringExtra(Constant.MESSAGE))
+                    .setSound(sound)
+                    .setContentIntent(pendingIntent)
+                    .addAction(0, Constant.NOTIFICATION_MESSAGE, pendingIntent)
+                    .setSmallIcon(R.drawable.ic_medication)
+                    .setAutoCancel(true)
+                    .build();
+        }
         notificationManager.notify(intent.getIntExtra("ID", 20), notification);
     }
-
 }

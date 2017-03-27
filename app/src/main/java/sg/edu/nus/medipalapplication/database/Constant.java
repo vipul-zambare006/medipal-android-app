@@ -134,11 +134,14 @@ public class Constant {
     public static final String ErrorMsg_DateParseError = "Date parse error";
 
 
-    public static final String NotificationMsg_AppointmentAdded = "Appointment Added Successfully";
+    public static final String NotificationMsg_AppointmentAdded = "Appointment added and reminder set successfully";
     public static final String NotificationMsg_AppointmentUpdated = "Appointment Updated Successfully";
     public static final String NotificationMsg_AppointmentDeleted = "Appointment Deleted Successfully";
     public static  final String MESSAGE ="MESSAGE";
-    public static final String APPOINTMENT_REMINDER_MESSAGE = "You have appointment today";
+    public static final String APPOINTMENT_REMINDER_MESSAGE = "Attention you have an appointment today";
+    public static final String MEDICINE_REMINDER_MESSAGE =  "It's time to take medicine";
+    public static final String NOTIFICATION_MESSAGE =  "New notification";
+
 
     public static final String NotificationMsg_ContactAdded = "Contact Added Successfully";
     public static final String NotificationMsg_ContactUpdated = "Contact Updated Successfully";

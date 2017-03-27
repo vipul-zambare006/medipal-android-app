@@ -1,8 +1,5 @@
 package sg.edu.nus.medipalapplication.MedipalFolder;
 
-import sg.edu.nus.medipalapplication.database.AppointmentDAO;
-import sg.edu.nus.medipalapplication.database.ReminderDAO;
-
 /**
  * Created by Gaurav, Vipul on 19-03-2017.
  */
@@ -39,20 +36,6 @@ public class Reminder {
     public String getstartDateTime() {
         return startDateTime;
     }
-/*
-
-    public long getstartDateTimeLong() {
-        String startDateString = startDateTime;
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
-        Date startDate = new Date();
-        try {
-            startDate = df.parse(startDateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return startDate.getTime();
-    }
-*/
 
     public boolean equals(Object obj) {
         if (this == obj)
@@ -62,41 +45,4 @@ public class Reminder {
 
         return id == ((Reminder) obj).id;
     }
-
-    public void reset() {
-        id = 0;
-        frequency = 0;
-        interval = 0;
-        startDateTime = null;
-    }
-
-//    public void addReminder(Reminder reminder, ReminderDAO reminderDAO) {
-//        reminderDAO.addReminder(reminder);
-//    }
-
-/*
-    public Cursor getReminder(ReminderDAO reminderDAO) {
-        return reminderDAO.getReminderById();
-    }
-*/
-
-    public void UpdateReminderById(Reminder reminderToUpdate, ReminderDAO reminderDAO) {
-        reminderDAO.UpdateReminder(reminderToUpdate);
-    }
-
-    public void DeleteReminder(int appointmentId, AppointmentDAO appointmentDAO) {
-        appointmentDAO.DeleteAppointment(appointmentId);
-    }
-
-//    public ArrayList<Long> getTimeinMillisecond(int interval, int frequency, long startDateTime) {
-//
-//        ArrayList<Long> reminderTimeList = new ArrayList<Long>();
-//        reminderTimeList.add(startDateTime);
-//        for (int i = 1; i < frequency; i++) {
-//
-//             long reminderTime = (60 * 60 * 1000) * (interval * frequency) + startDateTime;
-//            reminderTimeList.add(reminderTime);
-//        }
-//        return reminderTimeList;
-//    }
 }

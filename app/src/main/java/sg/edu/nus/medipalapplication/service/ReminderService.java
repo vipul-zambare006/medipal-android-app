@@ -10,7 +10,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.util.Log;
+import android.support.annotation.NonNull;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -26,6 +26,8 @@ public class ReminderService extends IntentService {
     public static final String CREATE = "CREATE";
     public static final String CANCEL = "CANCEL";
     private static final String TAG = "ReminderService";
+    public static final String MEDICINE = "Medicine";
+    public static final String APPOINTMENT = "Appointment";
     private IntentFilter matcher;
 
     public ReminderService() {
@@ -40,10 +42,10 @@ public class ReminderService extends IntentService {
 
         String action = intent.getAction();
         String type = intent.getStringExtra("Type");
-        int reminderID = 0, appointmentId = 0, frequency = 0, interval = 0;
-        String reminderTime = "", medicineName = "", consumeQty = "", reminderMessage = "", appointmentDate = "", appointmentTime = "", appointmentLocation = "", appointmentDesc = "", appointmentMsg = "";
+        int reminderID = 0, frequency = 0, interval = 0;
+        String reminderTime = "", medicineName = "", consumeQty = "", reminderMessage = "", appointmentDate = "", appointmentLocation = "", appointmentDesc = "", appointmentMsg = "";
 
-        if (type == "Medicine") {
+        if (type.equalsIgnoreCase(MEDICINE)) {
             reminderID = intent.getIntExtra(Constant.COLUMN_ID, 0);
             reminderTime = intent.getStringExtra(Constant.REMINDERDATETIME);
             frequency = intent.getIntExtra(Constant.FREQUENCY, 0);
@@ -51,33 +53,30 @@ public class ReminderService extends IntentService {
             medicineName = intent.getStringExtra(Constant.MedicineName);
             consumeQty = intent.getStringExtra(Constant.MedicineConsumeQuantity);
             reminderMessage = intent.getStringExtra("Message");
-        } else if (type == "Appointment")
+        } else if (type.equalsIgnoreCase(APPOINTMENT))
         {
-            appointmentId = intent.getIntExtra(Constant.COLUMN_ID, 0);
             appointmentDate = intent.getStringExtra(Constant.APPOINTMENTDATE);
-            appointmentTime = intent.getStringExtra(Constant.APPOINTMENTTIME);
             appointmentLocation = intent.getStringExtra(Constant.LOCATION);
-            appointmentDesc = intent.getStringExtra(Constant.DESCRIPTION);
             appointmentMsg = intent.getStringExtra(Constant.MESSAGE);
         }
 
         if (matcher.matchAction(action)) {
             if (CREATE.equals(action)) {
-                if (type == "Medicine") {
+                if (type.equalsIgnoreCase(MEDICINE)) {
                     executeMedicineReminder(CREATE, reminderID, reminderMessage, reminderTime, frequency, interval, medicineName, consumeQty);
                 }
-                else if(type == "Appointment")
+                else if(type.equalsIgnoreCase(APPOINTMENT))
                 {
-                    executeAppointmentReminder(CREATE, appointmentId, appointmentMsg, appointmentTime, appointmentDate, appointmentLocation);
+                    executeAppointmentReminder(CREATE, appointmentMsg, appointmentDate, appointmentLocation);
                 }
             }
             if (CANCEL.equals(action)) {
-                if (type == "Medicine") {
+                if (type.equalsIgnoreCase(MEDICINE)) {
                     executeMedicineReminder(CANCEL, reminderID, reminderMessage, reminderTime, frequency, interval, medicineName, consumeQty);
                 }
-                else if(type == "Appointment")
+                else if(type.equalsIgnoreCase(APPOINTMENT))
                 {
-                    executeAppointmentReminder(CANCEL, appointmentId, appointmentMsg, appointmentTime, appointmentDate, appointmentLocation);
+                    executeAppointmentReminder(CANCEL, appointmentMsg, appointmentDate, appointmentLocation);
                 }
             }
         }
@@ -88,15 +87,7 @@ public class ReminderService extends IntentService {
         PendingIntent pi;
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-        Date reminderDateTime = new Date();
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.ENGLISH);
-        try {
-            reminderDateTime = df.parse(reminderTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(reminderDateTime);
+        Calendar calendar = getReminderDateTime(reminderTime);
 
         int input = (int) (new Date()).getTime();
         intent = new Intent(this, ReminderReceiver.class);
@@ -107,8 +98,6 @@ public class ReminderService extends IntentService {
 
         pi = PendingIntent.getBroadcast(this, input, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Log.d("service remindid", String.valueOf(input));
-
         if (CREATE.equals(action)) {
             am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pi);
             int i = 1;
@@ -117,18 +106,36 @@ public class ReminderService extends IntentService {
                 am.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), pi);
                 i++;
             }
-
         } else if (CANCEL.equals(action)) {
             am.cancel(pi);
             pi.cancel();
         }
     }
 
-    private void executeAppointmentReminder(String action, int reminderID, String msg, String reminderTime, String reminderDate, String appointmentLocation) {
+    private void executeAppointmentReminder(String action, String msg, String reminderDate, String appointmentLocation) {
         Intent intent;
         PendingIntent pi;
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Calendar calendar = getReminderDateTime(reminderDate);
+        int input = (int) (new Date()).getTime();
 
+        intent = new Intent(this, ReminderReceiver.class);
+        intent.putExtra(Constant.COLUMN_ID, input);
+        intent.putExtra(Constant.MESSAGE, msg);
+        intent.putExtra(Constant.LOCATION, appointmentLocation);
+
+        pi = PendingIntent.getBroadcast(this, input, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        if (CREATE.equals(action)) {
+            am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pi);
+        } else if (CANCEL.equals(action)) {
+            am.cancel(pi);
+            pi.cancel();
+        }
+    }
+
+    @NonNull
+    private Calendar getReminderDateTime(String reminderTime) {
         Date reminderDateTime = new Date();
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.ENGLISH);
         try {
@@ -138,23 +145,6 @@ public class ReminderService extends IntentService {
         }
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(reminderDateTime);
-
-        int input = (int) (new Date()).getTime();
-        intent = new Intent(this, ReminderReceiver.class);
-        intent.putExtra("ID", input);
-        intent.putExtra("Message", msg);
-        intent.putExtra(Constant.LOCATION, appointmentLocation);
-//        intent.putExtra(Constant.MedicineConsumeQuantity, );
-
-        pi = PendingIntent.getBroadcast(this, input, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Log.d("service remindid", String.valueOf(input));
-
-        if (CREATE.equals(action)) {
-            am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pi);
-        } else if (CANCEL.equals(action)) {
-            am.cancel(pi);
-            pi.cancel();
-        }
+        return calendar;
     }
 }

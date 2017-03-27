@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -119,7 +120,7 @@ public class SaveAppointmentActivity extends AppCompatActivity
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
                                         calendar.get(Calendar.DAY_OF_MONTH), hourOfDay, minute);
-                                selectedDate = calendar;
+                               selectedDate = calendar;
                                 editText.setText(timeFormatter.format(calendar.getTime()));
                             }
                         };
@@ -127,7 +128,7 @@ public class SaveAppointmentActivity extends AppCompatActivity
                 try {
                     timeCalendar.setTime(timeFormatter.parse(editText.getText().toString()));
                 } catch (ParseException e) {
-                           Toast.makeText(SaveAppointmentActivity.this, Constant.ErrorMsg_DateParseError, Toast.LENGTH_SHORT).show();
+                    Log.d("Time", "Parse exception");
                 }
                 TimePickerDialog timePickerDialog =
                         new TimePickerDialog(SaveAppointmentActivity.this, timeSetListener, timeCalendar.get(Calendar.HOUR_OF_DAY), timeCalendar.get(Calendar.MINUTE), false);
@@ -178,12 +179,14 @@ public class SaveAppointmentActivity extends AppCompatActivity
         {
             appointmentDAO.addAppointment(appointment);
             setReminder(appointment);
+            Toast.makeText(getApplicationContext(), Constant.NotificationMsg_AppointmentAdded, Toast.LENGTH_SHORT).show();
         }
         else
         {
             boolean result =  appointmentDAO.updateAppointment(appointment);
             if(result)
             {
+                setReminder(appointment);
                 editLocation.setText(location);
                 editDescription.setText(desc);
                 editDate.setText(date);
@@ -204,9 +207,11 @@ public class SaveAppointmentActivity extends AppCompatActivity
     {
         Intent service = new Intent(this, ReminderService.class);
 
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.ENGLISH);
+        String formattedDate = sdf.format(selectedDate.getTime());
+
         service.putExtra(Constant.COLUMN_ID, appointment.getId());
-        service.putExtra(Constant.APPOINTMENTDATE,selectedDate);
-        service.putExtra(Constant.APPOINTMENTTIME,appointment.getTime());
+        service.putExtra(Constant.APPOINTMENTDATE,formattedDate);
         service.putExtra(Constant.LOCATION, appointment.getLocation());
         service.putExtra(Constant.DESCRIPTION, appointment.getDescription());
         service.putExtra(Constant.MESSAGE, Constant.APPOINTMENT_REMINDER_MESSAGE);
@@ -215,7 +220,6 @@ public class SaveAppointmentActivity extends AppCompatActivity
         service.setAction(ReminderService.CREATE);
         startService(service);
 
-        Toast.makeText(getApplicationContext(), Constant.NotificationMsg_AppointmentAdded, Toast.LENGTH_SHORT).show();
         Intent i = new Intent(getApplicationContext(),AppointmentActivity.class);
         startActivity(i);
     }
