@@ -10,6 +10,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.util.Log;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -106,16 +107,17 @@ public class ReminderService extends IntentService {
 
         pi = PendingIntent.getBroadcast(this, input, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        if (CREATE.equals(action)) {
+        Log.d("service remindid", String.valueOf(input));
 
+        if (CREATE.equals(action)) {
             am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pi);
             int i = 1;
-            while (i < frequency) {
-
+            while(i < frequency ){
                 calendar.add(Calendar.HOUR_OF_DAY, interval);
-                am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pi);
+                am.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), pi);
                 i++;
             }
+
         } else if (CANCEL.equals(action)) {
             am.cancel(pi);
             pi.cancel();
