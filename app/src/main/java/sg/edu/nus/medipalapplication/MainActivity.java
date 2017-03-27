@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import sg.edu.nus.medipalapplication.activity.AboutUsActivity;
 import sg.edu.nus.medipalapplication.activity.AppointmentActivity;
 import sg.edu.nus.medipalapplication.activity.CategoryActivity;
 import sg.edu.nus.medipalapplication.activity.ConsumptionActivity;
@@ -25,13 +26,13 @@ import sg.edu.nus.medipalapplication.activity.MeasurementActivity;
 import sg.edu.nus.medipalapplication.activity.MedicineActivity;
 import sg.edu.nus.medipalapplication.activity.PersonActivity;
 
-//import sg.edu.nus.medipalapplication.activity.MedicalLayout;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    ImageView categoryimage, appoinmentimage, iceimage, healthbioimage, medicineimage, measurementimage, consumptionimage;
+    ImageView categoryimage, appoinmentimage, iceimage, healthbioimage, medicineimage, measurementimage, consumptionimage, aboutusimage;
     View mview;
 
 
@@ -116,6 +117,16 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
 
                 Intent intent = new Intent(MainActivity.this, AppointmentActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        aboutusimage = (ImageView) findViewById(R.id.About_Us);
+        aboutusimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
                 startActivity(intent);
             }
         });

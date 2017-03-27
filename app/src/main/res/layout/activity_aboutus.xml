@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Medipal"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="25sp" />
+
+    <TableRow>
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_column="1"
+            android:padding="3dip"
+            android:text="Student Name"
+            android:textStyle="bold" />
+
+        <TextView
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="ID"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
+
+    <TableRow>
+
+        <TextView
+            android:padding="3dip"
+            android:text="1" />
+
+        <TextView
+            android:padding="3dip"
+            android:text="Gaurav Sharma" />
+
+        <TextView
+            android:gravity="right"
+            android:padding="3dip"
+            android:text="E0015314" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:padding="3dip"
+            android:text="2" />
+
+        <TextView
+            android:padding="3dip"
+            android:text="Mahesh Inna Kedage" />
+
+        <TextView
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="E0146954" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:padding="3dip"
+            android:text="3" />
+
+        <TextView
+            android:padding="3dip"
+            android:text="Monalisa Debnath" />
+
+        <TextView
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="E0146760" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:padding="3dip"
+            android:text="4" />
+
+        <TextView
+            android:padding="3dip"
+            android:text="Vipul Gopal Zambare" />
+
+        <TextView
+            android:gravity="right"
+            android:padding="3dip"
+            android:text="E0146973" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:padding="3dip"
+            android:text="4" />
+
+        <TextView
+            android:padding="3dip"
+            android:text="Rachel Gnanaraj" />
+
+        <TextView
+            android:gravity="right"
+            android:padding="3dip"
+            android:text="E0146843" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:padding="3dip"
+            android:text="2" />
+
+        <TextView
+            android:padding="3dip"
+            android:text="Gadiraju Rajasekar Govardhan" />
+
+        <TextView
+            android:gravity="right"
+            android:padding="3dip"
+            android:text="E0146799" />
+    </TableRow>
+
+</TableLayout>
