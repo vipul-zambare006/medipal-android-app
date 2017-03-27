@@ -1,7 +1,6 @@
 package sg.edu.nus.medipalapplication.activity;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,13 +12,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
 import sg.edu.nus.medipalapplication.MedipalFolder.Person;
 import sg.edu.nus.medipalapplication.R;
-import sg.edu.nus.medipalapplication.database.AppointmentDAO;
 import sg.edu.nus.medipalapplication.database.PersonDAO;
 
 /**
@@ -28,13 +25,11 @@ import sg.edu.nus.medipalapplication.database.PersonDAO;
 
 public class PersonActivity extends AppCompatActivity {
 
-    private EditText personname,persondate,personidno,personaddress,personpostalcode,personheight,personmBloodType;
     Person person = new Person();
-
-    private SimpleDateFormat dateFormatter = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
-
     Calendar currentCal = Calendar.getInstance();
     Calendar selectedDate = Calendar.getInstance();
+    private EditText personname, persondate, personidno, personaddress, personpostalcode, personheight, personmBloodType;
+    private SimpleDateFormat dateFormatter = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
