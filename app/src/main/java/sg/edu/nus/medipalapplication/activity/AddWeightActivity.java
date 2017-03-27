@@ -97,14 +97,17 @@ public class AddWeightActivity extends AppCompatActivity {
     private boolean isValid() {
         boolean isValid = true;
         if (TextUtils.isEmpty(weight.getText().toString().trim())) {
+            weight.requestFocus();
             weight.setError("please add weight value");
             isValid = false;
         }
         if (TextUtils.isEmpty(DateEdit.getText().toString().trim())) {
+            DateEdit.requestFocus();
             DateEdit.setError("please add date");
             isValid = false;
         }
         if (TextUtils.isEmpty(TimeEdit.getText().toString().trim())) {
+            TimeEdit.requestFocus();
             TimeEdit.setError("please add time");
             isValid = false;
         }

@@ -96,14 +96,17 @@ public class AddTemperatureActivity extends AppCompatActivity {
     private boolean isValid() {
         boolean isValid = true;
         if (TextUtils.isEmpty(temperature.getText().toString().trim())) {
+            temperature.requestFocus();
             temperature.setError("please add temperature value");
             isValid = false;
         }
         if (TextUtils.isEmpty(DateEdit.getText().toString().trim())) {
+            DateEdit.requestFocus();
             DateEdit.setError("please add date");
             isValid = false;
         }
-        if (TextUtils.isEmpty(TimeEdit.getText().toString().trim())) {
+        if (TextUtils.isEmpty(DateEdit.getText().toString().trim())) {
+            TimeEdit.requestFocus();
             TimeEdit.setError("please add time");
             isValid = false;
         }

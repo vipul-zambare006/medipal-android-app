@@ -106,18 +106,22 @@ public class AddPressureActivity extends AppCompatActivity {
     private boolean isValid() {
         boolean isValid = true;
         if (TextUtils.isEmpty(systolic.getText().toString().trim())) {
+            systolic.requestFocus();
             systolic.setError("please add systolic value");
             isValid = false;
         }
         if (TextUtils.isEmpty(diastolic.getText().toString().trim())) {
+            diastolic.requestFocus();
             diastolic.setError("Please add diastolic value");
             isValid = false;
         }
         if (TextUtils.isEmpty(DateEdit.getText().toString().trim())) {
+            DateEdit.requestFocus();
             DateEdit.setError("please add date");
             isValid = false;
         }
         if (TextUtils.isEmpty(TimeEdit.getText().toString().trim())) {
+            TimeEdit.requestFocus();
             TimeEdit.setError("please add time");
             isValid = false;
         }

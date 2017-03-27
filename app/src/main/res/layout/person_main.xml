@@ -1,166 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_person"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".activity.PersonActivity">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/linearLayout3">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/et_idno"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:hint="Unique No"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-             <android.support.design.widget.TextInputLayout
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content">
-
-                 <EditText
-                     android:id="@+id/et_dob"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_alignParentEnd="true"
-                     android:layout_alignTop="@+id/tv_dob"
-                     android:layout_marginLeft="10dp"
-                     android:hint="Date Of Birth"
-                     />
-
-             </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/et_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="140dp"
-                    android:hint="Address"/>
-
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/et_postal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="210dp"
-                    android:hint="Postal Code"
-                    android:inputType="number" />
-
-            </android.support.design.widget.TextInputLayout>
-
-             <android.support.design.widget.TextInputLayout
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content">
-
-                 <EditText
-                     android:id="@+id/et_height"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_marginLeft="10dp"
-                     android:layout_marginTop="270dp"
-                     android:hint="Height"
-                     android:inputType="number" />
-
-             </android.support.design.widget.TextInputLayout>
-
-             <android.support.design.widget.TextInputLayout
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content">
-
-                 <EditText
-                     android:id="@+id/bloodtype_spinner"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_alignTop="@+id/textView3"
-                     android:layout_marginLeft="10dp"
-                     android:hint="Blood Type">
-
-                 </EditText>
-
-             </android.support.design.widget.TextInputLayout>
+    android:orientation="vertical">
 
 
-            <Button
-                android:id="@+id/btn_save"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="130dp"
-                android:layout_marginTop="30dp"
-                android:background="#ff6666"
-                android:text="Save"
-                android:textColor="#6e6d6d" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="409dp"
+        android:layout_height="163dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-        </LinearLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="177dp">
 
+        <EditText
+            android:id="@+id/et_idno"
+            android:layout_width="352dp"
+            android:layout_height="44dp"
+            android:ems="10"
+            android:hint="ID No."
+            android:inputType="textPersonName"
+            android:text="ID No."
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="233dp" />
 
-    </ScrollView>
+    </android.support.design.widget.TextInputLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="#ffffff"
-        android:orientation="vertical">
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="242dp">
 
+        <EditText
+            android:id="@+id/et_dob"
+            android:layout_width="352dp"
+            android:layout_height="44dp"
+            android:ems="10"
+            android:hint="Date of birth"
+            android:inputType="date"
+            android:text="Date of birth"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="296dp" />
 
-        <QuickContactBadge
-            android:id="@+id/im_person"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="145dp"
-            android:layout_marginTop="25dp"
-            android:src="@drawable/ic_person_black_24dp" />
+    </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="378dp">
 
-            <EditText
-                android:id="@+id/et_name"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:hint="Enter your Name"
-                android:textAlignment="center"
-                android:textColor="#676749"
-                android:textSize="14sp" />
+        <EditText
+            android:id="@+id/et_postal"
+            android:layout_width="352dp"
+            android:layout_height="44dp"
+            android:ems="10"
+            android:hint="Postal"
+            android:inputType="number"
+            android:text="Postal"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="429dp" />
 
+    </android.support.design.widget.TextInputLayout>
 
-        </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="450dp">
 
-    </LinearLayout>
-</RelativeLayout>
+        <EditText
+            android:id="@+id/et_height"
+            android:layout_width="350dp"
+            android:layout_height="47dp"
+            android:ems="10"
+            android:hint="Height"
+            android:inputType="textPersonName"
+            android:text="Height"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="450dp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="524dp">
+
+        <EditText
+            android:id="@+id/bloodtype_spinner"
+            android:layout_width="352dp"
+            android:layout_height="44dp"
+            android:ems="10"
+            android:hint="Blood Type"
+            android:inputType="textPersonName"
+            android:text="Blood Type"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="512dp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="81dp"
+        tools:layout_editor_absoluteY="93dp">
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:text="Name"
+            tools:layout_editor_absoluteX="81dp"
+            tools:layout_editor_absoluteY="104dp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="309dp">
+
+        <EditText
+            android:id="@+id/et_address"
+            android:layout_width="358dp"
+            android:layout_height="46dp"
+            android:ems="10"
+            android:hint="Address"
+            android:inputType="textPersonName"
+            android:text="Address"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="359dp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="591dp" />
+
+</android.support.constraint.ConstraintLayout>

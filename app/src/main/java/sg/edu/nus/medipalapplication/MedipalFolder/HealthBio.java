@@ -1,23 +1,62 @@
 package sg.edu.nus.medipalapplication.MedipalFolder;
 
+import android.database.Cursor;
+
+import java.util.ArrayList;
+
+import sg.edu.nus.medipalapplication.database.HealthBioDAO;
+
+
 /**
- * Created by monalisadebnth on 18/3/17.
+ * Created by monalisadebnth on 25/3/17.
  */
 
 public class HealthBio {
+
+    private int id;
     private String condition;
     private String startdate;
     private String conditiontype;
-    private int memberNum;
 
-    public HealthBio(String condition, String startdate, String conditiontype) {
+    public HealthBio() {
+    }
+
+    public HealthBio(int id, String condition, String startdate, String conditiontype) {
         this.condition = condition;
         this.startdate = startdate;
         this.conditiontype = conditiontype;
+        this.id = id;
     }
 
-    public HealthBio(int memberNum) {
-        this.memberNum = memberNum;
+    public void addHealthBio(HealthBio healthBio, HealthBioDAO healthBioDAO) {
+        healthBioDAO.addHealthBio(healthBio);
+    }
+
+    public ArrayList<HealthBio> getHealthbio(HealthBioDAO healthBioDAO) {
+
+        ArrayList<HealthBio> healthBioArrayList = new ArrayList<>();
+        Cursor cursor = healthBioDAO.GetAllHeathBio();
+
+        while (cursor.moveToNext()) {
+
+            int id = cursor.getInt(0);
+            String condition = cursor.getString(1);
+            String startdate = cursor.getString(2);
+            String conditiontype = cursor.getString(3);
+
+            HealthBio healthBio = new HealthBio(id, condition, startdate, conditiontype);
+            healthBioArrayList.add(healthBio);
+        }
+        return healthBioArrayList;
+    }
+
+    public boolean UpdateHealthBioById(HealthBio healthBioToUpdate, HealthBioDAO healthBioDAO) {
+        boolean result = healthBioDAO.UpdateHealthBio(healthBioToUpdate);
+        return result;
+    }
+
+    public void DeleteAppointmentById(int HealthBioId, HealthBioDAO healthBioDAO) {
+        healthBioDAO.DeleteHealthbio(HealthBioId);
     }
 
     public String getCondition() {
@@ -28,21 +67,13 @@ public class HealthBio {
         return startdate;
     }
 
-    public String getConditiontype() {
+    public String getConditionType() {
         return conditiontype;
     }
 
-    public boolean equals(Object medical) {
-        if (medical instanceof HealthBio) {
-            HealthBio m = (HealthBio) medical;
-            if (this.getCondition().equals(m.getCondition())
-                    && this.getConditiontype().equals(m.getConditiontype()))
-                return true;
-        }
-        return false;
+    public int getId() {
+        return id;
     }
 
-    public void show () {
-        System.out.println (this);
-    }
+
 }

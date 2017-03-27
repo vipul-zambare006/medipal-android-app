@@ -148,4 +148,11 @@ public class Constant {
     public static final String NotificationMsg_ContactDeleted = "Contact Deleted Successfully";
 
     public static final String AppointmentSelectQuery =  "Select * from Appointment";
+
+
+    public static final String NotificationMsg_HealthBioAdded = "HealthBio Added Successfully";
+    public static final String NotificationMsg_HealthBioUpdated = "HealthBio Updated Successfully";
+    public static final String NotificationMsg_HealthBioDeleted = "HealthBio Deleted Successfully";
+
+    public static final String HealthBioSelectQuery = "Select * from HealthBio";
 }

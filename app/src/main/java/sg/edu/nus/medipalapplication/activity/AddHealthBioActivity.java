@@ -1,88 +1,182 @@
 package sg.edu.nus.medipalapplication.activity;
 
+import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import sg.edu.nus.medipalapplication.MedipalFolder.ManageHealthBio;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
+import sg.edu.nus.medipalapplication.MedipalFolder.HealthBio;
 import sg.edu.nus.medipalapplication.R;
-import sg.edu.nus.medipalapplication.application.App;
+import sg.edu.nus.medipalapplication.database.Constant;
+import sg.edu.nus.medipalapplication.database.HealthBioDAO;
+
+
+/**
+ * Created by monalisadebnth on 25/3/17.
+ */
 
 public class AddHealthBioActivity extends AppCompatActivity {
 
-    private EditText condition, startdate;
-    private String[] mConditionTypeArray;
-    private Spinner mConditiontypeSpinner;
-    private String spinnerString;
-    private Button btnSave;
-    private ManageHealthBio health_bio = new ManageHealthBio();
+    private final HealthBioDAO healthBioDAO = new HealthBioDAO(this);
+    EditText editCondition, editStartDate, editConditionType;
+    Button btn_save;
+    HealthBio healthBio;
+    Calendar currentCal = Calendar.getInstance();
+    Calendar selectedDate = Calendar.getInstance();
+    private SimpleDateFormat dateFormatter = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+    private String action = "";
+    private int healthId = 0;
+    private String text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.addmedicalbio);
+        setContentView(R.layout.activity_edit_healthbio);
 
-        condition = (EditText) findViewById(R.id.et_condition);
-        startdate = (EditText) findViewById(R.id.et_start_date);
+        Intent intent = getIntent();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        mConditiontypeSpinner = (Spinner) findViewById(R.id.condition_type_spinner);
-        mConditionTypeArray = getResources().getStringArray(R.array.condition_type);
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, mConditionTypeArray);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mConditiontypeSpinner.setAdapter(dataAdapter);
-
-        mConditiontypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                spinnerString = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        btnSave = (Button) findViewById(R.id.btn_save);
-        btnSave.setOnClickListener(new View.OnClickListener() {
-
-
+        /*toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), HealthBioActivity.class));
+            }
+        });*/
+
+        healthId = intent.getExtras().getInt("Id");
+        final String condition = intent.getExtras().getString("condition");
+        final String startdate = intent.getExtras().getString("date");
+        final String conditiontype = intent.getExtras().getString("conditiontype");
+        action = intent.getExtras().getString("action");
+
+        editCondition = (EditText) findViewById(R.id.et_condition);
+        editStartDate = (EditText) findViewById(R.id.et_start_date);
+        editConditionType = (EditText) findViewById(R.id.et_condition_type);
 
 
-                if (isValid()) {
+        editCondition.setText(condition);
+        editStartDate.setText(startdate);
+        editConditionType.setText(conditiontype);
 
-                    health_bio.addMember(condition.getText().toString().trim(),
-                            startdate.getText().toString().trim(), spinnerString, getApplicationContext());
+        getDatePicker(startdate);
+    }
 
-
-                    Toast.makeText(AddHealthBioActivity.this, getString(R.string.save_successsful),
-                            Toast.LENGTH_SHORT).show();
-                    finish();
-                }
+    private void getDatePicker(String date) {
+        editStartDate.setText(date);
+        editStartDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog.OnDateSetListener onDateSetListener =
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(year, monthOfYear, dayOfMonth);
+                                selectedDate = calendar;
+                                editStartDate.setText(dateFormatter.format(calendar.getTime()));
+                            }
+                        };
+                DatePickerDialog datePickerDialog =
+                        new DatePickerDialog(AddHealthBioActivity.this, onDateSetListener,
+                                currentCal.get(Calendar.YEAR), currentCal.get(Calendar.MONTH),
+                                currentCal.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
             }
         });
+    }
+
+    private void delete(int id, HealthBioDAO appointmentDAO) {
+        healthBio = new HealthBio();
+        healthBio.DeleteAppointmentById(id, appointmentDAO);
+
+        Toast.makeText(getApplicationContext(), Constant.NotificationMsg_HealthBioDeleted, Toast.LENGTH_SHORT).show();
+
+        Intent i = new Intent(getApplicationContext(), HealthBioActivity.class);
+        startActivity(i);
+    }
+
+    private void update(int id, String condition, String startdate, String conditiontype, HealthBioDAO healthBioDAO, String action) {
+        HealthBio healthBio = new HealthBio(id, condition, startdate, conditiontype);
+
+        if (action != null && !action.trim().isEmpty() && action.equals("add")) {
+            healthBio.addHealthBio(healthBio, healthBioDAO);
+
+            Toast.makeText(getApplicationContext(), Constant.NotificationMsg_HealthBioAdded, Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getApplicationContext(), HealthBioActivity.class);
+            startActivity(i);
+        } else {
+            boolean result = healthBio.UpdateHealthBioById(healthBio, healthBioDAO);
+
+            if (result) {
+                editCondition.setText(condition);
+                editStartDate.setText(startdate);
+//                editDate.setText(type);
+
+                Toast.makeText(getApplicationContext(), Constant.NotificationMsg_HealthBioUpdated, Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(), HealthBioActivity.class);
+                startActivity(i);
+            } else {
+                Toast.makeText(getApplicationContext(), Constant.ErrorMsg_RecordNotUpdated, Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.healthbio_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_save_healthBio) {
+            if (isValid()) {
+                update(healthId, editCondition.getText().toString(), editStartDate.getText().toString(), editConditionType.getText().toString(), healthBioDAO, action);
+            }
+        }
+        if (id == R.id.action_delete) {
+            delete(healthId, healthBioDAO);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private boolean isValid() {
         boolean isValid = true;
-        if (TextUtils.isEmpty(condition.getText().toString().trim())) {
-            condition.setError(getString(R.string.first_name_validation_msg));
+        if (TextUtils.isEmpty(editCondition.getText().toString().trim())) {
+            editCondition.requestFocus();
+            editCondition.setError(Constant.ErrorMsg_PleaseEnterLocation);
             isValid = false;
         }
-        if (TextUtils.isEmpty(startdate.getText().toString().trim())) {
-            startdate.setError(getString(R.string.second_name_validation_msg));
+
+        if (TextUtils.isEmpty(editStartDate.getText().toString().trim())) {
+            editStartDate.requestFocus();
+            editStartDate.setError(Constant.ErrorMsg_PleaseEnterDescription);
             isValid = false;
         }
+
+        if (TextUtils.isEmpty(editConditionType.getText().toString().trim())) {
+            editConditionType.requestFocus();
+            editConditionType.setError(Constant.ErrorMsg_PleaseEnterDate);
+            isValid = false;
+        }
+
         return isValid;
     }
+
 }

@@ -7,9 +7,9 @@
             android:icon="@drawable/ic_menu_user_account"
             android:title="Person" />
         <item
-            android:id="@+id/nav_medical"
+            android:id="@+id/nav_healthBio"
             android:icon="@drawable/ic_medical"
-            android:title="Medical Bio" />
+            android:title="Health Bio" />
         <item
             android:id="@+id/nav_ICE"
             android:icon="@drawable/ic_menu_ice"
@@ -33,11 +33,6 @@
             android:id="@+id/nav_appointment"
             android:icon="@drawable/ic_menu_appointment"
             android:title="Appointment" />
-
-        <item
-            android:id="@+id/nav_reminder"
-            android:icon="@drawable/ic_menu_reminder"
-            android:title="Reminder" />
             
         <item
             android:id="@+id/nav_consumption"

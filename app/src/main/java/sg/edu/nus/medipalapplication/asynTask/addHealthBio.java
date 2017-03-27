@@ -1,9 +1,7 @@
 package sg.edu.nus.medipalapplication.asynTask;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
-import sg.edu.nus.medipalapplication.MedipalFolder.HealthID;
 import sg.edu.nus.medipalapplication.database.HealthBioDAO;
 
 
