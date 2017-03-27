@@ -38,7 +38,7 @@ public class TemperatureAdapter extends RecyclerView.Adapter<TemperatureAdapter.
 
     @Override
     public void onBindViewHolder(temperatureHolder holder, int position) {
-        holder.temperature.setText(String.valueOf((int) temperaturelist.get(position).getTemperature()));
+        holder.temperature.setText(String.valueOf(temperaturelist.get(position).getTemperature()));
         holder.measuredOn.setText(temperaturelist.get(position).getMeasuredOn());
         holder.container.setOnClickListener(onClickListener(position));
     }
