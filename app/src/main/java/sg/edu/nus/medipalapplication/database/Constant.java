@@ -48,6 +48,7 @@ public class Constant {
     public static final String LOCATION = "LOCATION";
     public static final String FREQUENCY = "FREQUENCY";
     public static final String INTERVAL = "INTERVAL";
+    public static final String APPOINTMENTDATETIME = "APPOINTMENTDATETIME";
     public static final String APPOINTMENTDATE = "APPOINTMENTDATE";
     public static final String APPOINTMENTTIME = "APPOINTMENTTIME";
     public static final String STARTTIME = "STARTTIME";
@@ -130,6 +131,8 @@ public class Constant {
     public static final String ErrorMsg_PleaseEnterTime = "Please enter time";
     public static final String ErrorMsg_RecordNotUpdated = "Record not updated";
     public static final String ErrorMsg_RecordNotAdded = "Record not added";
+    public static final String ErrorMsg_DateParseError = "Date parse error";
+
 
     public static final String NotificationMsg_AppointmentAdded = "Appointment Added Successfully";
     public static final String NotificationMsg_AppointmentUpdated = "Appointment Updated Successfully";

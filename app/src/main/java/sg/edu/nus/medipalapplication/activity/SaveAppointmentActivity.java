@@ -34,6 +34,7 @@ import sg.edu.nus.medipalapplication.service.ReminderService;
 
 public class SaveAppointmentActivity extends AppCompatActivity
 {
+    public static final String APPOINTMENT = "Appointment";
     private final AppointmentDAO appointmentDAO = new AppointmentDAO(this);
     EditText editLocation,editDate,editTime,editDescription;
     Appointment appointment;
@@ -126,7 +127,7 @@ public class SaveAppointmentActivity extends AppCompatActivity
                 try {
                     timeCalendar.setTime(timeFormatter.parse(editText.getText().toString()));
                 } catch (ParseException e) {
-                           /* Toast.makeText(MainActivity.this, R.string.generic_error, Toast.LENGTH_SHORT).show();*/
+                           Toast.makeText(SaveAppointmentActivity.this, Constant.ErrorMsg_DateParseError, Toast.LENGTH_SHORT).show();
                 }
                 TimePickerDialog timePickerDialog =
                         new TimePickerDialog(SaveAppointmentActivity.this, timeSetListener, timeCalendar.get(Calendar.HOUR_OF_DAY), timeCalendar.get(Calendar.MINUTE), false);
@@ -209,7 +210,7 @@ public class SaveAppointmentActivity extends AppCompatActivity
         service.putExtra(Constant.LOCATION, appointment.getLocation());
         service.putExtra(Constant.DESCRIPTION, appointment.getDescription());
         service.putExtra(Constant.MESSAGE, Constant.APPOINTMENT_REMINDER_MESSAGE);
-        service.putExtra("Type", "Appointment");
+        service.putExtra("Type", APPOINTMENT);
 
         service.setAction(ReminderService.CREATE);
         startService(service);

@@ -70,8 +70,7 @@ public class DBHelper extends SQLiteOpenHelper {
             + "("
             + Constant.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + Constant.LOCATION +  " TEXT NOT NULL, "
-            + Constant.APPOINTMENTDATE + " TEXT NOT NULL, "
-            + Constant.APPOINTMENTTIME + " TEXT NOT NULL, "
+            + Constant.APPOINTMENTDATETIME + " TEXT NOT NULL, "
             + Constant.DESCRIPTION + " TEXT NOT NULL);";
 
     private static final String CREATE_REMINDER = " CREATE TABLE " + Constant.Reminder_Table_Name
